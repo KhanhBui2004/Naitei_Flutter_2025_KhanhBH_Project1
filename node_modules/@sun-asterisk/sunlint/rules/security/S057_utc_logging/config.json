@@ -1,0 +1,105 @@
+{
+  "ruleId": "S057",
+  "name": "Log with UTC Timestamps",
+  "description": "Ensure all logs use synchronized UTC time with ISO 8601/RFC3339 format to avoid timezone discrepancies across systems.",
+  "category": "security",
+  "severity": "warning",
+  "options": {
+    "disallowedDatePatterns": [
+      "new Date\\(\\)\\.toString\\(",
+      "new Date\\(\\)\\.toLocaleString\\(",
+      "new Date\\(\\)\\.toLocaleDateString\\(",
+      "new Date\\(\\)\\.toLocaleTimeString\\(",
+      "DateTime\\.now\\(",
+      "LocalDateTime\\.now\\(",
+      "Calendar\\.getInstance\\(",
+      "ZonedDateTime\\.now\\(\\s*\\)",
+      "moment\\(\\)\\.format\\(",
+      "moment\\(\\)",
+      "dayjs\\(\\)\\.format\\(",
+      "date-fns format\\(",
+      "\\.getTime\\(\\)",
+      "\\.valueOf\\(\\)"
+    ],
+    "allowedUtcPatterns": [
+      "toISOString\\(",
+      "Instant\\.now\\(",
+      "OffsetDateTime\\.now\\(ZoneOffset\\.UTC\\)",
+      "ZonedDateTime\\.now\\(ZoneId\\.of\\(\"UTC\"\\)\\)",
+      "DateTimeFormatter\\.ISO_INSTANT",
+      "DateTimeFormatter\\.RFC_1123_DATE_TIME",
+      "moment\\.utc\\(",
+      "dayjs\\.utc\\(",
+      "new Date\\(\\)\\.toISOString\\(",
+      "new Date\\(\\)\\.getUTCFullYear\\(",
+      "new Date\\(\\)\\.getUTCMonth\\(",
+      "new Date\\(\\)\\.getUTCDate\\(",
+      "Date\\.now\\("
+    ],
+    "logFrameworks": [
+      "winston",
+      "pino",
+      "bunyan",
+      "log4js",
+      "log4j",
+      "slf4j",
+      "logback",
+      "console\\.log",
+      "console\\.info",
+      "console\\.warn",
+      "console\\.error",
+      "logger\\.",
+      "log\\."
+    ],
+    "logStatements": [
+      "console\\.(?:log|info|warn|error|debug)",
+      "logger\\.(?:log|info|warn|error|debug|trace)",
+      "log\\.(?:log|info|warn|error|debug|trace)",
+      "winston\\.",
+      "pino\\.",
+      "bunyan\\."
+    ],
+    "requiredConfig": {
+      "timezone": "UTC",
+      "format": ["ISO8601", "RFC3339", "ISO_INSTANT"],
+      "ntpSync": true
+    },
+    "configChecks": [
+      "timezone.*UTC",
+      "tz.*UTC",
+      "timeZone.*UTC",
+      "utc.*true",
+      "ISO8601",
+      "RFC3339",
+      "ISO_INSTANT",
+      "'Z'",
+      "\"Z\"",
+      "\\+00:00",
+      "Z'$",
+      "\\.l'Z'",
+      "HH:mm:ss'Z'",
+      "timestamp.*isoTime"
+    ],
+    "policy": {
+      "requireUtcFormat": true,
+      "requireNtpSync": false,
+      "blockLocalTime": true,
+      "enforceIsoFormat": true
+    },
+    "thresholds": {
+      "maxNonUtcLogs": 0,
+      "maxInconsistentFormats": 1
+    },
+    "exemptions": {
+      "allowedInTests": false,
+      "allowedInDev": false,
+      "allowedPatterns": [
+        "\\.test\\.(?:js|ts)$",
+        "\\.spec\\.(?:js|ts)$",
+        "/test/.*\\.(?:js|ts)$",
+        "/tests/.*\\.(?:js|ts)$",
+        "/__tests__/.*\\.(?:js|ts)$"
+      ]
+    }
+  }
+}

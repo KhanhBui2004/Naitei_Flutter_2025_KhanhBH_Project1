@@ -1,0 +1,27 @@
+{
+    "id": "S026",
+    "name": "JSON Schema Validation for Input Data",
+    "description": "Ensure all user input data (from HTTP requests, APIs) is validated using JSON schemas before processing to prevent injection attacks.",
+    "category": "security",
+    "severity": "warning",
+    "enabled": true,
+    "engines": ["heuristic"],
+    "enginePreference": ["heuristic"],
+    "tags": ["security", "validation", "input", "json-schema", "http"],
+    "examples": {
+        "valid": [
+            "const schema = joi.object({ name: joi.string() }); const { error } = schema.validate(req.body);",
+            "const ajv = new Ajv(); const valid = ajv.validate(schema, req.body);",
+            "const styles = { body: { color: 'red' } }; // Style object - OK"
+        ],
+        "invalid": [
+            "const data = req.body; processUser(data); // No validation",
+            "const query = req.query; database.find(query); // Direct usage without validation"
+        ]
+    },
+    "fixable": false,
+    "docs": {
+        "description": "This rule ensures that all user input data from HTTP requests is validated using JSON schemas before processing. Direct usage of req.body, req.query, req.params without validation can lead to injection attacks and data corruption.",
+        "url": "https://owasp.org/Top10/A03_2021-Injection/"
+    }
+}

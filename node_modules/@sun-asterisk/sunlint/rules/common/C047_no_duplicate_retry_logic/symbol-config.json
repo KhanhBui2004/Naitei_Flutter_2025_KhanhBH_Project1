@@ -1,0 +1,71 @@
+{
+  "knownRetryFunctions": [
+    "axios.get",
+    "axios.post", 
+    "axios.put",
+    "axios.delete",
+    "axios.patch",
+    "axios.request",
+    "axios.head",
+    "axios.options",
+    
+    "useQuery",
+    "useMutation", 
+    "useInfiniteQuery",
+    "queryClient.fetchQuery",
+    "queryClient.prefetchQuery",
+    
+    "apolloClient.query",
+    "apolloClient.mutate", 
+    "apolloClient.watchQuery",
+    "useLazyQuery",
+    
+    "apiService.get",
+    "apiService.post",
+    "apiService.put", 
+    "apiService.delete",
+    "apiService.patch",
+    "httpClient.get",
+    "httpClient.post",
+    "httpClient.request",
+    
+    "retryAsync",
+    "withRetry", 
+    "retry",
+    "p-retry",
+    "exponentialBackoff",
+    "retryPromise",
+    
+    "fetch",
+    "fetch-retry",
+    "node-fetch",
+    "got",
+    "superagent", 
+    "request-promise"
+  ],
+  
+  "layerPatterns": {
+    "ui": ["component", "view", "page", "modal", "form", "screen", "widget", "/ui/", "/components/"],
+    "usecase": ["usecase", "use-case", "usecases", "service", "business", "/usecases/", "/services/"],
+    "repository": ["repository", "repo", "dao", "store", "persistence", "/repositories/", "/data/"],
+    "api": ["api", "client", "adapter", "gateway", "connector", "/api/", "/clients/", "/gateways/"]
+  },
+  
+  "retryDetectionPatterns": {
+    "exceptionRetry": {
+      "description": "Detect retry logic in try-catch blocks",
+      "enabled": true
+    },
+    "emptyDataRetry": {
+      "description": "Detect retry logic when data is empty/null",
+      "enabled": true
+    },
+    "knownRetryConflict": {
+      "description": "Detect manual retry conflicting with built-in retry",
+      "enabled": true
+    }
+  },
+  
+  "_description": "Configuration for Symbol-Based Analysis of retry functions using ts-morph",
+  "_usage": "Add functions that have built-in retry mechanisms to avoid false positives"
+}

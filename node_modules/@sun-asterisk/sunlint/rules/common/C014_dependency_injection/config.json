@@ -1,0 +1,26 @@
+{
+  "maxNestingLevel": 3,
+  "allowedBuiltins": [
+    "Date", "Array", "Object", "String", "Number", "Boolean", "RegExp",
+    "Map", "Set", "WeakMap", "WeakSet", "Promise", "Error", "TypeError",
+    "FormData", "Headers", "Request", "Response", "URLSearchParams",
+    "URL", "Blob", "File", "Buffer"
+  ],
+  "allowedValueObjects": [
+    "Money", "Price", "Currency", "Quantity", "Amount",
+    "Email", "Phone", "Address", "Name", "Id", "UserId",
+    "UUID", "Timestamp", "Duration", "Range"
+  ],
+  "infraPatterns": [
+    "Client", "Repository", "Service", "Gateway", "Adapter",
+    "Provider", "Factory", "Builder", "Manager", "Handler",
+    "Controller", "Processor", "Validator", "Logger"
+  ],
+  "excludePatterns": [
+    "**/*.test.ts", "**/*.spec.ts", "**/*.test.js", "**/*.spec.js",
+    "**/tests/**", "**/test/**", "**/migration/**", "**/scripts/**"
+  ],
+  "includePatterns": [
+    "**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"
+  ]
+}

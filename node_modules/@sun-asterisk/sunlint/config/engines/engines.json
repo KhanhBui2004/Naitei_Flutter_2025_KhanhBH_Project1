@@ -1,0 +1,49 @@
+{
+  "engines": {
+    "eslint": {
+      "enabled": true,
+      "path": "./engines/eslint-engine.js", 
+      "version": "8.x",
+      "supportedLanguages": ["typescript", "javascript"],
+      "priority": 1,
+      "description": "ESLint-based static analyzer (TypeScript/JavaScript only)"
+    },
+    "heuristic": {
+      "enabled": true,
+      "path": "./engines/heuristic-engine.js",
+      "version": "2.0",
+      "supportedLanguages": ["typescript", "javascript", "dart", "swift", "kotlin", "java", "python", "go", "rust", "all"],
+      "priority": 2,
+      "description": "Enhanced pattern-based analyzer with AST support for complex rules",
+      "features": {
+        "astSupport": true,
+        "treeSitterParsers": ["javascript", "typescript", "dart", "java", "kotlin", "go", "swift", "python", "rust"],
+        "fallbackToRegex": true
+      }
+    },
+    "openai": {
+      "enabled": false,
+      "path": "./engines/openai-engine.js",
+      "version": "1.0",
+      "supportedLanguages": ["typescript", "javascript", "dart", "swift", "kotlin", "python", "java", "all"],
+      "priority": 3,
+      "description": "AI-powered semantic analyzer",
+      "requirements": ["OPENAI_API_KEY"]
+    }
+  },
+  "defaultEngines": ["eslint", "heuristic"],
+  "fallbackEngine": "heuristic",
+  "engineSelection": {
+    "strategy": "best-match",
+    "rules": {
+      "C010": {
+        "preferredEngines": ["eslint", "heuristic"],
+        "fallback": "heuristic"
+      },
+      "C012": {
+        "preferredEngines": ["eslint", "heuristic"],
+        "fallback": "heuristic"  
+      }
+    }
+  }
+}

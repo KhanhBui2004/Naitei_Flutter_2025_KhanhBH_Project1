@@ -1,0 +1,86 @@
+{
+  "semantic-engine": {
+    "enabled": true,
+    "description": "TypeScript/JavaScript semantic analysis engine using ts-morph",
+    "features": [
+      "cross-file-analysis",
+      "symbol-table-caching", 
+      "type-checking",
+      "semantic-rule-support"
+    ],
+    "configPath": "config/engines/semantic-config.json",
+    "dependencies": {
+      "required": [],
+      "optional": ["ts-morph"]
+    },
+    "performance": {
+      "enableCaching": true,
+      "maxCacheSize": 100,
+      "memoryLimit": "500MB",
+      "timeout": 30000
+    },
+    "rules": {
+      "classification": {
+        "semantic": ["C047", "C029", "C031", "C048", "C050"],
+        "hybrid": ["C019", "C035"]
+      },
+      "autoDetect": true
+    }
+  },
+  "eslint": {
+    "enabled": true,
+    "description": "ESLint integration for JavaScript/TypeScript linting",
+    "features": [
+      "syntax-checking",
+      "style-enforcement", 
+      "best-practices",
+      "custom-rules"
+    ],
+    "configPath": "config/engines/eslint-config.json",
+    "dependencies": {
+      "required": ["eslint"],
+      "optional": ["@typescript-eslint/parser", "@typescript-eslint/eslint-plugin"]
+    }
+  },
+  "heuristic": {
+    "enabled": true,
+    "description": "Enhanced pattern-based analysis with AST and semantic capabilities",
+    "features": [
+      "pattern-matching",
+      "ast-analysis",
+      "semantic-analysis",
+      "multi-language-support",
+      "rule-classification"
+    ],
+    "configPath": "config/engines/heuristic-config.json",
+    "dependencies": {
+      "required": [],
+      "optional": ["tree-sitter", "ts-morph"]
+    },
+    "modes": {
+      "traditional": {
+        "description": "Pattern + AST analysis only",
+        "semantic": false
+      },
+      "semantic": {
+        "description": "Pattern + AST + semantic analysis",
+        "semantic": true,
+        "requires": ["semantic-engine"]
+      }
+    }
+  },
+  "openai": {
+    "enabled": true,
+    "description": "AI-powered code analysis using OpenAI API",
+    "features": [
+      "context-aware-analysis",
+      "natural-language-descriptions",
+      "intelligent-suggestions"
+    ],
+    "configPath": "config/engines/openai-config.json",
+    "dependencies": {
+      "required": ["openai"],
+      "optional": []
+    }
+  }
+}

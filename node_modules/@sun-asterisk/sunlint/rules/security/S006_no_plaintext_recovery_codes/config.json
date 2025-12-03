@@ -1,0 +1,48 @@
+{
+  "ruleId": "S006",
+  "name": "No Plaintext Recovery/Activation Codes",
+  "description": "Do not send recovery or activation codes in plaintext",
+  "category": "security",
+  "severity": "error",
+  "languages": ["All languages"],
+  "tags": ["security", "owasp", "cryptographic-failures", "authentication"],
+  "enabled": true,
+  "fixable": false,
+  "engine": "heuristic",
+  "metadata": {
+    "owaspCategory": "A02:2021 - Cryptographic Failures",
+    "cweId": "CWE-319",
+    "description": "Sending recovery codes, activation codes, or reset codes in plaintext over insecure channels can lead to account takeover attacks. These sensitive codes should be encrypted during transmission or sent through secure channels.",
+    "impact": "High - Account takeover, unauthorized access",
+    "likelihood": "Medium",
+    "remediation": "Use encrypted communication channels, hash codes before transmission, or implement time-limited secure tokens"
+  },
+  "patterns": {
+    "vulnerable": [
+      "Sending activation codes in email body as plaintext",
+      "Including reset codes in unencrypted API responses",
+      "Transmitting OTP codes without encryption",
+      "Exposing verification codes in logs or debug output"
+    ],
+    "secure": [
+      "Using encrypted email for code transmission",
+      "Hashing codes before database storage",
+      "Implementing secure token-based authentication",
+      "Using HTTPS for all code-related API endpoints"
+    ]
+  },
+  "examples": {
+    "violations": [
+      "res.json({ resetCode: user.resetCode });",
+      "await sendEmail(`Your activation code is: ${activationCode}`);",
+      "const message = `OTP: ${otp}`;",
+      "console.log('Recovery code:', recoveryCode);"
+    ],
+    "fixes": [
+      "res.json({ message: 'Reset code sent to email' });",
+      "await sendEncryptedEmail(activationCode);",
+      "const hashedOtp = await hash(otp);",
+      "logger.info('Recovery code sent successfully');"
+    ]
+  }
+}

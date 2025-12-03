@@ -1,0 +1,96 @@
+{
+  "id": "S032",
+  "name": "Set HttpOnly attribute for Session Cookies",
+  "category": "security",
+  "description": "S032 - Set HttpOnly attribute for Session Cookies to prevent JavaScript access. This protects against XSS attacks by preventing client-side script access to sensitive cookies.",
+  "severity": "error",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
+    "exclude": [
+      "**/*.test.js",
+      "**/*.test.ts",
+      "**/*.spec.js",
+      "**/*.spec.ts",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**"
+    ]
+  },
+  "analysis": {
+    "approach": "symbol-based-primary",
+    "fallback": "regex-based",
+    "depth": 2,
+    "timeout": 5000
+  },
+  "validation": {
+    "cookieMethods": [
+      "setCookie",
+      "cookie",
+      "set",
+      "append",
+      "session",
+      "setHeader",
+      "writeHead"
+    ],
+    "cookieLibraries": [
+      "express",
+      "koa",
+      "fastify",
+      "hapi",
+      "next",
+      "nuxt",
+      "nestjs",
+      "@nestjs/common",
+      "@nestjs/core",
+      "cookie",
+      "cookie-parser",
+      "express-session",
+      "connect-session",
+      "passport",
+      "next-auth",
+      "nuxt-auth",
+      "@nuxt/auth",
+      "@nuxtjs/auth"
+    ],
+    "sessionIndicators": [
+      "session",
+      "sessionid",
+      "sessid",
+      "jsessionid",
+      "phpsessid",
+      "asp.net_sessionid",
+      "connect.sid",
+      "auth",
+      "token",
+      "jwt",
+      "csrf",
+      "refresh"
+    ],
+    "httpOnlyPatterns": [
+      "httpOnly:\\s*true",
+      "httpOnly:true",
+      "HttpOnly",
+      "httpOnly=true"
+    ],
+    "insecurePatterns": [
+      "httpOnly:\\s*false",
+      "httpOnly:false",
+      "httpOnly=false",
+      "(?<!httpOnly[\\s=:]+)(?<!HttpOnly[\\s;])Set-Cookie",
+      "res\\.cookie\\([^)]*\\)(?![^{]*httpOnly)",
+      "document\\.cookie\\s*=",
+      "@Res\\(\\).cookie\\([^)]*\\)(?![^{]*httpOnly)",
+      "response\\.cookie\\([^)]*\\)(?![^{]*httpOnly)",
+      "NextResponse\\.next\\(\\)(?![^{]*httpOnly)",
+      "setCookies?\\([^)]*\\)(?![^{]*httpOnly)",
+      "useCookie\\([^)]*\\)(?![^{]*httpOnly)",
+      "\\$cookies\\.set\\([^)]*\\)(?![^{]*httpOnly)"
+    ]
+  }
+}

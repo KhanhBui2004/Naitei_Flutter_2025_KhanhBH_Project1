@@ -1,0 +1,23 @@
+{
+  "id": "C002_no_duplicate_code",
+  "name": "C002_no_duplicate_code",
+  "category": "coding",
+  "description": "C002_no_duplicate_code heuristic rule - migrated from ESLint",
+  "severity": "error",
+  "enabled": true,
+  "migration": {
+    "from_eslint": "c002-no-duplicate-code",
+    "compatibility": "partial",
+    "status": "pending"
+  },
+  "patterns": {
+    "include": [
+      "**/*.js",
+      "**/*.ts"
+    ],
+    "exclude": [
+      "**/*.test.*",
+      "**/*.spec.*"
+    ]
+  }
+}

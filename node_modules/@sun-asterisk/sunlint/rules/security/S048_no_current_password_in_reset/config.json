@@ -1,0 +1,48 @@
+{
+  "ruleId": "S048",
+  "name": "No Current Password in Reset Process",
+  "description": "Do not require current password during password reset process",
+  "category": "security",
+  "severity": "error",
+  "languages": ["All languages"],
+  "tags": ["security", "owasp", "insecure-design", "authentication", "password-reset"],
+  "enabled": true,
+  "fixable": false,
+  "engine": "heuristic",
+  "metadata": {
+    "owaspCategory": "A04:2021 - Insecure Design",
+    "cweId": "CWE-640",
+    "description": "Requiring the current password during password reset defeats the purpose of the reset process and creates security vulnerabilities. Users who have forgotten their password cannot complete the reset, and this practice can lead to account lockouts and security issues.",
+    "impact": "Medium - Account lockout, user frustration, security bypass attempts",
+    "likelihood": "High",
+    "remediation": "Use secure token-based password reset with email/SMS verification. Never require current password during reset process."
+  },
+  "patterns": {
+    "vulnerable": [
+      "Requiring current password in forgot password form",
+      "Validating old password during reset process",
+      "API endpoints that check current password for reset",
+      "Reset forms with current password fields"
+    ],
+    "secure": [
+      "Token-based password reset via email",
+      "SMS verification for password reset",
+      "Time-limited secure reset links",
+      "Multi-factor authentication for reset verification"
+    ]
+  },
+  "examples": {
+    "violations": [
+      "if (!validateCurrentPassword(currentPassword)) { return error; }",
+      "const resetData = { currentPassword, newPassword };",
+      "currentPassword: { type: String, required: true }",
+      "req.body.currentPassword === user.password"
+    ],
+    "fixes": [
+      "if (!validateResetToken(token)) { return error; }",
+      "const resetData = { token, newPassword };",
+      "resetToken: { type: String, required: true }",
+      "validateResetToken(req.body.token)"
+    ]
+  }
+}

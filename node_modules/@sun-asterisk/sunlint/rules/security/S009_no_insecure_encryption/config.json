@@ -1,0 +1,55 @@
+{
+  "ruleId": "S009",
+  "name": "No Insecure Encryption Modes, Padding, or Cryptographic Algorithms",
+  "description": "Do not use insecure encryption modes, padding, or cryptographic algorithms",
+  "category": "security",
+  "severity": "error",
+  "languages": ["All languages"],
+  "tags": ["security", "owasp", "cryptographic-failures", "encryption"],
+  "enabled": true,
+  "fixable": false,
+  "engine": "heuristic",
+  "metadata": {
+    "owaspCategory": "A02:2021 - Cryptographic Failures",
+    "cweId": "CWE-327",
+    "description": "Using insecure cryptographic algorithms, cipher modes, or padding schemes can lead to data exposure and compromise. Weak algorithms like DES, 3DES, RC4, MD5, and SHA1 are vulnerable to various attacks including collision attacks, brute force, and cryptanalysis.",
+    "impact": "High - Data exposure, integrity compromise, authentication bypass",
+    "likelihood": "Medium",
+    "remediation": "Use strong cryptographic algorithms (AES-256, RSA-2048+, SHA-256+), secure cipher modes (GCM, CBC with IV), and proper padding schemes (OAEP)"
+  },
+  "patterns": {
+    "vulnerable": [
+      "Using DES or 3DES for encryption",
+      "Using RC4 stream cipher",
+      "Using ECB cipher mode",
+      "Using MD5 or SHA1 for cryptographic purposes",
+      "Using PKCS#1 v1.5 padding for RSA",
+      "Using weak key derivation functions"
+    ],
+    "secure": [
+      "Using AES-256-GCM for symmetric encryption",
+      "Using RSA with OAEP padding",
+      "Using SHA-256 or stronger hash algorithms",
+      "Using proper cipher modes with initialization vectors",
+      "Using PBKDF2, scrypt, or Argon2 for key derivation"
+    ]
+  },
+  "examples": {
+    "violations": [
+      "crypto.createCipher('des', key);",
+      "crypto.createHash('md5');",
+      "Cipher.getInstance('DES/ECB/PKCS5Padding');",
+      "CryptoJS.DES.encrypt(data, key);",
+      "algorithm: 'rc4'",
+      "new DESCryptoServiceProvider();"
+    ],
+    "fixes": [
+      "crypto.createCipher('aes-256-gcm', key);",
+      "crypto.createHash('sha256');",
+      "Cipher.getInstance('AES/GCM/NoPadding');",
+      "CryptoJS.AES.encrypt(data, key);",
+      "algorithm: 'aes-256-gcm'",
+      "new AesCryptoServiceProvider();"
+    ]
+  }
+}

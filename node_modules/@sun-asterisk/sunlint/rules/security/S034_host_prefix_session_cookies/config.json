@@ -1,0 +1,62 @@
+{
+  "id": "S034",
+  "name": "Use __Host- prefix for Session Cookies",
+  "description": "Use __Host- prefix for Session Cookies to prevent subdomain sharing. The __Host- prefix ensures cookies are only sent to the exact domain that set them, preventing subdomain cookie sharing attacks.",
+  "category": "security",
+  "severity": "warning",
+  "confidence": "high",
+  "tags": ["cookie", "security", "session", "subdomain", "host-prefix"],
+  "languages": ["javascript", "typescript"],
+  "patterns": {
+    "cookieNamePatterns": [
+      "session",
+      "sessionid",
+      "session_id",
+      "sid",
+      "connect.sid",
+      "auth",
+      "auth_token",
+      "authentication",
+      "jwt",
+      "token",
+      "csrf",
+      "csrf_token",
+      "xsrf",
+      "login",
+      "user",
+      "userid",
+      "user_id"
+    ],
+    "hostPrefixPattern": "^__Host-",
+    "violationPatterns": [
+      "res\\.cookie\\s*\\(\\s*['\"`](?!__Host-)",
+      "Set-Cookie:\\s*(?!__Host-)",
+      "cookie:\\s*{[^}]*name\\s*:\\s*['\"`](?!__Host-)"
+    ]
+  },
+  "validation": {
+    "hostPrefixRequirements": {
+      "secure": true,
+      "path": "/",
+      "domain": null,
+      "description": "__Host- prefix requires Secure=true, Path=/, and no Domain attribute"
+    }
+  },
+  "examples": {
+    "violation": [
+      "res.cookie('sessionid', token, { secure: true, httpOnly: true })",
+      "res.cookie('auth_token', value, { secure: true, path: '/' })",
+      "res.setHeader('Set-Cookie', 'session=value; Secure; HttpOnly')"
+    ],
+    "clean": [
+      "res.cookie('__Host-sessionid', token, { secure: true, httpOnly: true, path: '/' })",
+      "res.cookie('__Host-auth_token', value, { secure: true, path: '/', domain: undefined })",
+      "res.setHeader('Set-Cookie', '__Host-session=value; Secure; HttpOnly; Path=/')"
+    ]
+  },
+  "references": [
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#__Host-",
+    "https://tools.ietf.org/html/draft-ietf-httpbis-cookie-prefixes-00",
+    "https://owasp.org/www-community/controls/SecureCookieAttribute"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "maxConfigValues": 50,
+  "excludePatterns": [
+    "**/*.test.js",
+    "**/*.spec.js",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/config/**",
+    "**/constants/**",
+    "**/*.config.js",
+    "**/*.config.ts",
+    "**/.env*"
+  ],
+  "includePatterns": [
+    "**/*.js",
+    "**/*.ts",
+    "**/*.jsx",
+    "**/*.tsx"
+  ],
+  "allowedDomains": [
+    "localhost",
+    "127.0.0.1",
+    "0.0.0.0",
+    "example.com",
+    "test.com",
+    "dummy.com"
+  ],
+  "allowedPorts": [
+    3000,
+    8080,
+    5000,
+    4200,
+    3001
+  ],
+  "commonConstants": [
+    100, 200, 300, 400, 500,
+    1000, 2000, 3000, 5000,
+    8080, 3000, 4200
+  ],
+  "credentialKeywords": [
+    "password",
+    "secret",
+    "key",
+    "token",
+    "auth",
+    "credential",
+    "apikey",
+    "api_key"
+  ],
+  "configKeywords": [
+    "timeout",
+    "interval",
+    "delay",
+    "duration",
+    "limit",
+    "max",
+    "min",
+    "size",
+    "count",
+    "port",
+    "url",
+    "endpoint",
+    "host",
+    "retry",
+    "batch"
+  ],
+  "allowedUIValues": [
+    "password",
+    "text",
+    "email",
+    "username",
+    "input",
+    "field",
+    "ok",
+    "cancel",
+    "yes",
+    "no",
+    "true",
+    "false"
+  ]
+}

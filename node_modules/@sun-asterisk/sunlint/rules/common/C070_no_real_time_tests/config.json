@@ -1,0 +1,78 @@
+{
+  "id": "C070",
+  "name": "C070_tests_should_not_depend_on_real_time",
+  "category": "testing",
+  "description": "C070 - Avoid real-time sleeps/timeouts in tests. Use fake timers, clock injection, or condition/event-based waits.",
+  "severity": "error",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": ["**/*.test.*", "**/*.spec.*", "**/__tests__/**"],
+    "exclude": ["**/performance/**", "**/benchmarks/**", "**/e2e/**"]
+  },
+  "options": {
+    "timerApis": {
+      "ts_js": [
+        "setTimeout\\s*\\(",
+        "setInterval\\s*\\(",
+        "\\.sleep\\s*\\(",
+        "\\.delay\\s*\\(",
+        "\\.wait\\s*\\(",
+        "new\\s+Promise.*setTimeout"
+      ],
+      "java": [
+        "Thread.sleep(*)",
+        "TimeUnit.*.sleep(*)"
+      ],
+      "go": [
+        "time.Sleep(*)"
+      ],
+      "e2e": [
+        "page\\.waitForTimeout\\s*\\(",
+        "cy\\.wait\\s*\\(\\s*[0-9]+"
+      ]
+    },
+    "fakeTimerDetectors": {
+      "jest_vitest": [
+        "jest\\.useFakeTimers\\(\\)", "vi\\.useFakeTimers\\(\\)",
+        "jest\\.advanceTimersByTime\\s*\\(", "vi\\.advanceTimersByTime\\s*\\(",
+        "jest\\.runAllTimers\\(\\)", "vi\\.runAllTimers\\(\\)"
+      ],
+      "rxjs": ["new TestScheduler(*)"]
+    },
+    "busyPollingDetectors": {
+      "ts_js": ["Date.now()", "new Date()"],
+      "java": ["System.currentTimeMillis()", "Instant.now()"],
+      "go": ["time.Now()"]
+    },
+    "policy": {
+      "forbidRealSleeps": true,
+      "requireFakeTimersWhenUsingTimers": true,
+      "preferConditionBasedWaits": true,
+      "allowE2EExplicitWaits": false,
+      "allowAnnotatedPerfTests": true
+    },
+    "allowAnnotations": [
+      "@perf", "@benchmark", "@allow-real-time", "// @allow-real-time"
+    ],
+    "suggestions": {
+      "ts_js": [
+        "Use jest/vi fake timers and advanceTimersByTime instead of sleep/timeout.",
+        "Await condition or event (locator.waitFor / cy.get(...).should(...)).",
+        "Inject a Clock or pass now(): number into the unit under test."
+      ],
+      "java": [
+        "Inject java.time.Clock; use Clock.fixed/Clock.offset in tests.",
+        "Use Awaitility untilAsserted instead of Thread.sleep."
+      ],
+      "go": [
+        "Use benbjohnson/clock mock; advance time in tests.",
+        "Avoid time.Sleep; wait on channels/conditions/events instead."
+      ]
+    }
+  }
+}

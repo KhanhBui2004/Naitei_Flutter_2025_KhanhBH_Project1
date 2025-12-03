@@ -1,0 +1,33 @@
+{
+  "name": "@sun/sunlint/performance",
+  "description": "Performance-focused configuration for optimization",
+  "rules": {
+    "C043": "warn",
+    "C056": "warn"
+  },
+  "categories": {
+    "performance": "warn"
+  },
+  "languages": [
+    "typescript",
+    "javascript",
+    "dart",
+    "java",
+    "kotlin",
+    "swift"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/build/**",
+    "**/dist/**",
+    "**/*.generated.*",
+    "**/*.min.*"
+  ],
+  "metadata": {
+    "totalRules": 2,
+    "approach": "performance-focused",
+    "source": "performance principle rules",
+    "lastUpdated": "2025-09-08T04:34:12.590Z",
+    "version": "2.0.0"
+  }
+}

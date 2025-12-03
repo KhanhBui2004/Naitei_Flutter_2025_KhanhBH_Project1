@@ -1,0 +1,1941 @@
+{
+  "metadata": {
+    "totalRules": 256,
+    "generatedAt": "2025-07-30T08:59:10.122Z",
+    "source": "origin-rules"
+  },
+  "categories": {
+    "quality": [
+      {
+        "id": "C001",
+        "name": "Functions should not exceed 50 lines",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C002",
+        "name": "Avoid code duplication > 10 lines",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C003",
+        "name": "Use clear variable names; avoid arbitrary abbreviations",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C004",
+        "name": "No TODOs older than 14 days",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C005",
+        "name": "Each function should do only one thing",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C006",
+        "name": "Function names must be verbs or verb-noun combinations",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C007",
+        "name": "Avoid comments that just restate the code",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C008",
+        "name": "Declare variables close to where they are used",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C009",
+        "name": "Each class should have a single responsibility",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C010",
+        "name": "Avoid more than 3 levels of nested blocks",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C011",
+        "name": "Avoid catching generic exceptions (e.g., `catch (Exception)`)",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C012",
+        "name": "Clearly separate Command and Query",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C013",
+        "name": "Do not use dead code",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C014",
+        "name": "Use Dependency Injection instead of directly instantiating dependencies",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C015",
+        "name": "Use domain language in class/function names",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C016",
+        "name": "TODOs must have a specific reason",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C017",
+        "name": "Do not put business logic inside constructors",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C018",
+        "name": "Do not throw generic errors; always provide detailed messages",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C019",
+        "name": "Do not use `error` log level for non-critical issues",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C020",
+        "name": "Do not import unused modules or libraries",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C021",
+        "name": "Consistently order import statements",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C022",
+        "name": "Do not leave unused variables",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C023",
+        "name": "Do not declare duplicate variable names in the same scope, including nested closures",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C024",
+        "name": "Do not scatter hardcoded constants throughout the logic",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C025",
+        "name": "Each file should contain only one main class",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C026",
+        "name": "Avoid functions with too many parameters (>6)",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C027",
+        "name": "Each module should have a README.md if it is independent",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C028",
+        "name": "Use guard clauses instead of nested ifs",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C029",
+        "name": "All `catch` blocks must log the root cause of the error",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C030",
+        "name": "Use custom error classes instead of generic system errors",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C031",
+        "name": "Validation logic must be separated",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C032",
+        "name": "Do not call external APIs in constructors or static blocks",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C033",
+        "name": "Separate processing logic and data access in the service layer",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C034",
+        "name": "Avoid directly accessing global state in domain logic",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C035",
+        "name": "Log all relevant context when handling errors",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C036",
+        "name": "Do not throw generic exceptions like `RuntimeException` or `Exception`",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C037",
+        "name": "API handler functions should return a standardized response object (not raw strings)",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C038",
+        "name": "Avoid logic that depends on file/module load order",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C039",
+        "name": "Do not store temporary data in global or static mutable fields",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C040",
+        "name": "Do not spread validation logic across multiple classes",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C042",
+        "name": "Boolean variable names should start with `is`, `has`, or `should`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C045",
+        "name": "APIs should not return 500 errors for known business errors",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C047",
+        "name": "Retry logic must not be duplicated in multiple places",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C048",
+        "name": "Do not bypass architectural layers (controller/service/repository)",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C049",
+        "name": "Always include a clear default case in switch/case statements",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C052",
+        "name": "Parsing or data transformation logic must be separated from controllers",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C053",
+        "name": "Avoid vague function names like \"handle\" or \"process\"",
+        "severity": "minor",
+        "status": "draft"
+      },
+      {
+        "id": "C058",
+        "name": "Enums must have clear display labels",
+        "severity": "minor",
+        "status": "draft"
+      },
+      {
+        "id": "C059",
+        "name": "Do not create abstractions just to group constants",
+        "severity": "minor",
+        "status": "draft"
+      },
+      {
+        "id": "C060",
+        "name": "Do not override superclass methods and ignore critical logic",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C061",
+        "name": "Write unit tests for business logic",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C062",
+        "name": "Interfaces or abstractions should not hold state",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C063",
+        "name": "Do not repeat the same test logic",
+        "severity": "minor",
+        "status": "draft"
+      },
+      {
+        "id": "C064",
+        "name": "Interfaces should expose only necessary behavior",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C065",
+        "name": "Each test case should verify only one behavior",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C066",
+        "name": "Test names should reflect what is being tested",
+        "severity": "minor",
+        "status": "draft"
+      },
+      {
+        "id": "C067",
+        "name": "Do not hardcode configuration inside code",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C068",
+        "name": "Avoid unclear return types in functions",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C069",
+        "name": "Components should communicate via abstractions",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C070",
+        "name": "Tests should not rely on real time",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C071",
+        "name": "Test class names should reflect the corresponding module",
+        "severity": "minor",
+        "status": "draft"
+      },
+      {
+        "id": "C072",
+        "name": "Each test should assert only one behavior",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C073",
+        "name": "All required configurations must be validated at startup",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C074",
+        "name": "Avoid magic numbers/values in code",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C075",
+        "name": "All functions must explicitly declare return types",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C076",
+        "name": "All public functions must declare explicit types for arguments",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D001",
+        "name": "Keep parameter names consistent when overriding methods",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D002",
+        "name": "Avoid using single cascade (..) operators",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D004",
+        "name": "Use standard `package:` imports",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D005",
+        "name": "Always declare function return types",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D006",
+        "name": "Do not override `==` and `hashCode` in mutable classes",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "D009",
+        "name": "Do not use throw or control flow in `finally`",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "D010",
+        "name": "Handle all cases when using `switch` with enums or enum-like classes",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D014",
+        "name": "Use conditional assignment `??=` instead of `if-null-then-assign`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D015",
+        "name": "Use `final`, `const` for immutable variables",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D016",
+        "name": "Use explicit definitions for function types in parameters",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D017",
+        "name": "Ensure simple and correct Regex syntax",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D018",
+        "name": "Use `rethrow` instead of `throw` when re-throwing errors",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D019",
+        "name": "Use `isEmpty` / `isNotEmpty` for String, Iterable and Map",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D021",
+        "name": "Use `BuildContext` synchronously",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "D022",
+        "name": "Place `child:` at the end when constructing widgets",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "J001",
+        "name": "Use Null Object or Optional instead of repetitive null checks",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "J002",
+        "name": "Do not use `null` as a default value unless absolutely necessary",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "J003",
+        "name": "Every enum must provide a clear toString or description when used in UI/logs",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "J004",
+        "name": "Avoid creating enums/classes just to wrap fixed constants",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "J005",
+        "name": "Always use `final` or `const` for variables that do not change",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "J006",
+        "name": "Do not override methods without calling `super` when required",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K001",
+        "name": "Use Named Arguments when functions have more than 3 parameters",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K002",
+        "name": "Limit function complexity (Cyclomatic Complexity)",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "K003",
+        "name": "Avoid overly complex conditions",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "K004",
+        "name": "Avoid nesting code more than 4 levels deep in functions",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "K005",
+        "name": "Do not use `GlobalScope`",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "K010",
+        "name": "Do not check/cast exceptions in `catch` blocks",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K011",
+        "name": "Use `class` instead of `object` when extending `Throwable`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K012",
+        "name": "Do not `return` or `throw` in `finally`",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "K013",
+        "name": "Do not wrap and rethrow the same exception type",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K016",
+        "name": "Do not use `else` in `when` with `enum` or `sealed` classes",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K018",
+        "name": "Do not ignore function return values",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K019",
+        "name": "Avoid using not-null assertion (!!) to get values from Map",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K020",
+        "name": "Do not call `toString()` on nullable objects",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K021",
+        "name": "Avoid unreachable catch blocks",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K022",
+        "name": "Avoid unsafe casting",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K023",
+        "name": "Do not use properties before declaration",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K024",
+        "name": "Ensure proper modifier order",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K025",
+        "name": "Ensure proper parameter order in Composable functions",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K026",
+        "name": "Each component should serve a single purpose",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K027",
+        "name": "Composables returning Unit should use PascalCase and be nouns",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K028",
+        "name": "`@Composable` factory functions that return values should use camelCase",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K029",
+        "name": "Prefer Stateless `@Composable` functions",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K030",
+        "name": "Enhance extensibility by declaring state using interfaces",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K031",
+        "name": "Create different components instead of multiple style classes",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K033",
+        "name": "Don't pass `MutableState<T>` to `@Composable`",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "K034",
+        "name": "Prefer `Slot` parameters for extensibility",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "R001",
+        "name": "Components must be idempotent",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "R003",
+        "name": "Props and state are immutable",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "R004",
+        "name": "Return values and arguments to Hooks are immutable",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "R005",
+        "name": "Values are immutable after being passed to JSX",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "R006",
+        "name": "Never call component functions directly",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "R007",
+        "name": "Never pass hooks as regular values",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "R008",
+        "name": "Only call Hooks at the top level",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "R009",
+        "name": "Only call Hooks from React functions",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW001",
+        "name": "Use Swift's observe property instead of legacy KVO",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW002",
+        "name": "Delegate Protocols must be class-only",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW003",
+        "name": "Do not directly instantiate system protocols",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW005",
+        "name": "Use `enum` for types with only static members",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW007",
+        "name": "Avoid direct instantiation of system types",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW008",
+        "name": "Do not use optionals for Boolean values",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "SW009",
+        "name": "Prefer `.isEmpty` over `.count == 0`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW010",
+        "name": "Prefer `isEmpty` over comparing to `\"\"`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW011",
+        "name": "Do not use `.init()` unnecessarily",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW012",
+        "name": "Always provide a clear message when using `fatalError`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW013",
+        "name": "Prefer `for-where` over `if` inside loops",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW017",
+        "name": "Limit function parameters to less than 6",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW018",
+        "name": "Do not use tuples with too many elements",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW019",
+        "name": "Use Swift initializers instead of Objective-C style",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW020",
+        "name": "Data types should be nested at most 1 level",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW021",
+        "name": "Do not use access modifiers with extensions",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "SW022",
+        "name": "Call `super` in lifecycle methods",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW023",
+        "name": "Do not use `override` in extensions",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "SW024",
+        "name": "Prefer `private` over `fileprivate`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW025",
+        "name": "Do not declare Unit Test functions as `private`",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "SW026",
+        "name": "Do not call `super` in specific methods",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW028",
+        "name": "Prefer shorthand syntax `[T]` over `Array<T>`",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "SW029",
+        "name": "Warn for unused closure parameters",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW030",
+        "name": "Avoid using `enumerated()` when index is not needed",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW031",
+        "name": "Do not use optional binding just to call a function or property",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "SW032",
+        "name": "Do not use `@IBInspectable` with unsupported types and constants",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW033",
+        "name": "Parameters must be vertically aligned when calling functions",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW034",
+        "name": "Use `-> Void` instead of `-> ()` for function types",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "T002",
+        "name": "Interface names should start with 'I'",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "T003",
+        "name": "Avoid using @ts-ignore without a clear justification",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "T004",
+        "name": "Disallow declaring empty types like `type X = {}`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "T007",
+        "name": "Avoid declaring functions inside constructors or class bodies",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "T010",
+        "name": "Avoid deeply nested union or tuple types",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "T015",
+        "name": "Do not use `instanceof` to distinguish behavior when interfaces are available",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "T016",
+        "name": "Use strict type checking",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "T017",
+        "name": "Use async/await instead of Promises",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "T018",
+        "name": "Use proper error handling",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "T019",
+        "name": "Do not assign to this arbitrarily",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "T020",
+        "name": "Avoid export default for multi-responsibility modules",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "T021",
+        "name": "Limit deeply nested generics",
+        "severity": "major",
+        "status": "activated"
+      }
+    ],
+    "security": [
+      {
+        "id": "C041",
+        "name": "Do not hardcode or push sensitive information (token, API key, secret, URL) into the repo",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D003",
+        "name": "Avoid calling methods/accessing properties on dynamic types",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "D011",
+        "name": "Avoid importing `.dart` files from `lib/src` of other packages",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D012",
+        "name": "Avoid passing null to closure parameters",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D020",
+        "name": "Ensure valid URLs in `pubspec.yaml`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D023",
+        "name": "Prefer using `contains` for `List` and `String`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D024",
+        "name": "Use `??` to convert `null` to `bool`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K032",
+        "name": "Don't use `null` as default for nullable parameters",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S001",
+        "name": "Fail securely when access control errors occur",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "S002",
+        "name": "Avoid IDOR vulnerabilities in CRUD operations",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "S003",
+        "name": "URL redirects must be within an allow list",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S004",
+        "name": "Do not log login credentials, payment information, and unencrypted tokens",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S005",
+        "name": "Do not use Origin header for authentication or access control",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S006",
+        "name": "Do not send recovery or activation codes in plaintext",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S007",
+        "name": "Do not store OTP codes in plaintext",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S008",
+        "name": "Encryption algorithms and parameters must support flexible configuration and upgrades (crypto agility)",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S009",
+        "name": "Do not use insecure encryption modes, padding, or cryptographic algorithms",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S010",
+        "name": "Must use cryptographically secure random number generators (CSPRNG) for security purposes",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S011",
+        "name": "GUIDs used for security purposes must be generated according to UUID v4 standard with CSPRNG",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S012",
+        "name": "Protect secrets and encrypt sensitive data",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S013",
+        "name": "Always use TLS for all connections",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S014",
+        "name": "Only use TLS 1.2 or 1.3",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S015",
+        "name": "Only accept trusted TLS certificates and eliminate weak ciphers",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S016",
+        "name": "Do not pass sensitive data via query string",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S017",
+        "name": "Always use parameterized queries",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "S018",
+        "name": "Prefer Allow List for Input Validation",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S019",
+        "name": "Sanitize input before sending emails to prevent SMTP Injection",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S020",
+        "name": "Avoid using `eval()` or executing dynamic code",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S021",
+        "name": "Sanitize user-generated Markdown, CSS, and XSL content",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S022",
+        "name": "Escape data properly based on output context",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S023",
+        "name": "Prevent JSON Injection and JSON eval attacks",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S024",
+        "name": "Protect against XPath Injection and XML External Entity (XXE)",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "S025",
+        "name": "Always validate client-side data on the server",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S026",
+        "name": "Apply JSON Schema Validation to input data",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S027",
+        "name": "Never expose secrets in source code or Git",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S028",
+        "name": "Limit upload file size and number of files per user",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S029",
+        "name": "Apply CSRF protection for authentication-related features",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S030",
+        "name": "Disable directory browsing and protect sensitive metadata files",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S031",
+        "name": "Set the Secure flag on session cookies for HTTPS protection",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S032",
+        "name": "Enable HttpOnly attribute for Session Cookies to prevent JavaScript access",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S033",
+        "name": "Set SameSite attribute for Session Cookies to reduce CSRF risk",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S034",
+        "name": "Use `__Host-` prefix for Session Cookies to prevent subdomain sharing",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S035",
+        "name": "Set the `Path` attribute for Session Cookies to limit access scope",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S036",
+        "name": "Prevent LFI and RFI using path validation and allow-lists",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S037",
+        "name": "Set anti-cache headers to prevent sensitive data leakage",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S038",
+        "name": "Hide system version information in HTTP Headers",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "S039",
+        "name": "Never transmit Session Tokens via URL parameters",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S040",
+        "name": "Regenerate Session Token after login to prevent Session Fixation",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S041",
+        "name": "Session Tokens must be invalidated after logout or expiration",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S042",
+        "name": "Require re-authentication for long-lived sessions or sensitive actions",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S043",
+        "name": "Password changes must invalidate all other login sessions",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S044",
+        "name": "Require re-authentication before modifying critical information",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S045",
+        "name": "Implement brute-force protection for login",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S046",
+        "name": "Notify users of critical account changes",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S047",
+        "name": "Secure temporary passwords and activation codes",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S048",
+        "name": "Do not expose current password during reset flow",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S049",
+        "name": "Authentication codes must expire quickly",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S050",
+        "name": "Session tokens must have minimum 64-bit entropy and use secure algorithms",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S051",
+        "name": "Support 12–64 character passwords; reject >128 characters",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S052",
+        "name": "OTPs must have at least 20-bit entropy",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S053",
+        "name": "Only use secure OTP algorithms like HOTP/TOTP",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S054",
+        "name": "Avoid using default accounts like \"admin\", \"root\", \"sa\"",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S055",
+        "name": "Validate input Content-Type in REST services",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S056",
+        "name": "Protect against Log Injection attacks",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S057",
+        "name": "Use synchronized time and UTC in logs",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S058",
+        "name": "Protect applications from SSRF attacks",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "S059",
+        "name": "Configure Allow List for server-side outbound requests",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW014",
+        "name": "Avoid `as!` (force cast)",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "SW015",
+        "name": "Avoid `try!` (force try)",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "SW016",
+        "name": "Avoid using `!` (force unwrap)",
+        "severity": "critical",
+        "status": "activated"
+      }
+    ],
+    "performance": [
+      {
+        "id": "C043",
+        "name": "Do not use `print` or `console.log` in production code",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C044",
+        "name": "Avoid reimplementing functions that already exist in standard libraries or helper utilities",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C046",
+        "name": "Avoid complex and lengthy regular expressions in core logic",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C050",
+        "name": "Do not call APIs in loops without batching or throttling",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C051",
+        "name": "Do not use `sleep`, `wait`, or `delay` in business logic",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C054",
+        "name": "Do not process large datasets without pagination or lazy loading",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C055",
+        "name": "Cache results of expensive functions if reused",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "C056",
+        "name": "Do not process large datasets without logging or resource monitoring",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "C057",
+        "name": "Use optimal data structures instead of arrays for frequent lookups",
+        "severity": "major",
+        "status": "draft"
+      },
+      {
+        "id": "D007",
+        "name": "Do not pass default values when calling functions",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D008",
+        "name": "Avoid slow async functions in `dart:io`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D013",
+        "name": "Use adjacent strings or interpolation to create strings",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "D025",
+        "name": "Include `Key` in Widget constructors",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K006",
+        "name": "Avoid using `suspend` when not necessary",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K007",
+        "name": "Use `delay()` instead of `sleep()` in coroutines",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "K008",
+        "name": "Do not swallow `CancellationException` in coroutines",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K009",
+        "name": "Do not use `suspend` for functions returning `Flow`",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "K014",
+        "name": "Use `ArrayPrimitive` instead of `Array<Primitive>`",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K015",
+        "name": "Use `for` instead of `forEach` on ranges",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "K017",
+        "name": "Do not directly call Garbage Collector (GC)",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "R002",
+        "name": "Side effects must run outside of render",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW004",
+        "name": "Prefer `.contains` for certain filtering operations",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW006",
+        "name": "Always dispose NotificationCenter observers",
+        "severity": "major",
+        "status": "activated"
+      },
+      {
+        "id": "SW027",
+        "name": "Prefer `.min()` or `.max()` over `sorted().first/last`",
+        "severity": "critical",
+        "status": "activated"
+      },
+      {
+        "id": "SW035",
+        "name": "Delegates must be marked as `weak`",
+        "severity": "major",
+        "status": "activated"
+      }
+    ]
+  },
+  "principles": {
+    "CODE_QUALITY": [
+      "C001",
+      "C002",
+      "C003",
+      "C004",
+      "C005",
+      "C006",
+      "C007",
+      "C008",
+      "C009",
+      "C010",
+      "C011",
+      "C012",
+      "C013",
+      "C014",
+      "C015",
+      "C016",
+      "C017",
+      "C018",
+      "C019",
+      "C020",
+      "C021",
+      "C022",
+      "C023",
+      "C024",
+      "C025",
+      "C026",
+      "C027",
+      "C028",
+      "C029",
+      "C030",
+      "C031",
+      "C032",
+      "C033",
+      "C034",
+      "C035",
+      "C036",
+      "C037",
+      "C038",
+      "C039",
+      "C040",
+      "C042",
+      "C043",
+      "C044",
+      "C045",
+      "C046",
+      "C047",
+      "C049",
+      "C050",
+      "C051",
+      "C052",
+      "C053",
+      "C055",
+      "C058",
+      "C059",
+      "C060",
+      "C061",
+      "C062",
+      "C063",
+      "C064",
+      "C065",
+      "C066",
+      "C067",
+      "C068",
+      "C069",
+      "C070",
+      "C071",
+      "C072",
+      "C073",
+      "C074",
+      "C075",
+      "C076",
+      "D001",
+      "D002",
+      "D003",
+      "D004",
+      "D005",
+      "D006",
+      "D007",
+      "D008",
+      "D009",
+      "D010",
+      "D011",
+      "D012",
+      "D013",
+      "D014",
+      "D015",
+      "D016",
+      "D017",
+      "D018",
+      "D019",
+      "D021",
+      "D022",
+      "D023",
+      "D024",
+      "D025",
+      "J001",
+      "J002",
+      "J003",
+      "J004",
+      "J005",
+      "J006",
+      "K001",
+      "K002",
+      "K003",
+      "K004",
+      "K005",
+      "K006",
+      "K007",
+      "K008",
+      "K009",
+      "K010",
+      "K011",
+      "K012",
+      "K013",
+      "K016",
+      "K017",
+      "K018",
+      "K019",
+      "K020",
+      "K021",
+      "K022",
+      "K023",
+      "K024",
+      "K025",
+      "K026",
+      "K027",
+      "K028",
+      "K029",
+      "K030",
+      "K031",
+      "K032",
+      "K033",
+      "K034",
+      "R001",
+      "R003",
+      "R004",
+      "R005",
+      "R006",
+      "S001",
+      "S002",
+      "S004",
+      "S005",
+      "S006",
+      "S007",
+      "S008",
+      "S009",
+      "S010",
+      "S011",
+      "S013",
+      "S014",
+      "S017",
+      "S021",
+      "S022",
+      "S023",
+      "S025",
+      "S026",
+      "S027",
+      "S028",
+      "S029",
+      "S030",
+      "S033",
+      "S034",
+      "S035",
+      "S036",
+      "S041",
+      "S042",
+      "S043",
+      "S044",
+      "S045",
+      "S046",
+      "S047",
+      "S049",
+      "S050",
+      "S051",
+      "S052",
+      "S053",
+      "S054",
+      "S056",
+      "S057",
+      "SW001",
+      "SW002",
+      "SW003",
+      "SW004",
+      "SW005",
+      "SW007",
+      "SW008",
+      "SW009",
+      "SW010",
+      "SW011",
+      "SW012",
+      "SW013",
+      "SW014",
+      "SW015",
+      "SW017",
+      "SW018",
+      "SW019",
+      "SW020",
+      "SW021",
+      "SW022",
+      "SW023",
+      "SW024",
+      "SW026",
+      "SW028",
+      "SW029",
+      "SW030",
+      "SW031",
+      "SW032",
+      "SW033",
+      "SW034",
+      "SW035",
+      "T002",
+      "T003",
+      "T004",
+      "T007",
+      "T010",
+      "T015",
+      "T016",
+      "T017",
+      "T018",
+      "T019",
+      "T020",
+      "T021"
+    ],
+    "DESIGN_PATTERNS": [
+      "C009",
+      "C010",
+      "C034",
+      "C048",
+      "C052",
+      "C062",
+      "C064",
+      "C069",
+      "K026",
+      "K033",
+      "R002",
+      "R006",
+      "R007",
+      "R008",
+      "R009"
+    ],
+    "TESTABILITY": [
+      "C017",
+      "C031",
+      "C061",
+      "C063",
+      "C065",
+      "C066",
+      "C069",
+      "C070",
+      "C072",
+      "SW025"
+    ],
+    "RELIABILITY": [
+      "C017",
+      "C056"
+    ],
+    "INTEGRATION": [
+      "C017"
+    ],
+    "MAINTAINABILITY": [
+      "C024",
+      "C031",
+      "C048",
+      "C052",
+      "C059",
+      "C061",
+      "C063",
+      "C067",
+      "C071",
+      "C074",
+      "C076",
+      "D014",
+      "K002",
+      "K003",
+      "S008",
+      "SW021"
+    ],
+    "SECURITY": [
+      "C041",
+      "D003",
+      "D011",
+      "D012",
+      "D020",
+      "D023",
+      "D024",
+      "K032",
+      "S001",
+      "S002",
+      "S003",
+      "S004",
+      "S005",
+      "S006",
+      "S007",
+      "S008",
+      "S009",
+      "S010",
+      "S011",
+      "S012",
+      "S013",
+      "S014",
+      "S015",
+      "S016",
+      "S017",
+      "S018",
+      "S019",
+      "S020",
+      "S021",
+      "S022",
+      "S023",
+      "S024",
+      "S025",
+      "S026",
+      "S027",
+      "S028",
+      "S029",
+      "S030",
+      "S031",
+      "S032",
+      "S033",
+      "S034",
+      "S035",
+      "S036",
+      "S037",
+      "S038",
+      "S039",
+      "S040",
+      "S041",
+      "S042",
+      "S043",
+      "S044",
+      "S045",
+      "S046",
+      "S047",
+      "S048",
+      "S049",
+      "S050",
+      "S051",
+      "S052",
+      "S053",
+      "S054",
+      "S055",
+      "S056",
+      "S057",
+      "S058",
+      "S059",
+      "SW014",
+      "SW015",
+      "SW016"
+    ],
+    "PERFORMANCE": [
+      "C043",
+      "C044",
+      "C046",
+      "C050",
+      "C051",
+      "C054",
+      "C055",
+      "C056",
+      "C057",
+      "D007",
+      "D008",
+      "D013",
+      "D025",
+      "K006",
+      "K007",
+      "K008",
+      "K009",
+      "K014",
+      "K015",
+      "K017",
+      "R002",
+      "SW004",
+      "SW006",
+      "SW027",
+      "SW035"
+    ],
+    "USABILITY": [
+      "D025"
+    ]
+  },
+  "presets": {
+    "recommended": "Balanced rules for production use",
+    "security": "Security-focused rules (S* series)",
+    "quality": "Code quality rules (C* series)",
+    "beginner": "Essential rules for new teams",
+    "strict": "All activated rules",
+    "performance": "Performance-focused rules"
+  }
+}

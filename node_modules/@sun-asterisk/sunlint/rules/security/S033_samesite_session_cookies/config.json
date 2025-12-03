@@ -1,0 +1,87 @@
+{
+  "id": "S033",
+  "name": "Set SameSite attribute for Session Cookies",
+  "category": "security",
+  "description": "S033 - Set SameSite attribute for Session Cookies to reduce CSRF risk. This prevents the browser from sending cookies along with cross-site requests, mitigating CSRF attacks.",
+  "severity": "error",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
+    "exclude": [
+      "**/*.test.js",
+      "**/*.test.ts",
+      "**/*.spec.js",
+      "**/*.spec.ts",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**"
+    ]
+  },
+  "analysis": {
+    "approach": "symbol-based-primary",
+    "fallback": "regex-based",
+    "depth": 2,
+    "timeout": 5000
+  },
+  "validation": {
+    "cookieMethods": [
+      "setCookie",
+      "cookie",
+      "set",
+      "append",
+      "session",
+      "setHeader",
+      "writeHead"
+    ],
+    "cookieLibraries": [
+      "express",
+      "koa",
+      "fastify",
+      "hapi",
+      "next",
+      "nuxt",
+      "cookie",
+      "cookie-parser",
+      "express-session",
+      "connect-session",
+      "passport"
+    ],
+    "sessionIndicators": [
+      "session",
+      "sessionid",
+      "sessid",
+      "jsessionid",
+      "phpsessid",
+      "asp.net_sessionid",
+      "connect.sid",
+      "auth",
+      "token",
+      "jwt",
+      "csrf",
+      "refresh"
+    ],
+    "sameSitePatterns": [
+      "sameSite:\\s*['\"]strict['\"]",
+      "sameSite:\\s*['\"]lax['\"]",
+      "sameSite:\\s*['\"]none['\"]",
+      "sameSite:['\"]strict['\"]",
+      "sameSite:['\"]lax['\"]",
+      "sameSite:['\"]none['\"]",
+      "SameSite=Strict",
+      "SameSite=Lax",
+      "SameSite=None"
+    ],
+    "insecurePatterns": [
+      "(?<!sameSite[\\s=:]+)(?<!SameSite=)Set-Cookie",
+      "res\\.cookie\\([^)]*\\)(?![^{]*sameSite)",
+      "document\\.cookie\\s*="
+    ],
+    "acceptableValues": ["strict", "lax", "none"],
+    "recommendedValues": ["strict", "lax"]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "@sun/sunlint/maintainability",
+  "description": "Maintainability and clean code focused configuration",
+  "rules": {
+    "C024": "warn",
+    "C031": "warn",
+    "C048": "warn",
+    "C052": "warn",
+    "C061": "warn",
+    "C067": "warn",
+    "C076": "warn",
+    "S008": "warn"
+  },
+  "categories": {
+    "maintainability": "warn",
+    "design": "warn"
+  },
+  "languages": [
+    "typescript",
+    "javascript",
+    "dart",
+    "java",
+    "kotlin",
+    "swift"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/build/**",
+    "**/dist/**",
+    "**/*.generated.*",
+    "**/*.min.*"
+  ],
+  "metadata": {
+    "totalRules": 8,
+    "approach": "maintainability-focused",
+    "source": "maintainability principle rules",
+    "lastUpdated": "2025-09-08T04:34:12.590Z",
+    "version": "2.0.0"
+  }
+}

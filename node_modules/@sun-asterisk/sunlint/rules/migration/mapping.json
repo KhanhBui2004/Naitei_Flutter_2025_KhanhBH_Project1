@@ -1,0 +1,164 @@
+{
+  "_description": "ESLint to Heuristic Migration Mapping - Maps ESLint plugin rules to heuristic engine equivalents",
+  "migrations": [
+    {
+      "eslint_rule": "c006-function-name-verb-noun",
+      "heuristic_rule": "C006_function_naming",
+      "category": "coding",
+      "compatibility": "full",
+      "priority": "high",
+      "status": "completed",
+      "notes": "Direct mapping - heuristic version already exists"
+    },
+    {
+      "eslint_rule": "c019-log-level-usage", 
+      "heuristic_rule": "C019_log_level_usage",
+      "category": "coding",
+      "compatibility": "full", 
+      "priority": "high",
+      "status": "completed",
+      "notes": "Direct mapping - heuristic version already exists"
+    },
+    {
+      "eslint_rule": "c029-catch-block-logging",
+      "heuristic_rule": "C029_catch_block_logging", 
+      "category": "coding",
+      "compatibility": "full",
+      "priority": "high", 
+      "status": "completed",
+      "notes": "Direct mapping - heuristic version already exists"
+    },
+    {
+      "eslint_rule": "c031-validation-separation",
+      "heuristic_rule": "C031_validation_separation",
+      "category": "coding", 
+      "compatibility": "full",
+      "priority": "high",
+      "status": "completed", 
+      "notes": "Direct mapping - heuristic version already exists"
+    },
+    
+    {
+      "eslint_rule": "c002-no-duplicate-code",
+      "heuristic_rule": "C002_no_duplicate_code", 
+      "category": "coding",
+      "compatibility": "partial",
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Requires AST pattern matching for code duplication"
+    },
+    {
+      "eslint_rule": "c003-no-vague-abbreviations",
+      "heuristic_rule": "C003_no_vague_abbreviations",
+      "category": "coding",
+      "compatibility": "full", 
+      "priority": "low",
+      "status": "pending",
+      "notes": "String pattern matching for variable names"
+    },
+    
+    {
+      "eslint_rule": "s001-fail-securely",
+      "heuristic_rule": "S001_fail_securely",
+      "category": "security", 
+      "compatibility": "partial",
+      "priority": "critical",
+      "status": "pending",
+      "notes": "Complex logic analysis required for security patterns"
+    },
+    {
+      "eslint_rule": "s003-no-unvalidated-redirect", 
+      "heuristic_rule": "S003_no_unvalidated_redirect",
+      "category": "security",
+      "compatibility": "full",
+      "priority": "critical", 
+      "status": "pending",
+      "notes": "Pattern matching for redirect vulnerabilities"
+    },
+    {
+      "eslint_rule": "s012-hardcode-secret",
+      "heuristic_rule": "S012_hardcode_secret",
+      "category": "security",
+      "compatibility": "full",
+      "priority": "critical",
+      "status": "pending", 
+      "notes": "String pattern matching for hardcoded secrets"
+    },
+    
+    {
+      "eslint_rule": "t002-interface-prefix-i",
+      "heuristic_rule": "T002_interface_prefix_i",
+      "category": "typescript",
+      "compatibility": "full",
+      "priority": "medium",
+      "status": "pending", 
+      "notes": "TypeScript interface naming conventions"
+    },
+    {
+      "eslint_rule": "t003-ts-ignore-reason",
+      "heuristic_rule": "T003_ts_ignore_reason", 
+      "category": "typescript",
+      "compatibility": "full",
+      "priority": "medium",
+      "status": "pending",
+      "notes": "TypeScript comment analysis for @ts-ignore"
+    }
+  ],
+  
+  "migration_stats": {
+    "total_rules": 81,
+    "completed": 4,
+    "pending": 77,
+    "by_category": {
+      "coding": {
+        "total": 22,
+        "completed": 4, 
+        "pending": 18
+      },
+      "security": {
+        "total": 49,
+        "completed": 0,
+        "pending": 49
+      },
+      "typescript": {
+        "total": 10,
+        "completed": 0,
+        "pending": 10
+      }
+    },
+    "by_priority": {
+      "critical": 3,
+      "high": 4,
+      "medium": 12,
+      "low": 62
+    },
+    "by_compatibility": {
+      "full": 65,
+      "partial": 16,
+      "complex": 0
+    }
+  },
+  
+  "migration_phases": {
+    "phase_1": {
+      "name": "Critical Security Rules",
+      "rules": ["S001", "S003", "S012"],
+      "timeline": "Immediate post-ESLint deprecation"
+    },
+    "phase_2": {
+      "name": "High Priority Coding Rules", 
+      "rules": ["C002", "C010", "C014", "C018"],
+      "timeline": "Within 1 month"
+    },
+    "phase_3": {
+      "name": "TypeScript Rules",
+      "rules": ["T002", "T003", "T004", "T007"],
+      "timeline": "Within 2 months"
+    },
+    "phase_4": {
+      "name": "Remaining Rules",
+      "rules": "All remaining 70 rules",
+      "timeline": "Within 6 months"
+    }
+  }
+}

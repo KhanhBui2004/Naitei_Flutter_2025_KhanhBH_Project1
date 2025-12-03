@@ -1,0 +1,114 @@
+{
+  "semantic-engine": {
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "commonjs",
+      "lib": ["ES2020", "DOM"],
+      "allowJs": true,
+      "checkJs": false,
+      "skipLibCheck": true,
+      "skipDefaultLibCheck": true,
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": false,
+      "noImplicitAny": false
+    },
+    
+    "performance": {
+      "enableCaching": true,
+      "maxCacheSize": 100,
+      "memoryLimit": 524288000,
+      "timeout": 30000,
+      "crossFileAnalysis": true,
+      "enableTypeChecker": false
+    },
+    
+    "fileDiscovery": {
+      "patterns": [
+        "**/*.ts",
+        "**/*.tsx", 
+        "**/*.js",
+        "**/*.jsx"
+      ],
+      "excludePatterns": [
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.git/**",
+        "**/coverage/**",
+        "**/*.test.{ts,tsx,js,jsx}",
+        "**/*.spec.{ts,tsx,js,jsx}"
+      ],
+      "maxFiles": 1000
+    },
+    
+    "symbolTable": {
+      "extractImports": true,
+      "extractExports": true,
+      "extractFunctions": true,
+      "extractClasses": true,
+      "extractInterfaces": true,
+      "extractVariables": true,
+      "extractConstants": true,
+      "extractHooks": true,
+      "extractComponents": true,
+      "extractFunctionCalls": true,
+      "extractMethodCalls": true,
+      "crossFileReferences": true
+    },
+    
+    "rules": {
+      "C047": {
+        "enabled": true,
+        "crossFileAnalysis": true,
+        "retryPatterns": [
+          "retry",
+          "retries", 
+          "withRetry",
+          "retryWhen",
+          "attempt"
+        ],
+        "queryHooks": [
+          "useQuery",
+          "useMutation", 
+          "useInfiniteQuery",
+          "useSuspenseQuery"
+        ],
+        "contextAnalysis": {
+          "nearbyLines": 10,
+          "parentContext": true
+        }
+      },
+      
+      "C029": {
+        "enabled": false,
+        "crossFileAnalysis": true,
+        "description": "Future semantic rule for component lifecycle"
+      },
+      
+      "C031": {
+        "enabled": false,
+        "crossFileAnalysis": true, 
+        "description": "Future semantic rule for state management"
+      }
+    },
+    
+    "optimization": {
+      "incrementalAnalysis": true,
+      "watchMode": false,
+      "parallelProcessing": false,
+      "memoryCleanup": {
+        "interval": 60000,
+        "threshold": 0.8
+      }
+    },
+    
+    "debugging": {
+      "enableVerboseLogging": false,
+      "logSymbolTable": false,
+      "logPerformanceMetrics": true,
+      "outputStatsFile": false
+    }
+  }
+}

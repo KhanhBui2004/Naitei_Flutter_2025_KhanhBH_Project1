@@ -1,0 +1,33 @@
+{
+  "name": "@sun/sunlint/beginner",
+  "description": "Beginner-friendly configuration with warnings only",
+  "rules": {
+    "C006": "info",
+    "C019": "warn",
+    "C029": "warn"
+  },
+  "categories": {
+    "quality": "warn",
+    "security": "warn",
+    "logging": "warn",
+    "naming": "info",
+    "validation": "warn"
+  },
+  "languages": [
+    "typescript"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/build/**",
+    "**/dist/**",
+    "**/*.generated.*",
+    "**/*.min.*"
+  ],
+  "metadata": {
+    "totalRules": 3,
+    "approach": "beginner-friendly",
+    "source": "selected core rules",
+    "lastUpdated": "2025-09-08T04:34:12.590Z",
+    "version": "2.0.0"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "name": "Release Validation Configuration",
+  "description": "Comprehensive analysis for release validation", 
+  
+  "performance": {
+    "maxSemanticFiles": -1,
+    "maxConcurrentRules": 8,
+    "timeoutMs": 300000
+  },
+  
+  "input": ["."],
+  
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "lib/**/*.ts",
+    "app/**/*.ts",
+    "packages/*/src/**/*.ts"
+  ],
+  
+  "exclude": [
+    "node_modules/**",
+    "dist/**",
+    "build/**",
+    "coverage/**",
+    "**/*.min.*",
+    "**/*.bundle.*"
+  ],
+  
+  "rules": {
+    "enabled": "all"
+  },
+  
+  "output": {
+    "format": "detailed",
+    "console": true,
+    "summary": true,
+    "includeContext": true,
+    "showFixSuggestions": true,
+    "output": "release-validation-report.json"
+  },
+  
+  "engines": {
+    "semantic": {
+      "enabled": true,
+      "fileLimit": -1,
+      "enableCaching": true,
+      "crossFileAnalysis": true
+    },
+    "ai": {
+      "enabled": true,
+      "provider": "openai",
+      "model": "gpt-4o-mini"
+    }
+  },
+  
+  "reporting": {
+    "baseline": {
+      "enabled": true,
+      "file": "release-baseline.json",
+      "compareWithPrevious": true
+    },
+    "trends": {
+      "enabled": true,
+      "historyFile": "release-trends.json"
+    },
+    "failOnNewViolations": true,
+    "exitOnError": true
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "ruleId": "S010",
+  "name": "Must use cryptographically secure random number generators (CSPRNG)",
+  "description": "Detect usage of insecure random number generators for security purposes",
+  "category": "security",
+  "severity": "error",
+  "languages": ["JavaScript", "TypeScript", "Node.js"],
+  "tags": ["security", "owasp", "cryptographic-failures", "random", "csprng"],
+  "enabled": true,
+  "fixable": false,
+  "engine": "heuristic",
+  "metadata": {
+    "owaspCategory": "A02:2021 - Cryptographic Failures",
+    "cweId": "CWE-338",
+    "description": "Using insecure random number generators like Math.random() for security purposes can lead to predictable values that attackers can exploit. Cryptographically secure random number generators (CSPRNG) must be used for security-sensitive operations.",
+    "impact": "High - Predictable tokens, weak encryption keys, authentication bypass",
+    "likelihood": "Medium",
+    "remediation": "Use crypto.randomBytes(), crypto.randomInt(), crypto.randomUUID(), or other CSPRNG functions for security purposes"
+  },
+  "patterns": {
+    "vulnerable": [
+      "Using Math.random() for generating security tokens",
+      "Using Date.now() or timestamps for random generation",
+      "Using performance.now() for security purposes",
+      "Using simple increment patterns for sensitive IDs"
+    ],
+    "secure": [
+      "Using crypto.randomBytes() for random data",
+      "Using crypto.randomUUID() for unique identifiers",
+      "Using crypto.randomInt() for random integers",
+      "Using nanoid() for URL-safe IDs"
+    ]
+  },
+  "examples": {
+    "violations": [
+      "const token = Math.random().toString(36).substring(2);",
+      "const sessionId = Date.now().toString();",
+      "const apiKey = Math.floor(Math.random() * 1000000);",
+      "const nonce = performance.now().toString();"
+    ],
+    "fixes": [
+      "const token = crypto.randomUUID();",
+      "const sessionId = crypto.randomBytes(16).toString('hex');",
+      "const apiKey = crypto.randomInt(100000, 999999);",
+      "const nonce = crypto.randomBytes(8).toString('hex');"
+    ]
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "version": "1.0",
+  "description": "AI Rules Context Configuration for SunLint OpenAI Analysis",
+  "contexts": {
+    "C005": {
+      "name": "Single Responsibility Function",
+      "description": "Each function should do only one thing",
+      "context": "You are analyzing code to ensure functions follow the Single Responsibility Principle. Look for functions that perform multiple unrelated tasks, have too many responsibilities, or mix different levels of abstraction. A function should have one clear purpose and one reason to change.",
+      "patterns": [
+        "Functions with multiple unrelated operations",
+        "Functions that mix business logic with UI logic",
+        "Functions that handle both data processing and error handling",
+        "Functions with high cyclomatic complexity due to multiple responsibilities"
+      ],
+      "examples": {
+        "violation": "function processUserData(user) { validateUser(user); saveToDatabase(user); sendEmail(user); updateUI(user); }",
+        "correct": "function processUser(user) { const validatedUser = validateUser(user); const savedUser = await saveUser(validatedUser); return savedUser; }"
+      }
+    },
+    "C006": {
+      "name": "Verb-Noun Function Naming",
+      "description": "Function names should be verb-noun combinations",
+      "context": "You are analyzing code to ensure function names follow verb-noun naming conventions. Function names should clearly indicate what action is being performed and what it operates on. Look for vague names, noun-only names, or names that don't clearly express the function's intent.",
+      "patterns": [
+        "Functions named with only nouns (e.g., 'user', 'data')",
+        "Vague verbs without clear objects (e.g., 'process', 'handle')",
+        "Abbreviations that obscure meaning",
+        "Names that don't match the function's actual behavior"
+      ],
+      "examples": {
+        "violation": "function data() { return userData; }",
+        "correct": "function getUserData() { return userData; }"
+      }
+    },
+    "C007": {
+      "name": "Avoid Redundant Comments",
+      "description": "Avoid comments that merely restate the code",
+      "context": "You are analyzing comments to identify those that add no value by simply restating what the code already clearly expresses. Look for comments that describe the 'what' instead of the 'why', comments that duplicate method names or variable names, and outdated comments that no longer match the code.",
+      "patterns": [
+        "Comments that restate variable assignments",
+        "Comments that duplicate method names",
+        "Comments describing obvious operations",
+        "Outdated comments that don't match current code"
+      ],
+      "examples": {
+        "violation": "// Increment counter by 1\ncounter++;",
+        "correct": "// Ensure we don't exceed rate limit\ncounter++;"
+      }
+    },
+    "C012": {
+      "name": "Command Query Separation",
+      "description": "Separate commands (that change state) from queries (that return data)",
+      "context": "You are analyzing code to ensure proper separation between commands (functions that modify state or have side effects) and queries (functions that return data without side effects). Look for functions that both modify state and return values, or functions that have hidden side effects.",
+      "patterns": [
+        "Functions that both modify state and return values",
+        "Query functions with hidden side effects",
+        "Functions that mix data retrieval with data modification",
+        "Methods that violate the principle by doing both command and query operations"
+      ],
+      "examples": {
+        "violation": "function getAndIncrementCounter() { return ++counter; }",
+        "correct": "function getCounter() { return counter; } function incrementCounter() { counter++; }"
+      }
+    },
+    "C014": {
+      "name": "Use Dependency Injection",
+      "description": "Use dependency injection instead of direct instantiation in business logic",
+      "context": "You are analyzing code to identify places where dependencies are created directly with 'new' instead of being injected. Look for tight coupling, hard-coded dependencies, and violations of the Dependency Inversion Principle. Focus on business logic that creates its own dependencies rather than receiving them.",
+      "patterns": [
+        "Direct instantiation with 'new' in business logic",
+        "Hard-coded service dependencies",
+        "Tight coupling to concrete implementations",
+        "Static method calls that create dependencies"
+      ],
+      "examples": {
+        "violation": "class UserService { processUser(user) { const validator = new UserValidator(); return validator.validate(user); } }",
+        "correct": "class UserService { constructor(validator) { this.validator = validator; } processUser(user) { return this.validator.validate(user); } }"
+      }
+    },
+    "C015": {
+      "name": "Use Domain Language",
+      "description": "Use domain-specific terminology in class and function names",
+      "context": "You are analyzing code to ensure names use appropriate domain language that business experts would understand. Look for generic technical terms where domain-specific terms would be more appropriate, unclear abstractions, and names that don't reflect the business context.",
+      "patterns": [
+        "Generic names like 'Manager', 'Handler', 'Processor'",
+        "Technical terms where business terms exist",
+        "Names that don't reflect the business domain",
+        "Abstractions that hide domain concepts"
+      ],
+      "examples": {
+        "violation": "class DataProcessor { processData(data) { } }",
+        "correct": "class OrderProcessor { fulfillOrder(order) { } }"
+      }
+    },
+    "C019": {
+      "name": "Appropriate Log Levels",
+      "description": "Don't use error-level logging for non-critical issues",
+      "context": "You are analyzing logging statements to ensure appropriate log levels are used. Look for error-level logging used for non-critical issues, missing log levels for serious problems, and inconsistent logging severity across the codebase.",
+      "patterns": [
+        "Using console.error() or logger.error() for warnings",
+        "Using error level for validation failures",
+        "Using error level for expected business exceptions",
+        "Inconsistent log levels for similar issues"
+      ],
+      "examples": {
+        "violation": "console.error('User input validation failed');",
+        "correct": "console.warn('User input validation failed');"
+      }
+    },
+    "C031": {
+      "name": "Separate Validation Logic",
+      "description": "Data validation logic should be separate from business logic",
+      "context": "You are analyzing code to ensure validation logic is properly separated from business logic. Look for mixed concerns where validation is embedded within business operations, making the code harder to test and maintain.",
+      "patterns": [
+        "Validation mixed with business logic",
+        "Inline validation checks within business methods",
+        "Validation scattered across multiple layers",
+        "Business logic that includes input sanitization"
+      ],
+      "examples": {
+        "violation": "function processOrder(order) { if (!order.id) throw new Error('Invalid order'); // business logic here }",
+        "correct": "function validateOrder(order) { if (!order.id) throw new Error('Invalid order'); } function processOrder(order) { // business logic only }"
+      }
+    },
+    "C032": {
+      "name": "No External Calls in Constructor",
+      "description": "Don't make external API calls in constructors or static blocks",
+      "context": "You are analyzing constructors and static initialization blocks for external API calls, network requests, or other I/O operations that can fail or cause unpredictable initialization timing. These should be moved to initialization methods.",
+      "patterns": [
+        "HTTP requests in constructors",
+        "Database calls in constructors",
+        "File I/O in static blocks",
+        "Network operations during object creation"
+      ],
+      "examples": {
+        "violation": "constructor() { this.data = fetch('/api/data'); }",
+        "correct": "constructor() { } async initialize() { this.data = await fetch('/api/data'); }"
+      }
+    },
+    "C033": {
+      "name": "Separate Processing and Data Access",
+      "description": "Separate business logic processing from data access in service layer",
+      "context": "You are analyzing service layer code to ensure clear separation between business logic processing and data access operations. Look for mixed concerns where data retrieval is embedded within business processing logic.",
+      "patterns": [
+        "Business logic mixed with database queries",
+        "Data access embedded in processing methods",
+        "Service methods that both process and persist data",
+        "Mixed concerns in service layer"
+      ],
+      "examples": {
+        "violation": "function processUserRegistration(userData) { const user = new User(userData); database.save(user); sendWelcomeEmail(user); }",
+        "correct": "function processUser(userData) { return new User(userData); } function saveUser(user) { return database.save(user); }"
+      }
+    },
+    "C034": {
+      "name": "Avoid Direct Global State Access",
+      "description": "Limit direct access to global state in domain logic",
+      "context": "You are analyzing domain logic for direct access to global variables, singletons, or other global state. Look for tight coupling to global state that makes testing difficult and violates the principle of explicit dependencies.",
+      "patterns": [
+        "Direct access to global variables in business logic",
+        "Singleton pattern usage in domain code",
+        "Static state access in business methods",
+        "Hidden dependencies on global state"
+      ],
+      "examples": {
+        "violation": "function calculateDiscount() { return globalConfig.discountRate * 0.1; }",
+        "correct": "function calculateDiscount(config) { return config.discountRate * 0.1; }"
+      }
+    },
+    "C035": {
+      "name": "Comprehensive Error Logging",
+      "description": "When handling errors, log complete context information",
+      "context": "You are analyzing error handling code to ensure complete context information is logged when errors occur. Look for catch blocks that don't log sufficient information for debugging, missing error context, and inadequate error details.",
+      "patterns": [
+        "Empty catch blocks",
+        "Generic error messages without context",
+        "Missing error details in logs",
+        "Error handling without sufficient debugging information"
+      ],
+      "examples": {
+        "violation": "try { processData(); } catch (e) { console.log('Error occurred'); }",
+        "correct": "try { processData(); } catch (e) { console.error('Failed to process data for user ${userId}:', e.message, { userId, data, stack: e.stack }); }"
+      }
+    },
+    "C037": {
+      "name": "Return Response Objects",
+      "description": "API handlers should return structured response objects, not raw strings",
+      "context": "You are analyzing API handler functions to ensure they return structured response objects instead of raw strings or primitive values. Look for endpoints that return plain text, numbers, or other non-object responses.",
+      "patterns": [
+        "API handlers returning raw strings",
+        "Endpoints returning primitive values directly",
+        "Missing response structure in API methods",
+        "Inconsistent response formats across endpoints"
+      ],
+      "examples": {
+        "violation": "function getUser(id) { return 'User not found'; }",
+        "correct": "function getUser(id) { return { success: false, message: 'User not found', data: null }; }"
+      }
+    },
+    "C038": {
+      "name": "Avoid Order-Dependent Logic",
+      "description": "Avoid logic that depends on file/module loading order",
+      "context": "You are analyzing code for dependencies on file or module loading order. Look for initialization code that assumes certain modules are loaded first, static initialization that depends on other modules, and race conditions in module initialization.",
+      "patterns": [
+        "Static initialization depending on other modules",
+        "Module-level code that assumes loading order",
+        "Race conditions in initialization",
+        "Implicit dependencies on loading sequence"
+      ],
+      "examples": {
+        "violation": "const config = otherModule.getConfig(); // assumes otherModule is loaded",
+        "correct": "function initialize() { const config = otherModule.getConfig(); return config; }"
+      }
+    },
+    "C040": {
+      "name": "Centralize Validation Logic",
+      "description": "Don't scatter validation logic across multiple classes",
+      "context": "You are analyzing code to identify scattered validation logic that should be centralized. Look for duplicate validation rules, validation logic spread across multiple classes, and inconsistent validation approaches for the same data types.",
+      "patterns": [
+        "Duplicate validation rules in multiple places",
+        "Validation logic scattered across different classes",
+        "Inconsistent validation for same data types",
+        "Mixed validation approaches in the same system"
+      ],
+      "examples": {
+        "violation": "// Validation in multiple places: UserService, UserController, UserRepository",
+        "correct": "// Centralized: UserValidator class handles all user validation"
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "C035_error_logging_context",
+  "name": "C035_error_logging_context", 
+  "category": "architecture",
+  "description": "C035 - Khi xử lý lỗi, phải ghi log đầy đủ thông tin liên quan",
+  "severity": "warning",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": [
+      "**/*.js",
+      "**/*.ts",
+      "**/*.jsx", 
+      "**/*.tsx"
+    ],
+    "exclude": [
+      "**/*.test.js",
+      "**/*.test.ts",
+      "**/*.spec.js",
+      "**/*.spec.ts",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**"
+    ]
+  },
+  "analysis": {
+    "approach": "symbol-based-primary",
+    "fallback": "regex-based",
+    "depth": 2,
+    "timeout": 5000
+  },
+  "validation": {
+    "requiredContext": [
+      "error_message",
+      "identifier",
+      "context"
+    ],
+    "sensitivePatterns": [
+      "password", "passwd", "pwd",
+      "token", "jwt", "auth", "secret",
+      "key", "apikey", "privatekey",
+      "ssn", "credit", "card", "cvv"
+    ],
+    "loggerPatterns": [
+      "console.log", "console.error", "console.warn",
+      "logger.log", "logger.error", "logger.warn", "logger.info",
+      "log.error", "log.warn", "log.info"
+    ]
+  }
+}

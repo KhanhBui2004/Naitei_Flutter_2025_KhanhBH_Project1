@@ -1,0 +1,50 @@
+{
+  "id": "C048",
+  "name": "C048_do_not_bypass_architectural_layers",
+  "category": "architecture",
+  "description": "C048 - Do not bypass architectural layers (controller/service/repository)",
+  "severity": "warning",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": [
+      "**/*.js",
+      "**/*.ts",
+      "**/*.jsx",
+      "**/*.tsx"
+    ],
+    "exclude": [
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*.mock.*",
+      "**/test/**",
+      "**/tests/**",
+      "**/spec/**"
+    ]
+  },
+  "options": {
+    "strictMode": false,
+    "allowedDbMethods": [],
+    "repositoryPatterns": [
+      "*Repository*",
+      "*Repo*",
+      "*DAO*",
+      "*Store*"
+    ],
+    "servicePatterns": [
+      "*Service*",
+      "*UseCase*",
+      "*Handler*",
+      "*Manager*"
+    ],
+    "complexityThreshold": {
+      "methodLength": 200,
+      "cyclomaticComplexity": 5,
+      "nestedDepth": 3
+    }
+  }
+}

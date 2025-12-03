@@ -1,0 +1,64 @@
+{
+  "name": "@sun/sunlint/quality",
+  "description": "Code quality and best practices focused configuration",
+  "rules": {
+    "C003": "warn",
+    "C006": "warn",
+    "C013": "warn",
+    "C014": "warn",
+    "C017": "warn",
+    "C018": "warn",
+    "C019": "warn",
+    "C023": "warn",
+    "C024": "warn",
+    "C029": "warn",
+    "C030": "warn",
+    "C031": "warn",
+    "C033": "warn",
+    "C035": "warn",
+    "C040": "warn",
+    "C042": "warn",
+    "C043": "warn",
+    "C047": "warn",
+    "C048": "warn",
+    "C052": "warn",
+    "C056": "warn",
+    "C060": "warn",
+    "C061": "warn",
+    "C065": "warn",
+    "C067": "warn",
+    "C070": "warn",
+    "C072": "warn",
+    "C073": "warn",
+    "C075": "warn",
+    "C076": "warn"
+  },
+  "categories": {
+    "quality": "warn",
+    "maintainability": "warn",
+    "testability": "warn"
+  },
+  "languages": [
+    "typescript",
+    "javascript",
+    "dart",
+    "java",
+    "kotlin",
+    "swift"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/build/**",
+    "**/dist/**",
+    "**/*.generated.*",
+    "**/*.min.*"
+  ],
+  "metadata": {
+    "totalRules": 30,
+    "qualityRules": 30,
+    "approach": "quality-focused",
+    "source": "common-en.md (non-security rules)",
+    "lastUpdated": "2025-09-08T04:33:23.247Z",
+    "version": "2.0.0"
+  }
+}

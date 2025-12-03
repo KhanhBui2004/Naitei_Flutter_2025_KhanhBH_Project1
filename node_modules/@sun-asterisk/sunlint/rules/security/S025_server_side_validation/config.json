@@ -1,0 +1,111 @@
+{
+  "ruleId": "S025",
+  "name": "Always validate client-side data on the server",
+  "description": "Ensure all client-side data is validated on the server. Client-side validation is not sufficient for security as it can be bypassed by attackers. Server-side validation is mandatory for data integrity and security.",
+  "category": "security",
+  "severity": "error",
+  "languages": ["typescript", "javascript"],
+  "tags": ["security", "validation", "server-side", "owasp", "input-validation"],
+  
+  "patterns": {
+    "nestjs": {
+      "missingValidationPipe": {
+        "description": "NestJS routes missing ValidationPipe or DTO validation",
+        "severity": "error"
+      },
+      "unsafeBodyUsage": {
+        "description": "Using @Body() with 'any' type instead of validated DTO",
+        "severity": "error"
+      }
+    },
+    "express": {
+      "directReqUsage": {
+        "description": "Direct use of req.body/req.query/req.params without validation",
+        "severity": "error"
+      },
+      "missingMiddleware": {
+        "description": "Express routes missing validation middleware",
+        "severity": "error"
+      }
+    },
+    "sensitiveFields": {
+      "clientTrusted": {
+        "description": "Sensitive fields (userId, role, price, isAdmin) trusted from client",
+        "severity": "error",
+        "fields": ["userId", "user_id", "id", "role", "roles", "permissions", "price", "amount", "total", "cost", "isAdmin", "is_admin", "admin", "discount", "balance", "credits", "isActive", "is_active", "enabled", "status", "state"]
+      }
+    },
+    "sqlInjection": {
+      "stringConcatenation": {
+        "description": "SQL queries using string concatenation or template literals with user input",
+        "severity": "error"
+      }
+    },
+    "fileUpload": {
+      "missingValidation": {
+        "description": "File uploads missing server-side validation (type, size, content)",
+        "severity": "error"
+      }
+    }
+  },
+
+  "validationIndicators": [
+    "ValidationPipe",
+    "class-validator",
+    "IsString", "IsInt", "IsEmail", "IsUUID", "IsOptional", "IsArray",
+    "validateOrReject", "plainToClass",
+    "joi.validate", "yup.validate", "zod.parse",
+    "fileFilter", "mimetype", "file.size"
+  ],
+
+  "frameworkSupport": {
+    "nestjs": {
+      "patterns": ["@Controller", "@Post", "@Get", "@Put", "@Delete", "@Body()", "@nestjs/"],
+      "validationMethods": ["ValidationPipe", "class-validator", "DTO"]
+    },
+    "express": {
+      "patterns": ["express", "req.body", "req.query", "req.params", "app.post", "app.get"],
+      "validationMethods": ["joi", "yup", "express-validator", "middleware"]
+    }
+  },
+
+  "examples": {
+    "violations": [
+      {
+        "code": "@Post('/checkout') checkout(@Body() body: any) { return this.service.checkout(body); }",
+        "issue": "Using @Body() with 'any' type - vulnerable to parameter tampering"
+      },
+      {
+        "code": "const { userId, discount } = req.body; const order = await this.service.create(userId, discount);",
+        "issue": "Trusting sensitive fields (userId, discount) from client without validation"
+      },
+      {
+        "code": "const query = `SELECT * FROM users WHERE id = ${req.params.id}`;",
+        "issue": "SQL injection via string concatenation with user input"
+      }
+    ],
+    "fixes": [
+      {
+        "code": "app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));",
+        "description": "Configure ValidationPipe globally"
+      },
+      {
+        "code": "@Post('/checkout') checkout(@Body() dto: CheckoutDto, @Req() req) { const userId = req.user.sub; }",
+        "description": "Use DTO validation and get userId from authenticated session"
+      },
+      {
+        "code": "const query = 'SELECT * FROM users WHERE id = ?'; await db.query(query, [req.params.id]);",
+        "description": "Use parameterized queries"
+      }
+    ]
+  },
+
+  "owaspMapping": {
+    "category": "A03:2021 – Injection",
+    "subcategories": [
+      "A04:2021 – Insecure Design",
+      "A07:2021 – Identification and Authentication Failures"
+    ],
+    "description": "Validates that all user input is properly validated server-side to prevent injection attacks and parameter tampering"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "CI/CD Optimized Configuration", 
+  "description": "Fast analysis for CI/CD pipelines",
+  
+  "performance": {
+    "maxSemanticFiles": 300,
+    "maxConcurrentRules": 3,
+    "timeoutMs": 30000
+  },
+  
+  "input": ["."],
+  
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js"
+  ],
+  
+  "exclude": [
+    "**/*.test.*",
+    "**/*.d.ts",
+    "node_modules/**",
+    "dist/**",
+    "build/**"
+  ],
+  
+  "rules": {
+    "categories": {
+      "security": true,
+      "quality": true,
+      "logging": false
+    }
+  },
+  
+  "output": {
+    "format": "github",
+    "console": true,
+    "summary": false
+  },
+  
+  "engines": {
+    "semantic": {
+      "enabled": true,
+      "fileLimit": 300
+    },
+    "ai": {
+      "enabled": false
+    }
+  },
+  
+  "reporting": {
+    "exitOnError": true,
+    "showProgress": false
+  }
+}

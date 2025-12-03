@@ -1,0 +1,15 @@
+{
+  "ruleId": "C076",
+  "name": "Explicit Function Argument Types",
+  "description": "All public functions must declare explicit types for arguments",
+  "severity": "warning",
+  "category": "type-safety",
+  "languages": ["typescript", "javascript"],
+  "disallow": ["any", "Object", "object", "{}", "unknown"],
+  "requireGenericConstraints": false,
+  "checkCollections": true,
+  "ignorePatterns": ["**/*.spec.ts", "**/__tests__/**", "**/*.test.ts"],
+  "exemptPrivateFunctions": true,
+  "allowDefaultParameters": false,
+  "strictGenericTypes": true
+}

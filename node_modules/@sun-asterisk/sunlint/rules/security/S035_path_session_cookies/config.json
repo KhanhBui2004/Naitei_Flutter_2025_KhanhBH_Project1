@@ -1,0 +1,99 @@
+{
+  "id": "S035",
+  "name": "Set Path attribute for Session Cookies",
+  "category": "security",
+  "description": "S035 - Set Path attribute for Session Cookies to limit access scope. This restricts where cookies can be sent, reducing the attack surface by limiting cookie access to specific paths.",
+  "severity": "warning",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
+    "exclude": [
+      "**/*.test.js",
+      "**/*.test.ts",
+      "**/*.spec.js",
+      "**/*.spec.ts",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**"
+    ]
+  },
+  "analysis": {
+    "approach": "symbol-based-primary",
+    "fallback": "regex-based",
+    "depth": 2,
+    "timeout": 5000
+  },
+  "validation": {
+    "cookieMethods": [
+      "setCookie",
+      "cookie",
+      "set",
+      "append",
+      "session",
+      "setHeader",
+      "writeHead"
+    ],
+    "cookieLibraries": [
+      "express",
+      "koa",
+      "fastify",
+      "hapi",
+      "next",
+      "nuxt",
+      "cookie",
+      "cookie-parser",
+      "express-session",
+      "connect-session",
+      "passport"
+    ],
+    "sessionIndicators": [
+      "session",
+      "sessionid",
+      "sessid",
+      "jsessionid",
+      "phpsessid",
+      "asp.net_sessionid",
+      "connect.sid",
+      "auth",
+      "token",
+      "jwt",
+      "csrf",
+      "refresh",
+      "user",
+      "login",
+      "authentication"
+    ],
+    "pathPatterns": [
+      "path:\\s*['\"][^'\"]*['\"]",
+      "path:['\"][^'\"]*['\"]",
+      "Path=[^;\\s]+",
+      "path=[\\/][^;\\s]*"
+    ],
+    "insecurePatterns": [
+      "(?<!path[\\s=:]+)(?<!Path=)Set-Cookie",
+      "res\\.cookie\\([^)]*\\)(?![^{]*path)",
+      "document\\.cookie\\s*="
+    ],
+    "acceptableValues": [
+      "/",
+      "/app",
+      "/admin",
+      "/api",
+      "/auth",
+      "/user",
+      "/secure"
+    ],
+    "recommendedValues": ["/app", "/admin", "/api", "/auth"],
+    "securityRequirements": {
+      "mustHavePath": true,
+      "mustNotBeRoot": false,
+      "specificPathRequired": true,
+      "pathValidation": true
+    }
+  }
+}

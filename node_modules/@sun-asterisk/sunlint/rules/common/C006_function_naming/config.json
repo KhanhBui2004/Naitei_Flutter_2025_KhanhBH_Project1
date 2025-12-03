@@ -1,0 +1,86 @@
+{
+  "ruleId": "C006",
+  "name": "Function Naming Convention",
+  "description": "Tên hàm phải là động từ/verb-noun pattern",
+  "category": "naming",
+  "severity": "warning",
+  "languages": ["typescript", "dart", "kotlin"],
+  "version": "1.0.0",
+  "status": "activated",
+  "tags": ["naming", "convention", "readability"],
+  "config": {
+    "commonVerbs": [
+      "get", "set", "is", "has", "can", "should", "will",
+      "create", "build", "make", "generate", "construct",
+      "update", "modify", "change", "edit", "alter",
+      "delete", "remove", "destroy", "clean", "clear",
+      "load", "save", "fetch", "retrieve", "find", "search",
+      "validate", "verify", "check", "confirm", "ensure",
+      "calculate", "compute", "process", "handle", "manage",
+      "send", "receive", "transmit", "broadcast", "emit",
+      "parse", "format", "transform", "convert", "map",
+      "filter", "sort", "group", "merge", "split",
+      "connect", "disconnect", "open", "close", "start", "stop",
+      "show", "hide", "display", "render", "draw", "paint",
+      "add", "append", "insert", "push", "pop", "shift",
+      "test", "debug", "log", "trace", "monitor", "watch"
+    ],
+    "specialFunctions": [
+      "constructor", "toString", "valueOf", "toJSON",
+      "main", "init", "setup", "teardown", "build",
+      "onCreate", "onDestroy", "onStart", "onStop",
+      "onPause", "onResume", "onSaveInstanceState",
+      "equals", "hashCode", "compareTo", "clone",
+      "finalize", "notify", "notifyAll", "wait"
+    ],
+    "patterns": {
+      "camelCase": "^[a-z][a-zA-Z0-9]*$",
+      "verbNoun": "^(get|set|is|has|can|create|update|delete|load|save|find|validate|process|handle|calculate|send|receive|parse|format|transform|filter|sort|connect|show|hide|add|remove)[A-Z][a-zA-Z0-9]*$"
+    }
+  },
+  "examples": {
+    "violations": [
+      {
+        "language": "typescript",
+        "code": "function userData() { return user.data; }",
+        "reason": "Function name is a noun - should start with a verb like 'getUserData'"
+      },
+      {
+        "language": "typescript",
+        "code": "function calculation() { return x + y; }",
+        "reason": "Should use verb-noun pattern like 'calculateSum' or 'performCalculation'"
+      },
+      {
+        "language": "dart",
+        "code": "String userInfo() { return 'info'; }",
+        "reason": "Function name should start with verb like 'getUserInfo'"
+      }
+    ],
+    "valid": [
+      {
+        "language": "typescript",
+        "code": "function getUserData() { return user.data; }",
+        "reason": "Follows verb-noun pattern"
+      },
+      {
+        "language": "typescript",
+        "code": "function isValid() { return true; }",
+        "reason": "Starts with verb 'is'"
+      },
+      {
+        "language": "dart",
+        "code": "bool hasPermission() { return true; }",
+        "reason": "Starts with verb 'has'"
+      }
+    ]
+  },
+  "fixes": {
+    "autoFixable": false,
+    "suggestions": [
+      "Start function names with verbs (get, set, is, has, create, update, etc.)",
+      "Use verb-noun pattern for clarity (e.g., getUserData, validateInput)",
+      "Avoid noun-only function names",
+      "Use camelCase convention"
+    ]
+  }
+}

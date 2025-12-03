@@ -1,0 +1,50 @@
+{
+  "id": "C052",
+  "name": "C052_C052_parsing_or_data_transformation",
+  "category": "architecture",
+  "description": "C052 - Parsing or data transformation logic must be separated from controllers",
+  "severity": "warning",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": [
+      "**/*.js",
+      "**/*.ts",
+      "**/*.jsx",
+      "**/*.tsx"
+    ],
+    "exclude": [
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*.mock.*",
+      "**/test/**",
+      "**/tests/**",
+      "**/spec/**"
+    ]
+  },
+  "options": {
+    "strictMode": false,
+    "allowedDbMethods": [],
+    "repositoryPatterns": [
+      "*Repository*",
+      "*Repo*",
+      "*DAO*",
+      "*Store*"
+    ],
+    "servicePatterns": [
+      "*Service*",
+      "*UseCase*",
+      "*Handler*",
+      "*Manager*"
+    ],
+    "complexityThreshold": {
+      "methodLength": 200,
+      "cyclomaticComplexity": 5,
+      "nestedDepth": 3
+    }
+  }
+}

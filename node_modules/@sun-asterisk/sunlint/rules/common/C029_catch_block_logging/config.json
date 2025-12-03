@@ -1,0 +1,59 @@
+{
+  "ruleId": "C029",
+  "name": "Catch Block Error Logging",
+  "description": "Mọi catch block phải log nguyên nhân lỗi đầy đủ",
+  "category": "error-handling",
+  "severity": "error",
+  "languages": ["typescript", "dart", "kotlin", "javascript"],
+  "version": "1.0.0",
+  "status": "activated",
+  "tags": ["error-handling", "logging", "debugging", "monitoring"],
+  "examples": {
+    "typescript": {
+      "violations": [
+        "try { riskyOperation(); } catch (error) { return null; }",
+        "catch (e) { /* empty */ }",
+        "catch (error) { throw new Error('Failed'); }"
+      ],
+      "valid": [
+        "catch (error) { console.error('Operation failed:', error); }",
+        "catch (e) { logger.error('Error in process:', e); }",
+        "catch (error) { console.error(error); throw error; }"
+      ]
+    },
+    "dart": {
+      "violations": [
+        "try { riskyOperation(); } catch (e) { return null; }",
+        "on Exception catch (e) { /* empty */ }"
+      ],
+      "valid": [
+        "catch (e) { print('Error: $e'); }",
+        "on Exception catch (e) { log.severe('Failed:', e); }"
+      ]
+    },
+    "kotlin": {
+      "violations": [
+        "try { riskyOperation() } catch (e: Exception) { return null }",
+        "catch (e: Exception) { /* empty */ }"
+      ],
+      "valid": [
+        "catch (e: Exception) { Log.e(TAG, 'Error:', e) }",
+        "catch (e: Exception) { logger.error('Failed', e) }"
+      ]
+    }
+  },
+  "configuration": {
+    "requiredLoggingMethods": [
+      "console.error",
+      "console.log", 
+      "logger.error",
+      "log.error",
+      "print",
+      "log.severe",
+      "Log.e",
+      "timber.e"
+    ],
+    "allowEmptyWhenRethrow": true,
+    "checkErrorParameter": true
+  }
+}

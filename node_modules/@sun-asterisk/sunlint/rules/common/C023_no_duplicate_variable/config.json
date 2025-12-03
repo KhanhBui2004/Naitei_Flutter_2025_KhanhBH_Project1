@@ -1,0 +1,50 @@
+{
+  "id": "C023",
+  "name": "C023_do_not_declare_duplicate_variable",
+  "category": "architecture",
+  "description": "C023 - Do not declare duplicate variable names in the same scope.",
+  "severity": "warning",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": [
+      "**/*.js",
+      "**/*.ts",
+      "**/*.jsx",
+      "**/*.tsx"
+    ],
+    "exclude": [
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*.mock.*",
+      "**/test/**",
+      "**/tests/**",
+      "**/spec/**"
+    ]
+  },
+  "options": {
+    "strictMode": false,
+    "allowedDbMethods": [],
+    "repositoryPatterns": [
+      "*Repository*",
+      "*Repo*",
+      "*DAO*",
+      "*Store*"
+    ],
+    "servicePatterns": [
+      "*Service*",
+      "*UseCase*",
+      "*Handler*",
+      "*Manager*"
+    ],
+    "complexityThreshold": {
+      "methodLength": 200,
+      "cyclomaticComplexity": 5,
+      "nestedDepth": 3
+    }
+  }
+}

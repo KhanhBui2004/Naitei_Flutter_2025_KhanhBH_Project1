@@ -1,0 +1,79 @@
+{
+  "ruleId": "S007",
+  "name": "No Plaintext OTP",
+  "description": "One-Time Passwords must not be stored in plaintext",
+  "category": "security",
+  "severity": "error",
+  "languages": ["typescript", "javascript", "dart", "kotlin", "java", "python", "go", "swift"],
+  "tags": ["security", "owasp", "cryptographic-failures", "authentication", "otp", "2fa"],
+  "enabled": true,
+  "fixable": false,
+  "engine": "heuristic",
+  "metadata": {
+    "owaspCategory": "A02:2021 - Cryptographic Failures",
+    "cweId": "CWE-256",
+    "description": "Storing or transmitting One-Time Passwords (OTP) in plaintext can lead to account takeover attacks. OTP codes should be encrypted during storage and transmission to prevent unauthorized access.",
+    "impact": "High - Account takeover, unauthorized access to 2FA protected accounts",
+    "likelihood": "Medium",
+    "remediation": "Use encrypted storage for OTP codes, hash OTP values before storage, implement secure transmission channels, and use time-limited encrypted tokens"
+  },
+  "patterns": {
+    "vulnerable": [
+      "Storing OTP codes in database without encryption",
+      "Transmitting OTP codes in plaintext over API responses",
+      "Logging OTP codes in application logs",
+      "Storing OTP in localStorage or sessionStorage without encryption",
+      "Sending OTP in email/SMS without proper encoding",
+      "Including OTP in URL parameters or query strings"
+    ],
+    "secure": [
+      "Encrypting OTP codes before database storage",
+      "Hashing OTP codes with salt before storage",
+      "Using secure channels (HTTPS) for OTP transmission",
+      "Implementing time-limited encrypted tokens instead of plain OTP",
+      "Using secure storage mechanisms for OTP",
+      "Masking OTP in logs and debug output"
+    ]
+  },
+  "examples": {
+    "violations": [
+      "const otpCode = '123456'; db.save({ userId, otpCode });",
+      "res.json({ success: true, otp: user.otpCode });",
+      "localStorage.setItem('otp', otpCode);",
+      "console.log('User OTP:', otpCode);",
+      "await sendSMS(`Your OTP is: ${otpCode}`);",
+      "const query = `INSERT INTO users (otp) VALUES ('${otp}')`;",
+      "sessionStorage.otpCode = generatedOtp;",
+      "return { verificationCode: otp, status: 'sent' };"
+    ],
+    "fixes": [
+      "const hashedOtp = await bcrypt.hash(otpCode, 10); db.save({ userId, otpCode: hashedOtp });",
+      "res.json({ success: true, message: 'OTP sent to registered phone' });",
+      "const encryptedOtp = encrypt(otpCode); localStorage.setItem('otp', encryptedOtp);",
+      "console.log('OTP sent successfully to user');",
+      "await sendEncryptedSMS(otpCode);",
+      "const hashedOtp = crypto.createHash('sha256').update(otp + salt).digest('hex'); const query = `INSERT INTO users (otp_hash) VALUES ('${hashedOtp}')`;",
+      "const encryptedOtp = encrypt(generatedOtp); sessionStorage.otpCode = encryptedOtp;",
+      "return { message: 'Verification code sent', status: 'sent' };"
+    ]
+  },
+  "configuration": {
+    "checkStorage": true,
+    "checkTransmission": true,
+    "checkLogging": true,
+    "checkResponses": true,
+    "checkLocalStorage": true,
+    "strictMode": false,
+    "excludePatterns": [
+      "test/",
+      "spec/",
+      "mock/",
+      "fixture/"
+    ]
+  },
+  "relatedRules": [
+    "S006",
+    "S012",
+    "S027"
+  ]
+}

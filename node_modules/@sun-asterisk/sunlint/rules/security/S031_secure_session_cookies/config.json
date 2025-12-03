@@ -1,0 +1,86 @@
+{
+  "id": "S031",
+  "name": "Set Secure flag for Session Cookies",
+  "category": "security",
+  "description": "S031 - Set Secure flag for Session Cookies to protect via HTTPS. This ensures cookies are only transmitted over secure connections, preventing interception.",
+  "severity": "error",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
+    "exclude": [
+      "**/*.test.js",
+      "**/*.test.ts",
+      "**/*.spec.js",
+      "**/*.spec.ts",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**"
+    ]
+  },
+  "analysis": {
+    "approach": "symbol-based-primary",
+    "fallback": "regex-based",
+    "depth": 2,
+    "timeout": 5000
+  },
+  "validation": {
+    "cookieMethods": [
+      "setCookie",
+      "cookie",
+      "set",
+      "append",
+      "session",
+      "setHeader",
+      "writeHead"
+    ],
+    "cookieLibraries": [
+      "express",
+      "koa",
+      "fastify",
+      "hapi",
+      "next",
+      "nuxt",
+      "cookie",
+      "cookie-parser",
+      "express-session",
+      "connect-session",
+      "passport"
+    ],
+    "sessionIndicators": [
+      "session",
+      "sessionid",
+      "sessid",
+      "jsessionid",
+      "phpsessid",
+      "asp.net_sessionid",
+      "connect.sid",
+      "auth",
+      "token",
+      "jwt",
+      "csrf"
+    ],
+    "securePatterns": [
+      "secure:\\s*true",
+      "secure:true",
+      "Secure",
+      "secure=true",
+      "httpOnly:\\s*true",
+      "httpOnly:true",
+      "HttpOnly",
+      "httpOnly=true"
+    ],
+    "insecurePatterns": [
+      "secure:\\s*false",
+      "secure:false",
+      "secure=false",
+      "(?<!secure[\\s=:]+)(?<!Secure[\\s;])Set-Cookie",
+      "res\\.cookie\\([^)]*\\)(?![^{]*secure)",
+      "document\\.cookie\\s*="
+    ]
+  }
+}

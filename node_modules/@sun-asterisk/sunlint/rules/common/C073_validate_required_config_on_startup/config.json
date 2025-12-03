@@ -1,0 +1,46 @@
+{
+  "id": "C073",
+  "name": "C073_validate_required_config_on_startup",
+  "category": "configuration",
+  "description": "C073 - Validate mandatory configuration at startup and fail fast on invalid/missing values.",
+  "severity": "error",
+  "enabled": true,
+  "semantic": { "enabled": true, "priority": "high", "fallback": "heuristic" },
+  "patterns": {
+    "include": ["**/*.ts","**/*.tsx","**/*.js","**/*.jsx","**/*.java","**/*.go"],
+    "exclude": ["**/*.test.*","**/*.spec.*","**/__tests__/**","**/fixtures/**","**/examples/**"]
+  },
+  "options": {
+    "configModules": {
+      "typescript": ["src/config/**","**/config/**","**/bootstrap/**","**/main.ts"],
+      "java": ["**/config/**","**/Configuration/**","**/Application.java","**/*Application.java"],
+      "go": ["cmd/**","**/config/**","**/main.go"]
+    },
+    "envAccessors": {
+      "typescript": ["process.env.*"],
+      "java": ["System.getenv(*)","System.getProperty(*)"],
+      "go": ["os.Getenv(*)"]
+    },
+    "schemaDetectors": {
+      "typescript": ["zod","joi","yup","envalid","dotenv-safe","class-validator"],
+      "java": ["@ConfigurationProperties","@Validated","jakarta.validation","hibernate.validator"],
+      "go": ["github.com/kelseyhightower/envconfig","github.com/spf13/viper"]
+    },
+    "failFastSignals": {
+      "typescript": ["throw new Error(*)","process.exit(1)"],
+      "java": ["throw new RuntimeException(*)","SpringApplication.exit(*)","System.exit(1)"],
+      "go": ["log.Fatal(*)","panic(*)","os.Exit(1)"]
+    },
+    "dangerousDefaults": ["|| ''","|| 0","|| 'http://localhost'","?: ''","?: 0"],
+    "thresholds": {
+      "maxEnvReadsOutsideConfig": 3
+    },
+    "policy": {
+      "requireSchemaOrExplicitChecks": true,
+      "requireFailFast": true,
+      "forbidEnvReadsOutsideConfig": true,
+      "flagDangerousDefaults": true,
+      "requireStartupConnectivityChecks": true
+    }
+  }
+}

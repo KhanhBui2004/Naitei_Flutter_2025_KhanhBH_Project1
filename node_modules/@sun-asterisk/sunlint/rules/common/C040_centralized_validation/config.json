@@ -1,0 +1,46 @@
+{
+  "rule": "C040",
+  "name": "Centralized Validation Logic",
+  "description": "Don't scatter validation logic across multiple classes",
+  "category": "code-quality",
+  "languages": ["javascript", "typescript"],
+  "applies_to": ["all"],
+  "strategies": ["symbol-based", "regex"],
+  "priority": "hybrid",
+  "severity": "major",
+  "enabled": true,
+  "options": {
+    "minCentralizationScore": 70,
+    "maxDuplicationCount": 3,
+    "frameworkDetection": true,
+    "layerDetection": true,
+    "validationPatterns": [
+      "validate*",
+      "*Validator",
+      "isValid*",
+      "ensure*",
+      "check*"
+    ],
+    "frameworkKeywords": [
+      "zod",
+      "joi",
+      "yup",
+      "class-validator",
+      "ajv",
+      "checkSchema",
+      "validateSync"
+    ],
+    "layerPatterns": {
+      "controller": ["**/controllers/**", "**/controller/**", "**/*Controller*", "**/*controller*"],
+      "service": ["**/services/**", "**/service/**", "**/*Service*", "**/*service*"],
+      "repository": ["**/repositories/**", "**/repository/**", "**/*Repository*", "**/*repository*"],
+      "validator": ["**/validators/**", "**/validation/**", "**/*Validator*", "**/*validator*"]
+    },
+    "errorTypes": [
+      "ValidationError",
+      "BadRequest",
+      "InvalidInput",
+      "TypeError"
+    ]
+  }
+}

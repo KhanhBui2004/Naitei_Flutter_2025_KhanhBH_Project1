@@ -1,0 +1,153 @@
+{
+  "S027": {
+    "categories": [
+      {
+        "name": "AWS Credentials",
+        "severity": "critical",
+        "description": "AWS access keys, secret keys, and session tokens",
+        "patterns": [
+          "AKIA[0-9A-Z]{16}",
+          "(aws[-_]?)?(secret[-_]?access[-_]?key|access[-_]?key[-_]?id|awssecretaccesskey|awsaccesskeyid)\\s*[=:]\\s*[\"']?[A-Za-z0-9\\/+=]{20,40}[\"']?",
+          "(aws[-_]?)?session[-_]?token\\s*[=:]\\s*[\"']?[A-Za-z0-9\\/+=]{100,}[\"']?"
+        ],
+        "exclude_patterns": [
+          "(test|mock|fake|example|demo)[-_]?aws",
+          "AWS_REGION|AWS_DEFAULT_REGION"
+        ]
+      },
+      {
+        "name": "JWT & Authentication Tokens",
+        "severity": "critical", 
+        "description": "JWT tokens and authentication credentials",
+        "patterns": [
+          "eyJ[A-Za-z0-9\\-_=]+\\.[A-Za-z0-9\\-_=]+\\.?[A-Za-z0-9\\-_.+/=]*",
+          "(jwt|bearer|auth|authtoken|jwttoken)[-_]?(token|secret)?\\s*[=:]\\s*[\"']?[a-zA-Z0-9\\-_=]{20,}[\"']?",
+          "authorization\\s*[=:]\\s*[\"']?(bearer|basic)\\s+[a-zA-Z0-9\\-_=]{10,}[\"']?"
+        ]
+      },
+      {
+        "name": "API Keys & Secrets",
+        "severity": "high",
+        "description": "Generic API keys and secret tokens",
+        "patterns": [
+          "(api[-_]?key|apikey|secret[-_]?key|secretkey|access[-_]?token|accesstoken)\\s*[=:]\\s*[\"']?[a-zA-Z0-9\\-_=]{16,}[\"']?",
+          "(client[-_]?secret|clientsecret|app[-_]?secret|appsecret)\\s*[=:]\\s*[\"']?[a-zA-Z0-9\\-_=]{20,}[\"']?",
+          "(private[-_]?key|privatekey|encryption[-_]?key|encryptionkey)\\s*[=:]\\s*[\"']?[a-zA-Z0-9\\-_=]{20,}[\"']?",
+          "(password|secret)\\s*[=:]\\s*[\"'][a-zA-Z0-9\\-_=]{6,}[\"']"
+        ],
+        "exclude_patterns": [
+          "(display|row|sort|primary|foreign)[-_]?key",
+          "key(value|path|name|code|id|index)",
+          "^key$",
+          "(test|mock|demo|example).*password",
+          "password.*(test|mock|demo|example|123|dummy)",
+          "wrongpassword|correctpassword|testpassword"
+        ]
+      },
+      {
+        "name": "Database Credentials", 
+        "severity": "high",
+        "description": "Database connection strings and passwords",
+        "patterns": [
+          "(mongodb|mysql|postgres|redis):\\/\\/[^\\/\\s'\"]+:[^\\/\\s'\"]+@[^\\/\\s'\"]+",
+          "(db|database|dbpassword|databasepassword)[-_]?(password|pass|pwd|secret)?\\s*[=:]\\s*[\"']?[a-zA-Z0-9\\-_=]{6,}[\"']?",
+          "connection[-_]?string\\s*[=:]\\s*[\"']?[^\"'\\s]{20,}[\"']?"
+        ]
+      },
+      {
+        "name": "Third-party Service Keys",
+        "severity": "high", 
+        "description": "GitHub, Slack, Stripe and other service tokens",
+        "patterns": [
+          "gh[pousr]_[A-Za-z0-9_]{36}",
+          "xox[baprs]-[A-Za-z0-9-]+",
+          "sk_live_[A-Za-z0-9]{24,}",
+          "(github|slack|stripe|paypal)[-_]?(token|key|secret)[\\s:=]+[\"']?[a-zA-Z0-9\\-_=]{16,}[\"']?"
+        ]
+      },
+      {
+        "name": "Suspicious Variable Names",
+        "severity": "medium",
+        "description": "Variables with sensitive naming patterns",
+        "patterns": [
+          "(client|app|service)[-_]?(id|key|token|secret)[\"']?\\s*[:=]\\s*[\"'][A-Za-z0-9\\-_=]{12,}[\"']?",
+          "(oauth|openid)[-_]?(client[-_]?id|secret)[\\s:=]+[\"']?[a-zA-Z0-9\\-_=]{10,}[\"']?"
+        ],
+        "exclude_patterns": [
+          "(send|verify|update|register|reset).*password",
+          "password.*(reset|verify|update|first|time)"
+        ]
+      },
+      {
+        "name": "Base64 Encoded Secrets",
+        "severity": "medium",
+        "description": "Potentially encoded sensitive data",
+        "patterns": [
+          "(?:^|[\\s=:'\"])([A-Za-z0-9+\\/]{64,}={0,2})(?:[\\s'\";}]|$)"
+        ],
+        "exclude_patterns": [
+          "^[a-zA-Z0-9+\\/]*$",
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+          "(test|demo|example|sample|mock)",
+          "^\\/[a-zA-Z0-9\\/\\-_]+$",
+          "^[a-zA-Z0-9\\/\\-_\\.]+$",
+          "[a-zA-Z]+[a-zA-Z\\/\\-_]{20,}",
+          "[a-zA-Z]+Slice\\/",
+          "[a-zA-Z]+Company\\/",
+          "[a-zA-Z]+Management\\/",
+          "[a-zA-Z]+Component",
+          "[a-zA-Z]+Setting",
+          "[a-zA-Z]+Match",
+          "Selector$",
+          "Controller$",
+          "Service$",
+          "Api$",
+          "slice\\/",
+          "Component\\/",
+          "management\\/",
+          "company\\/",
+          "import.*from",
+          "require\\("
+        ]
+      },
+      {
+        "name": "Environment Variables",
+        "severity": "low",
+        "description": "Public environment variables that might leak info",
+        "patterns": [
+          "NEXT_PUBLIC_[A-Z0-9_]+[\\s:=]+[\"'][^\"']+[\"']",
+          "react_app_[A-Z0-9_]+[\\s:=]+[\"'][^\"']+[\"']"
+        ],
+        "exclude_patterns": [
+          "NODE_ENV|ENV|ENVIRONMENT|MODE|DEBUG"
+        ]
+      },
+      {
+        "name": "File Path Leaks",
+        "severity": "low", 
+        "description": "Sensitive file patterns",
+        "patterns": [
+          "^\\s*['\"]?\\.env(\\.[a-zA-Z0-9_]+)?['\"]?\\s*$",
+          "^\\s*['\"]?(secrets?|credentials?|private[-_]?keys?)\\.(json|ya?ml|ts|js)['\"]?\\s*$",
+          "^\\s*['\"]?(id_rsa|id_dsa|\\.pem|\\.p12|\\.pfx)['\"]?\\s*$"
+        ],
+        "exclude_patterns": [
+          "process\\.env\\.",
+          "import.*from",
+          "require\\(",
+          "NODE_ENV|ENVIRONMENT|MODE|DEBUG"
+        ]
+      }
+    ],
+    "global_exclude_patterns": [
+      "(test|mock|fake|dummy|placeholder)\\.(js|ts|jsx|tsx)$",
+      "\\.(test|spec|mock)\\.",
+      "__tests__|\\/tests?\\/|\\/spec\\/",
+      "process\\.env\\.",
+      "import.*from.*['\"]",
+      "require\\(['\"]"
+    ],
+    "min_length": 8,
+    "max_length": 1000
+  }
+}

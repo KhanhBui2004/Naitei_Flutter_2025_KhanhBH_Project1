@@ -1,0 +1,35 @@
+{
+  "name": "@sun/sunlint/strict",
+  "description": "Strict configuration for production projects",
+  "rules": {
+    "C006": "error",
+    "C019": "error",
+    "C029": "error"
+  },
+  "categories": {
+    "quality": "error",
+    "security": "error",
+    "logging": "error",
+    "naming": "warn",
+    "validation": "error"
+  },
+  "languages": [
+    "typescript",
+    "dart",
+    "kotlin"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/build/**",
+    "**/dist/**",
+    "**/*.generated.*",
+    "**/*.min.*"
+  ],
+  "metadata": {
+    "totalRules": 3,
+    "approach": "strict",
+    "source": "core rules as errors",
+    "lastUpdated": "2025-09-08T04:34:12.590Z",
+    "version": "2.0.0"
+  }
+}

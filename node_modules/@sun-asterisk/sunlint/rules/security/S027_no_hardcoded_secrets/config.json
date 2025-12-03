@@ -1,0 +1,29 @@
+{
+    "id": "S027",
+    "name": "No Hardcoded Secrets",
+    "description": "Prevent hardcoded passwords, API keys, secrets while avoiding false positives on state variables and configuration.",
+    "category": "security",
+    "severity": "warning",
+    "enabled": true,
+    "engines": ["heuristic"],
+    "enginePreference": ["heuristic"],
+    "tags": ["security", "secrets", "credentials", "api-keys"],
+    "examples": {
+        "valid": [
+            "const password = process.env.PASSWORD;",
+            "const _isEnablePassCode = useState(false);",
+            "const passwordFieldVisible = true;",
+            "const routes = { setupPassword: '/setup-password' };"
+        ],
+        "invalid": [
+            "const password = 'admin123';",
+            "const apiKey = 'sk-1234567890abcdef';",
+            "const secret = 'my-secret-token';"
+        ]
+    },
+    "fixable": false,
+    "docs": {
+        "description": "This rule prevents hardcoded sensitive information like passwords, API keys, and secrets in source code. It avoids false positives on state variables, route names, and input type configurations.",
+        "url": "https://owasp.org/Top10/A02_2021-Cryptographic_Failures/"
+    }
+}

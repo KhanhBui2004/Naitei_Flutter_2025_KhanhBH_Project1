@@ -1,0 +1,35 @@
+{
+  "id": "C003",
+  "name": "no-vague-abbreviations",
+  "description": "Clear variable names, avoid arbitrary abbreviations",
+  "category": "naming",
+  "severity": "warning",
+  "language": ["typescript", "javascript"],
+  "engine": "heuristic",
+  "meta": {
+    "docs": {
+      "description": "Ensure clear, understandable variable names without arbitrary abbreviations",
+      "url": "https://github.com/sun-asterisk/engineer-excellence/blob/main/docs/rules/C003.md"
+    },
+    "schema": {
+      "type": "object",
+      "properties": {
+        "allowedSingleChar": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Single character variables that are allowed"
+        },
+        "allowedAbbreviations": {
+          "type": "array", 
+          "items": { "type": "string" },
+          "description": "Common abbreviations that are allowed"
+        },
+        "minLength": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Minimum variable name length"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "id": "S017",
+  "name": "Always use parameterized queries",
+  "category": "security",
+  "description": "S017 - Always use parameterized queries instead of string concatenation to build SQL queries. This prevents SQL injection attacks by separating SQL logic from data",
+  "severity": "error",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
+    "exclude": [
+      "**/*.test.js",
+      "**/*.test.ts",
+      "**/*.spec.js",
+      "**/*.spec.ts",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**"
+    ]
+  },
+  "analysis": {
+    "approach": "symbol-based-primary",
+    "fallback": "regex-based",
+    "depth": 2,
+    "timeout": 5000
+  },
+  "validation": {
+    "sqlMethods": [
+      "query",
+      "execute",
+      "exec",
+      "run",
+      "all",
+      "get",
+      "prepare",
+      "createQuery",
+      "executeQuery",
+      "executeSql",
+      "rawQuery"
+    ],
+    "dangerousPatterns": [
+      "SELECT.*\\+",
+      "INSERT.*\\+",
+      "UPDATE.*\\+",
+      "DELETE.*\\+",
+      "WHERE.*\\+",
+      "ORDER BY.*\\+",
+      "GROUP BY.*\\+",
+      "HAVING.*\\+",
+      "\\$\\{.*\\}",
+      "\\`.*\\$\\{.*\\}.*\\`"
+    ],
+    "sqlKeywords": [
+      "SELECT",
+      "INSERT",
+      "UPDATE",
+      "DELETE",
+      "DROP",
+      "CREATE",
+      "ALTER",
+      "UNION",
+      "WHERE",
+      "ORDER BY",
+      "GROUP BY",
+      "HAVING",
+      "FROM",
+      "JOIN",
+      "INNER JOIN",
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "FULL JOIN"
+    ],
+    "databaseLibraries": [
+      "mysql",
+      "mysql2",
+      "pg",
+      "postgres",
+      "sqlite3",
+      "sqlite",
+      "mssql",
+      "tedious",
+      "oracle",
+      "mongodb",
+      "mongoose",
+      "sequelize",
+      "typeorm",
+      "prisma",
+      "knex",
+      "objection"
+    ],
+    "safePatterns": [
+      "\\?",
+      "\\$1",
+      "\\$2",
+      "\\$3",
+      "\\$4",
+      "\\$5",
+      "prepare",
+      "bind",
+      "params",
+      "parameters",
+      "values"
+    ]
+  }
+}

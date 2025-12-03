@@ -1,0 +1,13 @@
+{
+  "name": "eslint-plugin-custom",
+  "version": "1.0.0",
+  "description": "Custom ESLint rules for Sun Lint security and quality checks",
+  "main": "index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": ["eslint", "security", "coding-standards"],
+  "author": "Sun* Engineering",
+  "license": "MIT"
+}

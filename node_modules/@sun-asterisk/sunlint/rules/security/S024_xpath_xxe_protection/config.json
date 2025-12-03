@@ -1,0 +1,152 @@
+{
+  "rule": {
+    "id": "S024",
+    "name": "Protect against XPath Injection and XML External Entity (XXE)",
+    "description": "Protect against XPath Injection and XML External Entity (XXE) attacks. XPath injection occurs when user input is used to construct XPath queries without proper sanitization. XXE attacks exploit XML parsers that process external entities, potentially leading to data disclosure, server-side request forgery, or denial of service.",
+    "category": "security",
+    "severity": "error",
+    "languages": ["typescript", "javascript"],
+    "frameworks": ["express", "nestjs", "node"],
+    "version": "1.0.0",
+    "status": "stable",
+    "tags": ["security", "xpath", "xxe", "xml", "injection", "owasp"],
+    "references": [
+      "https://owasp.org/www-community/attacks/XPATH_Injection",
+      "https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing",
+      "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html",
+      "https://portswigger.net/web-security/xpath-injection",
+      "https://portswigger.net/web-security/xxe"
+    ]
+  },
+  "configuration": {
+    "enableXPathInjectionDetection": true,
+    "enableXXEDetection": true,
+    "checkUserInputSources": [
+      "req",
+      "request", 
+      "params",
+      "query",
+      "body",
+      "headers",
+      "cookies"
+    ],
+    "vulnerableXPathMethods": [
+      "evaluate",
+      "select",
+      "selectText",
+      "selectValue", 
+      "selectNodes",
+      "selectSingleNode"
+    ],
+    "vulnerableXMLMethods": [
+      "parseString",
+      "parseXml",
+      "parseFromString", 
+      "parse",
+      "parseXmlString",
+      "transform"
+    ],
+    "vulnerableXMLConstructors": [
+      "DOMParser",
+      "XSLTProcessor",
+      "SAXParser"
+    ],
+    "vulnerableXMLLibraries": [
+      "xml2js",
+      "libxmljs",
+      "xmldom", 
+      "fast-xml-parser",
+      "node-xml2js",
+      "xml-parser",
+      "xmldoc",
+      "xpath"
+    ],
+    "xxeProtectionPatterns": [
+      "resolveExternalEntities\\s*:\\s*false",
+      "setFeature.*disallow-doctype-decl.*true",
+      "setFeature.*external-general-entities.*false",
+      "setFeature.*external-parameter-entities.*false",
+      "explicitChildren\\s*:\\s*false",
+      "ignoreAttrs\\s*:\\s*true", 
+      "parseDoctype\\s*:\\s*false"
+    ],
+    "secureXPathPatterns": [
+      "parameterized",
+      "escaped",
+      "sanitized", 
+      "validate"
+    ]
+  },
+  "examples": {
+    "violations": [
+      {
+        "description": "XPath injection via direct user input",
+        "code": "const result = xpath.evaluate(req.query.expression, doc);"
+      },
+      {
+        "description": "XPath injection via string concatenation",
+        "code": "const query = \"//user[@name='\" + req.body.username + \"']\";\nconst result = xpath.select(query, doc);"
+      },
+      {
+        "description": "XXE vulnerability in XML parsing",
+        "code": "const parser = new DOMParser();\nconst doc = parser.parseFromString(req.body.xml, 'text/xml');"
+      },
+      {
+        "description": "XXE vulnerability with xml2js",
+        "code": "xml2js.parseString(req.body.xml, (err, result) => { /* ... */ });"
+      }
+    ],
+    "fixes": [
+      {
+        "description": "Use parameterized XPath with validation",
+        "code": "const sanitizedInput = sanitize(req.query.expression);\nconst result = xpath.evaluate(sanitizedInput, doc);"
+      },
+      {
+        "description": "Disable external entities in XML parsing",
+        "code": "const parser = new DOMParser();\nparser.setFeature('http://apache.org/xml/features/disallow-doctype-decl', true);\nparser.setFeature('http://xml.org/sax/features/external-general-entities', false);\nparser.setFeature('http://xml.org/sax/features/external-parameter-entities', false);"
+      },
+      {
+        "description": "Secure xml2js configuration",
+        "code": "xml2js.parseString(req.body.xml, {\n  explicitChildren: false,\n  ignoreAttrs: true\n}, (err, result) => { /* ... */ });"
+      }
+    ]
+  },
+  "testing": {
+    "testCases": [
+      {
+        "name": "xpath_injection_direct_input",
+        "type": "violation",
+        "description": "Direct user input in XPath query"
+      },
+      {
+        "name": "xpath_injection_concatenation", 
+        "type": "violation",
+        "description": "String concatenation with user input"
+      },
+      {
+        "name": "xxe_domparser",
+        "type": "violation", 
+        "description": "DOMParser without XXE protection"
+      },
+      {
+        "name": "xxe_xml2js",
+        "type": "violation",
+        "description": "xml2js without XXE protection"
+      },
+      {
+        "name": "secure_xpath_parameterized",
+        "type": "clean",
+        "description": "Parameterized XPath query"
+      },
+      {
+        "name": "secure_xml_xxe_protected",
+        "type": "clean", 
+        "description": "XML parsing with XXE protection"
+      }
+    ]
+  },
+  "performance": {
+    "complexity": "O(n)",
+    "description": "Linear complexity based on number of function calls and expressions in the source code"
+  }
+}

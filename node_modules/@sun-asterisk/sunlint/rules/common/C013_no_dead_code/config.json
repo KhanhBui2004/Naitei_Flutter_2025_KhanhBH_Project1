@@ -1,0 +1,61 @@
+{
+  "name": "No Dead Code",
+  "description": "Detect and eliminate dead code including commented out code, unused variables, and unreachable statements",
+  "category": "quality",
+  "severity": "warning",
+  "languages": ["typescript", "javascript"],
+  "enabled": true,
+  "type": "hybrid",
+  "strategy": {
+    "preferred": "ast",
+    "fallbacks": ["ast", "regex"],
+    "accuracy": {
+      "ast": 90,
+      "regex": 70
+    }
+  },
+  "maxComplexity": 10,
+  "detectionOptions": {
+    "commentedCode": {
+      "enabled": true,
+      "minLineLength": 10,
+      "codePatterns": [
+        "function\\s+\\w+",
+        "const\\s+\\w+\\s*=",
+        "let\\s+\\w+\\s*=",
+        "var\\s+\\w+\\s*=",
+        "if\\s*\\(",
+        "for\\s*\\(",
+        "while\\s*\\(",
+        "return\\s+",
+        "console\\.",
+        "import\\s+",
+        "export\\s+"
+      ]
+    },
+    "unusedVariables": {
+      "enabled": true,
+      "ignorePrefixes": ["_", "$"],
+      "ignoreDestructured": false
+    },
+    "unusedFunctions": {
+      "enabled": true,
+      "ignorePrefixes": ["_"],
+      "ignoreExported": true
+    },
+    "unreachableCode": {
+      "enabled": true,
+      "afterStatements": ["return", "throw", "break", "continue"]
+    },
+    "unusedImports": {
+      "enabled": false,
+      "note": "Complex analysis - disabled by default"
+    }
+  },
+  "excludePatterns": [
+    "test",
+    "spec", 
+    "mock",
+    "fixture"
+  ]
+}

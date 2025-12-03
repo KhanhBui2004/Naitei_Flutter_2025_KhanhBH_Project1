@@ -1,0 +1,195 @@
+{
+  "ruleId": "S007",
+  "name": "No Plaintext OTP (Semantic Analysis)",
+  "category": "security",
+  "severity": "error",
+  "type": "semantic",
+  "description": "Detects plaintext OTP storage and transmission using semantic analysis with Symbol Table",
+  
+  "analysis": {
+    "engine": "semantic",
+    "strategy": "symbol-table",
+    "crossFileAnalysis": true,
+    "requiresTypeChecker": false,
+    "cacheResults": true,
+    "timeout": 30000,
+    "maxFiles": 1000
+  },
+  
+  "scope": {
+    "fileTypes": [".ts", ".tsx", ".js", ".jsx"],
+    "excludePatterns": [
+      "**/test/**",
+      "**/tests/**", 
+      "**/__tests__/**",
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/node_modules/**",
+      "**/build/**",
+      "**/dist/**"
+    ]
+  },
+  
+  "semanticPatterns": {
+    "otpVariables": {
+      "patterns": [
+        "^(otp|totp|hotp)$",
+        "^(one_?time|onetime)_?(password|pass|code)$",
+        "^(auth|verification|sms|temp|security|access|login)_?code$",
+        "^(two_?factor|2fa|mfa)_?(token|code)$",
+        "^pin_?code$"
+      ],
+      "caseInsensitive": true
+    },
+    
+    "otpFunctions": {
+      "patterns": [
+        "^(generate|create|store|save|send|validate|verify)_?otp$",
+        "^otp_?(generate|create|store|save|send|validate|verify)$",
+        "^(generate|create|store|save|send|validate|verify)_?(auth|verification|sms|temp|security|access|login)_?code$",
+        "^send_?(sms|email|auth)_?code$"
+      ],
+      "methodNames": [
+        "sendOtp", "storeOtp", "saveOtp", "generateOtp", "verifyOtp",
+        "sendSmsCode", "sendAuthCode", "storeAuthCode", "saveAuthCode"
+      ]
+    },
+    
+    "dangerousOperations": {
+      "storage": [
+        "save", "store", "insert", "update", "create", "persist",
+        "collection.insertOne", "collection.updateOne", "db.save",
+        "redis.set", "redis.hset", "cache.put", "cache.set"
+      ],
+      "transmission": [
+        "send", "emit", "post", "put", "response.json", "res.send",
+        "email.send", "sms.send", "notify", "broadcast"
+      ],
+      "browserStorage": [
+        "localStorage.setItem", "sessionStorage.setItem",
+        "localStorage.set", "sessionStorage.set"
+      ],
+      "logging": [
+        "console.log", "console.debug", "console.info",
+        "logger.info", "logger.debug", "log.info"
+      ]
+    },
+    
+    "safeOperations": [
+      "bcrypt.hash", "crypto.createHash", "crypto.createHmac",
+      "hash", "encrypt", "cipher", "secure", "pbkdf2",
+      "scrypt", "argon2", "aes.encrypt", "rsa.encrypt"
+    ]
+  },
+  
+  "violations": {
+    "types": {
+      "semantic_otp_variable_usage": {
+        "severity": "error",
+        "message": "OTP variable used in {context} without encryption",
+        "suggestion": "Encrypt or hash OTP values before {context}"
+      },
+      "semantic_otp_function_call": {
+        "severity": "warning", 
+        "message": "Function may handle OTP in plaintext",
+        "suggestion": "Ensure OTP values are encrypted before processing"
+      },
+      "semantic_plaintext_otp_argument": {
+        "severity": "error",
+        "message": "Potential plaintext OTP passed to {operation}",
+        "suggestion": "Encrypt or hash OTP values before storage/transmission"
+      },
+      "semantic_method_chain_otp": {
+        "severity": "error",
+        "message": "Method chain exposes OTP in plaintext",
+        "suggestion": "Use secure methods for OTP handling in method chains"
+      },
+      "semantic_data_flow_violation": {
+        "severity": "error",
+        "message": "OTP flows to unsafe operation without encryption",
+        "suggestion": "Ensure OTP is encrypted before reaching this operation"
+      },
+      "semantic_cross_file_otp_violation": {
+        "severity": "warning",
+        "message": "Imported OTP symbol used unsafely",
+        "suggestion": "Ensure consistent OTP security across file boundaries"
+      }
+    },
+    
+    "severityMapping": {
+      "storage": "error",
+      "transmission": "error",
+      "browser_storage": "warning", 
+      "logging": "warning",
+      "unknown_dangerous": "info"
+    }
+  },
+  
+  "dataFlow": {
+    "enabled": true,
+    "maxDistance": 20,
+    "trackAcrossFiles": true,
+    "trackThroughCallbacks": true,
+    "trackAsyncFlows": true
+  },
+  
+  "performance": {
+    "symbolTableCaching": true,
+    "maxAnalysisDepth": 10,
+    "maxCrossFileReferences": 100,
+    "timeoutPerFile": 5000
+  },
+  
+  "reporting": {
+    "includeSymbolContext": true,
+    "includeCrossFileReferences": true,
+    "includeDataFlowPath": true,
+    "includeCodeSnippets": true,
+    "confidenceThreshold": 0.7
+  },
+  
+  "examples": {
+    "violations": [
+      {
+        "description": "Direct OTP storage",
+        "code": "const otp = generateOtp(); await user.save({ otp });",
+        "reason": "OTP variable flows directly to storage operation"
+      },
+      {
+        "description": "OTP in response",
+        "code": "return response.json({ authCode, success: true });",
+        "reason": "OTP variable included in API response"
+      },
+      {
+        "description": "Method chain violation",
+        "code": "this.otpCode.save();",
+        "reason": "OTP flows through method chain to unsafe operation"
+      }
+    ],
+    
+    "safePatterns": [
+      {
+        "description": "Encrypted storage",
+        "code": "const hashedOtp = await bcrypt.hash(otp, 10); await user.save({ hashedOtp });",
+        "reason": "OTP is hashed before storage"
+      },
+      {
+        "description": "Secure transmission",
+        "code": "const encrypted = encrypt(otp, key); await send(encrypted);",
+        "reason": "OTP is encrypted before transmission"
+      }
+    ]
+  },
+  
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-20",
+    "author": "SunLint Security Team",
+    "references": [
+      "OWASP A02:2021 - Cryptographic Failures",
+      "NIST SP 800-63B - Authentication Guidelines", 
+      "RFC 6238 - TOTP: Time-Based One-Time Password Algorithm"
+    ],
+    "tags": ["security", "authentication", "otp", "encryption", "semantic"]
+  }
+}

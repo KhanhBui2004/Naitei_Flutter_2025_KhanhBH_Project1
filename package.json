@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@sun-asterisk/sunlint": "^1.3.32",
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "lint": "sunlint --all --input=src",
+    "lint:changed": "sunlint --all --changed-files",
+    "lint:security": "sunlint --security --input=src"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "$schema": "./sunlint-schema.json",
+  "name": "Large Project Configuration",
+  "description": "Optimized configuration for projects with 1000+ files",
+  
+  "performance": {
+    "maxSemanticFiles": 1000,
+    "maxConcurrentRules": 5,
+    "timeoutMs": 60000,
+    "cacheEnabled": true,
+    "cacheLocation": ".sunlint-cache/"
+  },
+  
+  "input": [
+    "src",
+    "lib", 
+    "app",
+    "packages"
+  ],
+  
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js", 
+    "lib/**/*.ts",
+    "app/**/*.ts",
+    "packages/*/src/**/*.ts"
+  ],
+  
+  "exclude": [
+    "node_modules/**",
+    "dist/**",
+    "build/**", 
+    "coverage/**",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/*.d.ts",
+    "**/*.generated.*",
+    "**/generated/**",
+    "**/*.min.*",
+    "**/*.bundle.*"
+  ],
+  
+  "rules": {
+    "enabled": [
+      "C006", "C019", "C029", "C047",
+      "S001", "S005", "S010"
+    ],
+    "categories": {
+      "quality": true,
+      "security": true,
+      "performance": false,
+      "logging": true
+    }
+  },
+  
+  "output": {
+    "format": "summary",
+    "console": true,
+    "summary": true,
+    "includeContext": true,
+    "showFixSuggestions": true,
+    "groupByFile": true,
+    "sortBy": "severity"
+  },
+  
+  "engines": {
+    "semantic": {
+      "enabled": true,
+      "fileLimit": 1000,
+      "enableCaching": true,
+      "crossFileAnalysis": true
+    },
+    "heuristic": {
+      "enabled": true,
+      "fastMode": false
+    },
+    "ai": {
+      "enabled": false,
+      "fallbackToPattern": true
+    }
+  },
+  
+  "ci": {
+    "changedFiles": {
+      "maxSemanticFiles": 300,
+      "format": "github",
+      "failOnError": true
+    },
+    "fullScan": {
+      "maxSemanticFiles": 1000,
+      "format": "json", 
+      "output": "sunlint-report.json"
+    },
+    "nightly": {
+      "maxSemanticFiles": 2000,
+      "format": "detailed",
+      "output": "nightly-report.json"
+    }
+  },
+  
+  "overrides": [
+    {
+      "files": ["src/critical/**/*.ts"],
+      "performance": {
+        "maxSemanticFiles": 2000
+      },
+      "rules": {
+        "enabled": "all"
+      }
+    },
+    {
+      "files": ["**/*.test.*", "**/*.spec.*"],
+      "performance": {
+        "maxSemanticFiles": 500
+      },
+      "rules": {
+        "categories": {
+          "testing": true,
+          "security": false
+        }
+      }
+    },
+    {
+      "files": ["packages/*/src/**"],
+      "performance": {
+        "maxSemanticFiles": 1500
+      }
+    }
+  ],
+  
+  "reporting": {
+    "baseline": {
+      "enabled": true,
+      "file": "baseline.json",
+      "updateOnClean": true
+    },
+    "trends": {
+      "enabled": true,
+      "historyFile": "trends.json",
+      "trackMetrics": ["violations", "files", "performance"]
+    }
+  }
+}

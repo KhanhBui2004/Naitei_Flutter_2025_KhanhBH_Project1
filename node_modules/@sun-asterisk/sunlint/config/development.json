@@ -1,0 +1,56 @@
+{
+  "name": "Development Configuration",
+  "description": "Fast feedback for daily development",
+  
+  "performance": {
+    "maxSemanticFiles": 500,
+    "maxConcurrentRules": 4,
+    "timeoutMs": 15000
+  },
+  
+  "input": ["."],
+  
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "lib/**/*.ts"
+  ],
+  
+  "exclude": [
+    "**/*.test.*",
+    "**/*.spec.*", 
+    "**/*.d.ts",
+    "node_modules/**",
+    "dist/**"
+  ],
+  
+  "rules": {
+    "C006": "error",
+    "C019": "error", 
+    "C029": "error",
+    "S001": "error",
+    "S005": "error"
+  },
+  
+  "output": {
+    "format": "summary",
+    "console": true,
+    "summary": true,
+    "verbose": false
+  },
+  
+  "engines": {
+    "semantic": {
+      "enabled": true,
+      "fileLimit": 500
+    },
+    "ai": {
+      "enabled": false
+    }
+  },
+  
+  "git": {
+    "changedFiles": true,
+    "diffBase": "origin/main"
+  }
+}

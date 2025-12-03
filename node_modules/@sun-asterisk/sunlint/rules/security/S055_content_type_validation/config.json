@@ -1,0 +1,48 @@
+{
+  "ruleId": "S055",
+  "name": "Content-Type Validation in REST Services",
+  "description": "Verify that REST services explicitly check the incoming Content-Type to be the expected one",
+  "category": "security",
+  "severity": "error",
+  "languages": ["typescript", "javascript"],
+  "tags": ["security", "owasp", "rest-api", "input-validation", "asvs"],
+  "enabled": true,
+  "fixable": false,
+  "engine": "heuristic",
+  "metadata": {
+    "owaspCategory": "OWASP ASVS 13.2.5",
+    "cweId": "CWE-20",
+    "description": "REST services should validate the Content-Type header to ensure they receive data in the expected format. Missing Content-Type validation can lead to security vulnerabilities where attackers send malicious data in unexpected formats.",
+    "impact": "Medium - Data injection, parsing errors, security bypass",
+    "likelihood": "Medium",
+    "remediation": "Always validate Content-Type header before processing request body in REST endpoints"
+  },
+  "patterns": {
+    "vulnerable": [
+      "Processing req.body without checking Content-Type",
+      "Accepting any Content-Type in REST endpoints",
+      "Missing Content-Type validation in Express/NestJS handlers",
+      "Directly parsing request body without format validation"
+    ],
+    "secure": [
+      "Using req.is('application/json') to validate Content-Type",
+      "Checking req.headers['content-type'] before processing",
+      "Rejecting requests with unexpected Content-Type",
+      "Using middleware for Content-Type validation"
+    ]
+  },
+  "examples": {
+    "violations": [
+      "app.post('/api/users', (req, res) => { const user = req.body; });",
+      "router.put('/data', (req, res) => { processData(req.body); });",
+      "async createUser(req, res) { await userService.create(req.body); }",
+      "@Post() create(@Body() data: any) { return this.service.create(data); }"
+    ],
+    "fixes": [
+      "if (!req.is('application/json')) return res.status(415).send('Unsupported Media Type');",
+      "if (req.headers['content-type'] !== 'application/json') throw new Error('Invalid Content-Type');",
+      "app.use(express.json({ type: 'application/json' }));",
+      "@Post() @Header('Content-Type', 'application/json') create(@Body() data: CreateDto) {}"
+    ]
+  }
+}

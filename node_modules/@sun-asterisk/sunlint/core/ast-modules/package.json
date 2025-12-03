@@ -1,0 +1,37 @@
+{
+  "name": "@sunlint/ast-modules",
+  "version": "1.0.0",
+  "description": "ESLint-based AST parsing modules for SunLint heuristic engine enhancement",
+  "main": "index.js",
+  "private": true,
+  "keywords": [
+    "ast",
+    "tree-sitter",
+    "static-analysis",
+    "sunlint",
+    "typescript",
+    "javascript",
+    "dart",
+    "java",
+    "kotlin"
+  ],
+  "author": "Sun* SunLint Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sun-asterisk/sunlint.git",
+    "directory": "core/ast-modules"
+  },
+  "scripts": {
+    "test": "echo \"No tests for AST modules yet\" && exit 0",
+    "build": "echo \"No build step required\" && exit 0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "index.js",
+    "base-parser.js",
+    "parsers/"
+  ]
+}

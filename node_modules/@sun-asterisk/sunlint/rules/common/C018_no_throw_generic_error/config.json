@@ -1,0 +1,50 @@
+{
+  "id": "C018",
+  "name": "C018_do_not_throw_generic_errors",
+  "category": "architecture",
+  "description": "C018 - Always provide detailed messages and context.",
+  "severity": "warning",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": [
+      "**/*.js",
+      "**/*.ts",
+      "**/*.jsx",
+      "**/*.tsx"
+    ],
+    "exclude": [
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*.mock.*",
+      "**/test/**",
+      "**/tests/**",
+      "**/spec/**"
+    ]
+  },
+  "options": {
+    "strictMode": false,
+    "allowedDbMethods": [],
+    "repositoryPatterns": [
+      "*Repository*",
+      "*Repo*",
+      "*DAO*",
+      "*Store*"
+    ],
+    "servicePatterns": [
+      "*Service*",
+      "*UseCase*",
+      "*Handler*",
+      "*Manager*"
+    ],
+    "complexityThreshold": {
+      "methodLength": 200,
+      "cyclomaticComplexity": 5,
+      "nestedDepth": 3
+    }
+  }
+}

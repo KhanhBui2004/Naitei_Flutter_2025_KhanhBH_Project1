@@ -1,0 +1,50 @@
+{
+  "id": "C033_separate_service_repository",
+  "name": "C033_separate_service_repository",
+  "category": "architecture",
+  "description": "C033 - Tách logic xử lý và truy vấn dữ liệu trong service layer",
+  "severity": "warning",
+  "enabled": true,
+  "semantic": {
+    "enabled": true,
+    "priority": "high",
+    "fallback": "heuristic"
+  },
+  "patterns": {
+    "include": [
+      "**/*.js",
+      "**/*.ts",
+      "**/*.jsx",
+      "**/*.tsx"
+    ],
+    "exclude": [
+      "**/*.test.*",
+      "**/*.spec.*",
+      "**/*.mock.*",
+      "**/test/**",
+      "**/tests/**",
+      "**/spec/**"
+    ]
+  },
+  "options": {
+    "strictMode": false,
+    "allowedDbMethods": [],
+    "repositoryPatterns": [
+      "*Repository*",
+      "*Repo*",
+      "*DAO*",
+      "*Store*"
+    ],
+    "servicePatterns": [
+      "*Service*",
+      "*UseCase*",
+      "*Handler*",
+      "*Manager*"
+    ],
+    "complexityThreshold": {
+      "methodLength": 200,
+      "cyclomaticComplexity": 5,
+      "nestedDepth": 3
+    }
+  }
+}

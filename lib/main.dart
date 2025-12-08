@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/presentation/authentication/login_page.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/presentation/authentication/register_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/route_generator.dart';
 
@@ -11,13 +9,9 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // title: 'Flutter Demo',
-      // theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       initialRoute: AppRoutes.login,
       onGenerateRoute: RouteGenerator.generateRoute,
       // home: const RegisterPage(),

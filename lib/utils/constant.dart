@@ -10,3 +10,9 @@ class AppColors {
   static const placeholderBg = Color(0xFFF2F2F2);
   static const greend = Color.fromARGB(255, 78, 170, 117);
 }
+
+class ApiEndPoint {
+  static const baseUrl = 'https://pbl6-vietnomi-be.onrender.com';
+  static const login = '$baseUrl/auth/login';
+  static const register = '$baseUrl/auth/register';
+}

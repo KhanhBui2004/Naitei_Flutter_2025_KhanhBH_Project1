@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/auth/login_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/helper.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/textInput.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/constant.dart';
@@ -16,6 +17,43 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameControler = TextEditingController();
   final _passwordControler = TextEditingController();
+
+  final _loginService = LoginService();
+
+  bool _isLoading = false;
+
+  Future<void> _handleLogin() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final response = await _loginService.login(
+        _usernameControler.text.trim(),
+        _passwordControler.text.trim(),
+      );
+      // if (user.id.isNotEmpty && user.username.isNotEmpty) {
+      // if (mounted) {
+      //   Navigator.of(context).pushReplacementNamed(AppRoutes.home);
+      // }
+      // debugPrint(message.to);
+      if (response['code'] == 200) {
+        debugPrint("User login thành công: ${response['message']}");
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Sai tài khoản hoặc mật khẩu")),
+        );
+      }
+    } catch (e) {
+      // Nếu login thất bại → hiển thị thông báo
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Đăng nhập thất bại: $e")));
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +74,11 @@ class _LoginPageState extends State<LoginPage> {
               const Spacer(),
               TextInput(controller: _usernameControler, hintText: 'Username'),
               const Spacer(),
-              TextInput(hintText: 'Password', controller: _passwordControler),
+              TextInput(
+                hintText: 'Password',
+                controller: _passwordControler,
+                obscureText: true,
+              ),
               const SizedBox(height: 10),
               Padding(
                 padding: EdgeInsets.only(
@@ -61,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
                 width: MediaQuery.of(context).size.width * 0.7,
                 child: ElevatedButton(
-                  onPressed: () => debugPrint('login'),
+                  onPressed: () => _handleLogin(),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.greend,
                   ),

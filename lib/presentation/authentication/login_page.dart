@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/auth/login_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/appNavBar.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/helper.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/textInput.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/constant.dart';
@@ -57,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: AppNavbar(),
       body: SizedBox(
         height: Helper.getScreenHeight(context),
         width: Helper.getScreenWidth(context),

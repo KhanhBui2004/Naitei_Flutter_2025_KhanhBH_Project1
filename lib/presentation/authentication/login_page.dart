@@ -40,13 +40,15 @@ class _LoginPageState extends State<LoginPage> {
       // debugPrint(message.to);
       if (response['code'] == 200) {
         debugPrint("User login thành công: ${response['message']}");
+        if (mounted) {
+          Navigator.of(context).pushReplacementNamed(AppRoutes.home);
+        }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Sai tài khoản hoặc mật khẩu")),
         );
       }
     } catch (e) {
-      // Nếu login thất bại → hiển thị thông báo
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text("Đăng nhập thất bại: $e")));
@@ -58,7 +60,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: AppNavbar(),
       body: SizedBox(
         height: Helper.getScreenHeight(context),
         width: Helper.getScreenWidth(context),

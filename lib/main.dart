@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/utils/navigator_global.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/route_generator.dart';
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: AppRoutes.login,
       onGenerateRoute: RouteGenerator.generateRoute,
+      navigatorKey: navigatorKey,
       // home: const RegisterPage(),
     );
   }

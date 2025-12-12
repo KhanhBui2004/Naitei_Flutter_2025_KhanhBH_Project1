@@ -88,7 +88,7 @@ class _AppNavbarState extends State<AppNavbar> {
   @override
   void initState() {
     super.initState();
-    // _checkToken();
+    _checkToken();
   }
 
   @override
@@ -132,10 +132,9 @@ class _AppNavbarState extends State<AppNavbar> {
                           index: 0,
                           icon: Icons.home,
                           label: 'Home',
-                          // onTap: () => Navigator.of(
-                          //   context,
-                          // ).pushReplacementNamed(AppRoutes.home),
-                          onTap: () => print('home'),
+                          onTap: () => Navigator.of(
+                            context,
+                          ).pushReplacementNamed(AppRoutes.home),
                         ),
 
                         _navItem(

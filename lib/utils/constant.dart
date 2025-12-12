@@ -13,6 +13,19 @@ class AppColors {
 
 class ApiEndPoint {
   static const baseUrl = 'https://pbl6-vietnomi-be.onrender.com';
-  static const login = '$baseUrl/auth/login';
-  static const register = '$baseUrl/auth/register';
+  static const login = '/auth/login';
+  static const register = '/auth/register';
+  static const tag = "/tag";
+  static const food = "/food";
+  static const fgPW = "/auth/forgot-password";
+  static const rsPW = "/auth/reset-password";
+  static const refresh = "/refresh";
+  static const verifyOTP = "/verify-otp";
+  static const rating = "/rating";
+  static const comment = "/comment";
+  static const profile = "/user";
+  static const favorite = "/food/favorite";
+  static const myfood = "/food/user";
+  static const countrate = "/rating/food/count";
+  static const foodtag = "/foodTag";
 }

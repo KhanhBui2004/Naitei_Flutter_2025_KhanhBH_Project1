@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/authentication/login_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/authentication/register_page.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/presentation/home/home_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dart';
 
 class RouteGenerator {
@@ -12,6 +13,8 @@ class RouteGenerator {
       case AppRoutes.register:
         // return MaterialPageRoute(builder: (_) => const RegisterPage());
         return _animatedRoute(const RegisterPage());
+      case AppRoutes.home:
+        return MaterialPageRoute(builder: (_) => const HomePage());
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(body: Text('Page not found!')),

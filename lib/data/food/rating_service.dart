@@ -42,11 +42,9 @@ class RatingService {
       final response = await _dio.patch(
         "${ApiEndPoint.rating}/$rateId",
         data: {'user_id': userId, 'food_id': foodId, 'rating': rate},
-        // queryParameters: {'id': rateId},
         options: Options(headers: {"Authorization": "Bearer $token"}),
       );
       final data = response.data;
-      // print(data['data']);
       return {'code': data['code'], 'message': data['message']};
     } on DioException catch (e) {
       throw Exception("Lỗi rating: ${e.message}");
@@ -66,7 +64,6 @@ class RatingService {
       final data = response.data;
       final avgStr = data['data']['averageRating'];
       final avg = double.tryParse(avgStr.toString()) ?? 0.0;
-      // debugPrint("average: ${data['data']}");
       return avg;
     } on DioException catch (e) {
       throw Exception("Error get averate rating: ${e.message}");
@@ -85,9 +82,6 @@ class RatingService {
       );
       final data = response.data;
 
-      // debugPrint("getRating response: $data");
-
-      // Nếu không có dữ liệu => return null
       if (data['data'] == null || (data['data'] as List).isEmpty) {
         return {'rating': null, 'rateId': null};
       }
@@ -111,9 +105,6 @@ class RatingService {
       );
       final data = response.data;
 
-      // debugPrint("getCountRating response: $data");
-
-      // Nếu không có dữ liệu => return null
       if (data['code'] == 200) {
         return data['data'];
       }

@@ -44,11 +44,10 @@ class _AppNavbarState extends State<AppNavbar> {
   }
 
   Future<void> _logout() async {
-    // Xác nhận trước khi đăng xuất
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Đăng xuất"),
+        title: const Text("Logout"),
         content: const Text("Bạn có chắc chắn muốn đăng xuất không?"),
         actions: [
           TextButton(
@@ -63,19 +62,16 @@ class _AppNavbarState extends State<AppNavbar> {
       ),
     );
 
-    if (confirm != true) return; // Người dùng bấm Hủy
+    if (confirm != true) return; 
 
-    // Xóa dữ liệu user & token
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
 
-    // Điều hướng về màn hình đăng nhập (tùy route của Khánh)
     if (!mounted) return;
     Navigator.of(
       context,
     ).pushNamedAndRemoveUntil(AppRoutes.login, (route) => false);
 
-    // Hiển thị thông báo
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Đăng xuất thành công"),

@@ -8,10 +8,8 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.login:
-        // return MaterialPageRoute(builder: (_) => const LoginPage());
         return _animatedRoute(const LoginPage());
       case AppRoutes.register:
-        // return MaterialPageRoute(builder: (_) => const RegisterPage());
         return _animatedRoute(const RegisterPage());
       case AppRoutes.home:
         return MaterialPageRoute(builder: (_) => const HomePage());

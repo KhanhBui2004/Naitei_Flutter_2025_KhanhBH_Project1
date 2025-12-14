@@ -153,7 +153,6 @@ class FoodService {
       );
 
       final data = response.data;
-      debugPrint("get my foods: $data");
 
       final List<Food> myfoods = (data['data'] as List)
           .map((json) => Food.fromJson(json))

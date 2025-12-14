@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/food/food_service.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/food/rating_service.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/food/tag_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/food_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/rating_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/tag_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/model/food_model.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/model/tag_model.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/appNavBar.dart';
@@ -119,19 +119,18 @@ class _HomeState extends State<HomePage> {
 
   Future<void> _loadUser() async {
     final prefs = await SharedPreferences.getInstance();
-    userName = prefs.getString('nameUser') ?? '';
+    userName = prefs.getString('firstname') ?? '';
     userId = prefs.getInt('userId')!;
     setState(() {
-        _isLoading = false;
-      });
+      _isLoading = false;
+    });
     _fetchMyFoods();
-    
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: AppNavbar(),
+      bottomNavigationBar: AppNavbar(selectedIndex: 0),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

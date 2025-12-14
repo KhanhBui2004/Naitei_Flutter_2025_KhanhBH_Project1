@@ -89,15 +89,11 @@ class MyFoodCard extends StatelessWidget {
       width: 300,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min, // ✅ cho phép co lại
+        mainAxisSize: MainAxisSize.min,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: SizedBox(
-              width: 300,
-              height: 180,
-              child: _image,
-            ), // giảm chiều cao ảnh
+            child: SizedBox(width: 300, height: 180, child: _image),
           ),
           const SizedBox(height: 8),
           Flexible(
@@ -105,7 +101,7 @@ class MyFoodCard extends StatelessWidget {
               _name,
               style: Helper.getTheme(
                 context,
-              ).headlineLarge?.copyWith(color: AppColors.primary),
+              ).headlineLarge?.copyWith(color: Colors.black),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -113,7 +109,6 @@ class MyFoodCard extends StatelessWidget {
           const SizedBox(height: 4),
           Row(
             children: [
-              // const Text("Cafe"),
               const SizedBox(width: 5),
               Icon(Icons.star, size: 18, color: Colors.amber),
               const SizedBox(width: 5),

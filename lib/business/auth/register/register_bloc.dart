@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/register/register_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/register/register_state.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/auth/register_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/service/auth/register_service.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   RegisterBloc(this.registerService) : super(RegisterInitial()) {

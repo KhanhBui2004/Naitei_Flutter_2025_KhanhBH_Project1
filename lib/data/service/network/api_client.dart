@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import 'package:naitei_flutter_2025_khanhbh_project1/data/network/auth_interceptor.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/service/network/auth_interceptor.dart';
 
 class ApiClient {
   static final Dio dio = Dio(

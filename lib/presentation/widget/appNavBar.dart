@@ -5,20 +5,8 @@ import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dar
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/constant.dart';
 
 class AppNavbar extends StatefulWidget implements PreferredSizeWidget {
-  final bool home;
-  final bool menu;
-  final bool offer;
-  final bool profile;
-  final bool more;
-
-  const AppNavbar({
-    super.key,
-    this.home = false,
-    this.menu = false,
-    this.offer = false,
-    this.profile = false,
-    this.more = false,
-  });
+  final int selectedIndex;
+  const AppNavbar({super.key, required this.selectedIndex});
 
   @override
   State<AppNavbar> createState() => _AppNavbarState();
@@ -28,7 +16,6 @@ class AppNavbar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _AppNavbarState extends State<AppNavbar> {
-  int _selectedIndex = 0;
   Future<void> _checkToken() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
@@ -62,7 +49,7 @@ class _AppNavbarState extends State<AppNavbar> {
       ),
     );
 
-    if (confirm != true) return; 
+    if (confirm != true) return;
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
@@ -131,6 +118,7 @@ class _AppNavbarState extends State<AppNavbar> {
                           onTap: () => Navigator.of(
                             context,
                           ).pushReplacementNamed(AppRoutes.home),
+                          selected: widget.selectedIndex == 0,
                         ),
 
                         _navItem(
@@ -141,6 +129,7 @@ class _AppNavbarState extends State<AppNavbar> {
                           //   context,
                           // ).pushReplacementNamed(AppRoutes.fav),
                           onTap: () => print('fav'),
+                          selected: widget.selectedIndex == 1,
                         ),
                         const SizedBox(width: 40),
 
@@ -148,10 +137,10 @@ class _AppNavbarState extends State<AppNavbar> {
                           index: 2,
                           icon: Icons.person,
                           label: 'Profile',
-                          // onTap: () => Navigator.of(
-                          //   context,
-                          // ).pushReplacementNamed(AppRoutes.profile),
-                          onTap: () => print('profile'),
+                          onTap: () => Navigator.of(
+                            context,
+                          ).pushReplacementNamed(AppRoutes.profile),
+                          selected: widget.selectedIndex == 2,
                         ),
                         IconButton(
                           icon: const Icon(Icons.logout, color: Colors.grey),
@@ -217,13 +206,12 @@ class _AppNavbarState extends State<AppNavbar> {
     required int index,
     required IconData icon,
     required String label,
+    required bool selected,
     required VoidCallback onTap,
   }) {
-    final bool selected = _selectedIndex == index;
 
     return GestureDetector(
       onTap: () {
-        setState(() => _selectedIndex = index);
         onTap();
       },
       child: AnimatedContainer(

@@ -43,10 +43,7 @@ class _LoginPageState extends State<LoginPage> {
               builder: (_) => const Center(child: CircularProgressIndicator()),
             ),
             AuthLoginSuccess() => {
-              if (Navigator.canPop(context))
-                {
-                  Navigator.pop(context)
-                },
+              if (Navigator.canPop(context)) {Navigator.pop(context)},
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.message),
@@ -66,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             },
+            _ => Container(),
           });
         },
 

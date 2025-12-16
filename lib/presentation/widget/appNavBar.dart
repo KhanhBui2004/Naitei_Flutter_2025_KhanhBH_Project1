@@ -125,10 +125,10 @@ class _AppNavbarState extends State<AppNavbar> {
                           index: 1,
                           icon: Icons.favorite,
                           label: 'Favorite',
-                          // onTap: () => Navigator.of(
-                          //   context,
-                          // ).pushReplacementNamed(AppRoutes.fav),
-                          onTap: () => print('fav'),
+                          onTap: () => Navigator.of(
+                            context,
+                          ).pushReplacementNamed(AppRoutes.fav),
+                          // onTap: () => print('fav'),
                           selected: widget.selectedIndex == 1,
                         ),
                         const SizedBox(width: 40),
@@ -209,7 +209,6 @@ class _AppNavbarState extends State<AppNavbar> {
     required bool selected,
     required VoidCallback onTap,
   }) {
-
     return GestureDetector(
       onTap: () {
         onTap();

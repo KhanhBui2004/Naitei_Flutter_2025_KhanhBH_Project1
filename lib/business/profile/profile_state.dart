@@ -13,3 +13,4 @@ class PatchProfileFailure extends ProfileState {
   final String message;
   PatchProfileFailure(this.message);
 }
+

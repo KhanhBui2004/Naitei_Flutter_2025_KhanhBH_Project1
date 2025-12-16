@@ -5,13 +5,13 @@ import 'package:naitei_flutter_2025_khanhbh_project1/data/service/profile/profil
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc(this.profileService) : super(ProfileInitial()) {
-    on<ProfileEvent>(_onPatchProfile);
+    on<PatchProfile>(_onPatchProfile);
   }
 
   final ProfileService profileService;
 
   Future<void> _onPatchProfile(
-    ProfileEvent event,
+    PatchProfile event,
     Emitter<ProfileState> emit,
   ) async {
     emit(ProfileInProgress());

@@ -6,10 +6,8 @@ import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_bl
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_state.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/appNavBar.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/textInput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/constant.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/model/user_model.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/helper.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/profile/profile_service.dart';
 
@@ -65,94 +63,6 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
-  // Future<void> _patchUser() async {
-  //   final username = _usernameController.text.trim();
-  //   final password = _passwordController.text.trim();
-  //   final cfpassword = _cfpasswordController.text.trim();
-  //   final firstName = _firstNameController.text.trim();
-  //   final lastName = _lastNameController.text.trim();
-  //   final email = _emailController.text.trim();
-  //   final avtUrl = '';
-
-  //   final prefs = await SharedPreferences.getInstance();
-
-  //   if (_passwordController.text != _cfpasswordController.text) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(
-  //         content: Text("Xác nhận mật khẩu không khớp!"),
-  //         backgroundColor: Colors.redAccent,
-  //         behavior: SnackBarBehavior.floating,
-  //       ),
-  //     );
-  //     return;
-  //   }
-
-  //   if (email.isEmpty ||
-  //       !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(
-  //         content: Text("Email không hợp lệ!"),
-  //         backgroundColor: Colors.redAccent,
-  //         behavior: SnackBarBehavior.floating,
-  //       ),
-  //     );
-  //     return;
-  //   }
-
-  //   setState(() => _isLoading = true);
-
-  //   try {
-  //     final response = await profile.patchProfile(
-  //       firstName,
-  //       lastName,
-  //       username,
-  //       password,
-  //       email,
-  //       avtUrl,
-  //     );
-
-  //     if (response['code'] == 200) {
-  //       final updatedUser = User(
-  //         id: _id.toString(),
-  //         firstName: firstName,
-  //         lastName: lastName,
-  //         username: username,
-  //         email: email,
-  //         image: avtUrl,
-  //         accessToken: _accessToken,
-  //         refreshToken: _refreshToken,
-  //       );
-
-  //       // Cập nhật state
-  //       setState(() {
-  //         _firstName = firstName;
-  //         _lastName = lastName;
-  //         _email = email;
-  //       });
-
-  //       await prefs.setString('firstname', firstName);
-  //       await prefs.setString('lastname', lastName);
-  //       await prefs.setString('email', email);
-
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(
-  //           content: Text(
-  //             "Cập nhật profile thành công: ${response['message']}",
-  //           ),
-  //           backgroundColor: Colors.greenAccent,
-  //           behavior: SnackBarBehavior.floating,
-  //         ),
-  //       );
-  //     }
-  //   } catch (e) {
-  //     ScaffoldMessenger.of(
-  //       context,
-  //     ).showSnackBar(SnackBar(content: Text("Sửa profile thất bại: $e")));
-  //   } finally {
-  //     setState(() => _isLoading = false);
-  //   }
-  // }
-
   Future<void> _blocPatchProfile(BuildContext context) async {
     final username = _usernameController.text.trim();
     final password = _passwordController.text.trim();
@@ -162,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final email = _emailController.text.trim();
     final avtUrl = '';
     context.read<ProfileBloc>().add(
-      ProfileEvent(
+      PatchProfile(
         firstName: firstName,
         lastName: lastName,
         username: username,
@@ -179,8 +89,6 @@ class _ProfilePageState extends State<ProfilePage> {
     if (_isLoading) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
-
-    // final user = _user!;
 
     return Scaffold(
       body: SafeArea(

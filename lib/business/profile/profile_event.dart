@@ -1,4 +1,6 @@
-class ProfileEvent {
+class ProfileEvent {}
+
+class PatchProfile extends ProfileEvent {
   final String firstName;
   final String lastName;
   final String username;
@@ -7,7 +9,7 @@ class ProfileEvent {
   final String email;
   final String avtUrl;
 
-  ProfileEvent({
+  PatchProfile({
     required this.firstName,
     required this.lastName,
     required this.username,

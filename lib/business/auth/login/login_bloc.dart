@@ -2,10 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/login/login_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/login/login_state.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/auth/login_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this.loginService) : super(AuthInitial()) {
     on<AuthLoginStarted>(_onLoginStarted);
+    on<AuthenticateStarted>(_checkLogin);
   }
 
   final LoginService loginService;
@@ -36,6 +38,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     } catch (e) {
       emit(AuthLoginFailure(e.toString().replaceFirst('Exception: ', '')));
+    }
+  }
+
+  void _checkLogin(AuthenticateStarted event, Emitter<AuthState> emit) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+
+      if (token != null) {
+        emit(AuthenticateSuccess(token));
+      } else {
+        emit(AuthenticateFailure('Token not found'));
+      }
+    } catch (e) {
+      emit(AuthenticateFailure(e.toString().replaceFirst('Exception: ', '')));
     }
   }
 }

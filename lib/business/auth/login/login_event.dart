@@ -7,4 +7,4 @@ class AuthLoginStarted extends AuthEvent {
   final String password;
 }
 
-
+class AuthenticateStarted extends AuthEvent {}

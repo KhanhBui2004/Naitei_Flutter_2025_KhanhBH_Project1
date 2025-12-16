@@ -35,7 +35,12 @@ class FoodService {
       // Lấy tổng số trang từ pagination
       final int totalPages = data['pagination']?['totalPages'] ?? 1;
 
-      return {"foods": foods, "totalPages": totalPages};
+      return {
+        "foods": foods,
+        "totalPages": totalPages,
+        "code": data['code'],
+        "message": data['message'],
+      };
     } catch (e) {
       throw Exception("Lỗi tải danh sách món ăn: $e");
     }
@@ -69,6 +74,7 @@ class FoodService {
       final int totalPages = data['pagination']?['totalPages'] ?? 1;
 
       return {
+        'code': data['code'],
         'data': favorfoods,
         'message': data['message'],
         'totalPages': totalPages,

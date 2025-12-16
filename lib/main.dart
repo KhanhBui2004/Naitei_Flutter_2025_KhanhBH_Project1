@@ -9,6 +9,7 @@ import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_bl
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/auth/login_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/auth/register_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/food_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/rating_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/profile/profile_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/authentication/login_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/home/home_page.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<RegisterService>(create: (_) => RegisterService()),
         RepositoryProvider<ProfileService>(create: (_) => ProfileService()),
         RepositoryProvider<FoodService>(create: (_) => FoodService()),
+        RepositoryProvider<RatingService>(create: (_) => RatingService()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -46,7 +48,10 @@ class MyApp extends StatelessWidget {
             create: (context) => ProfileBloc(context.read<ProfileService>()),
           ),
           BlocProvider<FoodBloc>(
-            create: (context) => FoodBloc(context.read<FoodService>()),
+            create: (context) => FoodBloc(
+              context.read<FoodService>(),
+              context.read<RatingService>(),
+            ),
           ),
         ],
         child: BlocBuilder<AuthBloc, AuthState>(

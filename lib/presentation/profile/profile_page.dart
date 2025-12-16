@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_bloc.dart';
@@ -19,14 +17,12 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  String _accessToken = '';
-  String _refreshToken = '';
+
   String _firstName = '';
   String _lastName = '';
   String _username = '';
   String _email = '';
   String _avt = '';
-  late int _id;
   bool _isLoading = true;
 
   ProfileService profile = ProfileService();
@@ -46,9 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> _loadUser() async {
     final prefs = await SharedPreferences.getInstance();
-    _accessToken = prefs.getString('token')!;
-    _refreshToken = prefs.getString('refreshToken')!;
-    _id = prefs.getInt('userId')!;
+
     _firstName = prefs.getString('firstname')!;
     _lastName = prefs.getString('lastname')!;
     _username = prefs.getString('username')!;

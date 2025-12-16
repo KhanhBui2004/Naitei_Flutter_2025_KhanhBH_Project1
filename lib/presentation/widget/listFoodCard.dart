@@ -3,8 +3,9 @@ import 'package:naitei_flutter_2025_khanhbh_project1/data/model/food_model.dart'
 
 class ListFoodCard extends StatelessWidget {
   final Food dish;
+  final double rating;
 
-  const ListFoodCard({super.key, required this.dish});
+  const ListFoodCard({super.key, required this.dish, required this.rating});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,6 @@ class ListFoodCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Dish image
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Container(
@@ -42,7 +42,6 @@ class ListFoodCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Dish name
                     Text(
                       dish.dishName,
                       style: const TextStyle(
@@ -69,6 +68,8 @@ class ListFoodCard extends StatelessWidget {
                         _infoItem(Icons.access_time, '${dish.cookingTime}p'),
                         const SizedBox(width: 12),
                         _infoItem(Icons.people, dish.servingSize),
+                        const SizedBox(width: 12),
+                        _infoItem(Icons.star, '$rating'),
                       ],
                     ),
                   ],

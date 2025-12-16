@@ -9,8 +9,13 @@ class FoodInProgress extends FoodState {}
 class ViewAllFoodSuccess extends FoodState {
   final List<Food> foods;
   final int totalPages;
+  final Map<int, double> ratings;
 
-  ViewAllFoodSuccess({required this.foods, required this.totalPages});
+  ViewAllFoodSuccess({
+    required this.foods,
+    required this.totalPages,
+    required this.ratings,
+  });
 }
 
 class ViewAllFoodFailure extends FoodState {

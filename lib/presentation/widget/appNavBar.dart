@@ -128,7 +128,6 @@ class _AppNavbarState extends State<AppNavbar> {
                           onTap: () => Navigator.of(
                             context,
                           ).pushReplacementNamed(AppRoutes.fav),
-                          // onTap: () => print('fav'),
                           selected: widget.selectedIndex == 1,
                         ),
                         const SizedBox(width: 40),

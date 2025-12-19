@@ -32,11 +32,14 @@ class TagService {
 
         final int totalPages = response.data['pagination']?['totalPages'] ?? 1;
 
-        return {"tags": tagList, "totalPages": totalPages};
+        return {
+          "tags": tagList,
+          "totalPages": totalPages,
+          'code': response.data['code'],
+          'message': response.data['message'],
+        };
       } catch (e) {
-        throw Exception(
-          "Fetch Tag Error: ${response.statusCode}",
-        );
+        throw Exception("Fetch Tag Error: ${response.statusCode}");
       }
     } on DioException catch (e) {
       debugPrint("API error: ${e.response?.statusCode} - ${e.response?.data}");

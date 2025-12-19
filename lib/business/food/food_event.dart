@@ -1,8 +1,36 @@
 class FoodEvent {}
 
-class ViewAllFood extends FoodEvent {
+class ViewFavoriteFood extends FoodEvent {
   final int page;
   final String? query;
 
-  ViewAllFood({required this.page, this.query});
+  ViewFavoriteFood({required this.page, this.query});
+}
+
+class ViewAllFood extends FoodEvent {
+  final int page;
+  final String? query;
+  final int? limit;
+
+  ViewAllFood({required this.page, this.query, this.limit});
+}
+
+class ViewMyFood extends FoodEvent {
+  final int userId;
+  final int page;
+  final String? query;
+  final int? limit;
+
+  ViewMyFood({
+    required this.userId,
+    required this.page,
+    this.query,
+    this.limit,
+  });
+}
+
+class GetFoodDetail extends FoodEvent {
+  final String foodId;
+
+  GetFoodDetail({required this.foodId});
 }

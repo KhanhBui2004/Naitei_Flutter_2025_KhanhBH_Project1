@@ -7,4 +7,6 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String camera = '/camera';
   static const String detail = '/detail';
+  static const patchfood = '/Newfood';
+  static const foodsoftag = '/foodsot';
 }

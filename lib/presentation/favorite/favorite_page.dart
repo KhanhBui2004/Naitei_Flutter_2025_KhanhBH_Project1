@@ -19,7 +19,6 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-
   List<Food> _foods = [];
   int _currentPage = 1;
   int _totalPages = 1;
@@ -38,7 +37,7 @@ class _FavoritePageState extends State<FavoritePage> {
     int page = 1,
     String? query,
   }) async {
-    context.read<FoodBloc>().add(ViewAllFood(page: page, query: query));
+    context.read<FoodBloc>().add(ViewFavoriteFood(page: page, query: query));
   }
 
   void _onSearch(String query) {
@@ -104,7 +103,7 @@ class _FavoritePageState extends State<FavoritePage> {
                           favoriteBuid = Column(
                             children: [
                               ..._foods.map((food) {
-                                final rating = state.ratings[food.id] ?? 0.0;
+                                final rating = state.ratings![food.id] ?? 0.0;
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 10,

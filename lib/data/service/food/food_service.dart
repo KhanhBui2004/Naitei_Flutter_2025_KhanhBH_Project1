@@ -32,17 +32,44 @@ class FoodService {
           .map((json) => Food.fromJson(json))
           .toList();
 
-      // Lấy tổng số trang từ pagination
       final int totalPages = data['pagination']?['totalPages'] ?? 1;
 
       return {
-        "foods": foods,
-        "totalPages": totalPages,
-        "code": data['code'],
-        "message": data['message'],
+        'foods': foods,
+        'totalPages': totalPages,
+        'code': data['code'],
+        'message': data['message'],
       };
     } catch (e) {
-      throw Exception("Lỗi tải danh sách món ăn: $e");
+      // debugPrint(e as String?);
+      throw Exception("Fetch all foods error: $e");
+    }
+  }
+
+  Future<Food> getFoodDetail(String id) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString("token");
+
+      final response = await _dio.get(
+        "${ApiEndPoint.food}/$id",
+        options: Options(headers: {"Authorization": "Bearer $token"}),
+      );
+
+      try {
+        final data = response.data;
+
+        final foodDetail = Food.fromJson(data['data']);
+
+        return foodDetail;
+      } catch (e) {
+        throw Exception("Fetch food detail error: ${response.statusCode}");
+      }
+    } on DioException catch (e) {
+      debugPrint("API error: ${e.response?.statusCode} - ${e.response?.data}");
+      throw Exception("Network error: ${e.message}");
+    } catch (e) {
+      throw Exception("Unknown error: ${e.toString()}");
     }
   }
 
@@ -80,7 +107,7 @@ class FoodService {
         'totalPages': totalPages,
       };
     } catch (e) {
-      throw Exception("Lỗi khi tải danh sách món ăn yêu thích: $e");
+      throw Exception("Fetch favorite foods error: $e");
     }
   }
 
@@ -132,8 +159,10 @@ class FoodService {
         "message": resData['message'] ?? "Thêm món ăn thành công",
       };
     } on DioException catch (e) {
-      debugPrint("❌ Lỗi postFood: ${e.response?.data ?? e.message}");
-      throw Exception("Lỗi thêm món ăn: ${e.response?.data ?? e.message}");
+      debugPrint("Postfood error: ${e.response?.data ?? e.message}");
+      throw Exception(
+        "Create new food error: ${e.response?.data ?? e.message}",
+      );
     }
   }
 
@@ -166,15 +195,14 @@ class FoodService {
       final int totalPages = data['pagination']?['totalPages'] ?? 1;
 
       return {
+        'code': data['code'],
         'data': myfoods,
         'message': data['message'],
         'totalPages': totalPages,
       };
     } on DioException catch (e) {
-      debugPrint("Lỗi getMyFood: ${e.response?.data ?? e.message}");
-      throw Exception(
-        "Lỗi lấy món ăn của tôi: ${e.response?.data ?? e.message}",
-      );
+      debugPrint("Get my foods error: ${e.response?.data ?? e.message}");
+      throw Exception("Fetch my foods error: ${e.response?.data ?? e.message}");
     }
   }
 }

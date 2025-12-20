@@ -44,7 +44,7 @@ class Food {
       description: json['description'],
       dishType: json['dish_type'],
       servingSize: json['serving_size'],
-      cookingTime: json['cooking_time'],
+      cookingTime: json['cooking_time'].toString(),
       ingredients: json['ingredients'],
       cookingMethod: json['cooking_method'],
       calories: json['calories'],
@@ -81,19 +81,5 @@ class Food {
       "updatedAt": updatedAt.toIso8601String(),
       "deletedAt": deletedAt?.toIso8601String(),
     };
-  }
-}
-
-class FavorFood {
-  final int id;
-  final String image;
-  final String name;
-  FavorFood({required this.id, required this.image, required this.name});
-  factory FavorFood.fromJson(Map<String, dynamic> json) {
-    return FavorFood(
-      id: json['id'],
-      image: json['image_link'],
-      name: json['dish_name'],
-    );
   }
 }

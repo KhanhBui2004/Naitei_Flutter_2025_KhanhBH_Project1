@@ -4,12 +4,16 @@ import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/login/login_b
 import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/login/login_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/login/login_state.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/register/register_bloc.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/business/detail/detail_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_bloc.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/business/tag/tag_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/auth/login_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/auth/register_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/comment_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/food_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/rating_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/tag_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/profile/profile_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/authentication/login_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/home/home_page.dart';
@@ -33,6 +37,8 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<ProfileService>(create: (_) => ProfileService()),
         RepositoryProvider<FoodService>(create: (_) => FoodService()),
         RepositoryProvider<RatingService>(create: (_) => RatingService()),
+        RepositoryProvider<CommentService>(create: (_) => CommentService()),
+        RepositoryProvider<TagService>(create: (_) => TagService()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -51,6 +57,17 @@ class MyApp extends StatelessWidget {
             create: (context) => FoodBloc(
               context.read<FoodService>(),
               context.read<RatingService>(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => TagBloc(context.read<TagService>()),
+          ),
+          BlocProvider(
+            create: (context) => FoodDetailBloc(
+              foodService: context.read<FoodService>(),
+              ratingService: context.read<RatingService>(),
+              commentService: context.read<CommentService>(),
+              tagService: context.read<TagService>(),
             ),
           ),
         ],

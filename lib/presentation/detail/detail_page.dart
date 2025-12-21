@@ -231,7 +231,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Dinh dưỡng",
+                                              "Nutri",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .titleLarge
@@ -266,14 +266,14 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  "Chất đạm: ${state.food.protein} g",
+                                                  "Protein: ${state.food.protein} g",
                                                   style: const TextStyle(
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
                                                 Text(
-                                                  "Chất béo: ${state.food.fat} g",
+                                                  "Fat: ${state.food.fat} g",
                                                   style: const TextStyle(
                                                     fontSize: 16,
                                                   ),
@@ -282,20 +282,19 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                             ),
                                             const SizedBox(height: 10),
 
-                                            // Row 3: Fiber & Sugar
                                             Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  "Chất xơ: ${state.food.fiber} g",
+                                                  "Fiber: ${state.food.fiber} g",
                                                   style: const TextStyle(
                                                     fontSize: 16,
                                                   ),
                                                 ),
                                                 Text(
-                                                  "Đường: ${state.food.sugar} g",
+                                                  "Sugar: ${state.food.sugar} g",
                                                   style: const TextStyle(
                                                     fontSize: 16,
                                                   ),
@@ -309,7 +308,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                       const SizedBox(height: 5),
 
                                       /// type
-                                      _buildSectionTitle("Loại"),
+                                      _buildSectionTitle("Type"),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
@@ -317,8 +316,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                         child: Text(state.food.dishType),
                                       ),
 
-                                      /// serving size
-                                      _buildSectionTitle("Khẩu phần"),
+                                      _buildSectionTitle("Sized"),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
@@ -326,19 +324,17 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                         child: Text(state.food.servingSize),
                                       ),
 
-                                      /// cooking time
-                                      _buildSectionTitle("Thời gian nấu"),
+                                      _buildSectionTitle("Cooked time"),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
                                         ),
                                         child: Text(
-                                          "${state.food.cookingTime} phút",
+                                          "${state.food.cookingTime} minutes",
                                         ),
                                       ),
 
-                                      /// mô tả
-                                      _buildSectionTitle("Mô tả"),
+                                      _buildSectionTitle("Description"),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
@@ -347,8 +343,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                         child: Text(state.food.description),
                                       ),
 
-                                      /// nguyên liệu
-                                      _buildSectionTitle("Nguyên liệu"),
+                                      _buildSectionTitle("Ingredients"),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
@@ -357,8 +352,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                         child: Text(state.food.ingredients),
                                       ),
 
-                                      /// cooking method
-                                      _buildSectionTitle("Công thức"),
+                                      _buildSectionTitle("Method"),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
@@ -367,14 +361,14 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                         child: Text(state.food.cookingMethod),
                                       ),
 
-                                      _buildSectionTitle("Nhãn"),
+                                      _buildSectionTitle("Tags"),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
                                           vertical: 10,
                                         ),
                                         child: state.tags.isEmpty
-                                            ? const Text("Không có nhãn")
+                                            ? const Text("Don't have tag")
                                             : Wrap(
                                                 spacing: 8,
                                                 runSpacing: 6,
@@ -424,7 +418,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                       ),
 
                                       /// comments
-                                      _buildSectionTitle("Bình luận"),
+                                      _buildSectionTitle("Comments"),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
@@ -433,7 +427,9 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                           children: [
                                             // danh sách comment
                                             if (state.comments.isEmpty)
-                                              const Text("Chưa có bình luận")
+                                              const Text(
+                                                "Don't have any comments",
+                                              )
                                             else
                                               ListView.builder(
                                                 shrinkWrap: true,
@@ -469,8 +465,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                                     controller:
                                                         _commentController,
                                                     decoration: InputDecoration(
-                                                      hintText:
-                                                          "Viết bình luận...",
+                                                      hintText: "Writing...",
                                                       border: OutlineInputBorder(
                                                         borderRadius:
                                                             BorderRadius.circular(
@@ -500,7 +495,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                                       ).showSnackBar(
                                                         const SnackBar(
                                                           content: Text(
-                                                            "Vui lòng nhập bình luận",
+                                                            "Please enter comment",
                                                           ),
                                                         ),
                                                       );

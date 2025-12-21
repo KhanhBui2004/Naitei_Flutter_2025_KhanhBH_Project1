@@ -12,8 +12,8 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
   FoodBloc(this.foodService, this.ratingService) : super(FoodInitial()) {
     on<ViewFavoriteFood>(_isFetchFavFood);
     on<ViewAllFood>(_isFetchAllFood);
-    on<ViewMyFood>(_isFetchMyFood);
     on<GetFoodDetail>(_isFetchFoodDetail);
+    on<FoodReset>((event, emit) => emit(FoodInitial()));
   }
 
   Future<void> _isFetchFavFood(
@@ -81,48 +81,6 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
         emit(
           ViewAllFoodSuccess(
             foods: response['foods'],
-            totalPages: response['totalPages'],
-            ratings: ratings,
-            counts: counts,
-          ),
-        );
-      } else {
-        emit(ViewAllFoodFailure(response['message']));
-      }
-    } catch (e) {
-      emit(ViewAllFoodFailure(e.toString().replaceFirst('Exception: ', '')));
-    }
-  }
-
-  Future<void> _isFetchMyFood(ViewMyFood event, Emitter<FoodState> emit) async {
-    emit(FoodInProgress());
-
-    try {
-      final response = await foodService.getMyFood(
-        userId: event.userId,
-        page: event.page,
-        query: event.query,
-        limit: event.limit ?? 20,
-      );
-
-      if (response['code'] == 200) {
-        final Map<int, double> ratings = {};
-        final Map<int, int> counts = {};
-
-        final List<dynamic> foods = response['data'] ?? [];
-        if (foods.isEmpty) {
-          emit(ViewAllFoodEmpty());
-          return;
-        }
-
-        for (final food in foods) {
-          ratings[food.id] = await ratingService.getAverRating(food.id);
-          counts[food.id] = await ratingService.getCountRating(food.id);
-        }
-
-        emit(
-          ViewAllFoodSuccess(
-            foods: response['data'],
             totalPages: response['totalPages'],
             ratings: ratings,
             counts: counts,

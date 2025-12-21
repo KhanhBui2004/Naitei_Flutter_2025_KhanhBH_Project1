@@ -86,6 +86,8 @@ class _FavoritePageState extends State<FavoritePage> {
                   (switch (state) {
                     FoodInProgress() => showDialog(
                       context: context,
+                      barrierDismissible: false,
+                      barrierColor: Colors.transparent,
                       builder: (_) =>
                           const Center(child: CircularProgressIndicator()),
                     ),

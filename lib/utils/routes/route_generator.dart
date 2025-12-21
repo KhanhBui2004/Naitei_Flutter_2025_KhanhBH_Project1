@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/authentication/login_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/authentication/register_page.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/presentation/camera/camera_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/detail/detail_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/favorite/favorite_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/home/home_page.dart';
@@ -16,6 +17,8 @@ class RouteGenerator {
         return _animatedRoute(const RegisterPage());
       case AppRoutes.home:
         return MaterialPageRoute(builder: (_) => const HomePage());
+      case AppRoutes.camera:
+        return MaterialPageRoute(builder: (_) => const CameraPage());
       case AppRoutes.fav:
         return MaterialPageRoute(builder: (_) => const FavoritePage());
       case AppRoutes.profile:

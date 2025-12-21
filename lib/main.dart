@@ -6,6 +6,7 @@ import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/login/login_s
 import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/register/register_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/detail/detail_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_bloc.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/business/my_food/myFood_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/tag/tag_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/service/auth/login_service.dart';
@@ -18,7 +19,6 @@ import 'package:naitei_flutter_2025_khanhbh_project1/data/service/profile/profil
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/authentication/login_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/home/home_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/navigator_global.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/route_generator.dart';
 
 void main() {
@@ -60,6 +60,12 @@ class MyApp extends StatelessWidget {
             ),
           ),
           BlocProvider(
+            create: (context) => MyfoodBloc(
+              context.read<FoodService>(),
+              context.read<RatingService>(),
+            ),
+          ),
+          BlocProvider(
             create: (context) => TagBloc(context.read<TagService>()),
           ),
           BlocProvider(
@@ -74,10 +80,10 @@ class MyApp extends StatelessWidget {
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (BuildContext context, AuthState state) {
             return MaterialApp(
-              initialRoute: AppRoutes.login,
+              // initialRoute: AppRoutes.login,
               onGenerateRoute: RouteGenerator.generateRoute,
               navigatorKey: navigatorKey,
-              // home: _buildHomeByState(state),
+              home: _buildHomeByState(state),
             );
           },
         ),

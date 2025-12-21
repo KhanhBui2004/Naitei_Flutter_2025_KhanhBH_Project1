@@ -1,0 +1,6 @@
+apple
+banana
+carrot
+egg
+meat
+tomato

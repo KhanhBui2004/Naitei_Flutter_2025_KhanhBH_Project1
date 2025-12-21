@@ -15,22 +15,10 @@ class ViewAllFood extends FoodEvent {
   ViewAllFood({required this.page, this.query, this.limit});
 }
 
-class ViewMyFood extends FoodEvent {
-  final int userId;
-  final int page;
-  final String? query;
-  final int? limit;
-
-  ViewMyFood({
-    required this.userId,
-    required this.page,
-    this.query,
-    this.limit,
-  });
-}
-
 class GetFoodDetail extends FoodEvent {
   final String foodId;
 
   GetFoodDetail({required this.foodId});
 }
+
+class FoodReset extends FoodEvent {}

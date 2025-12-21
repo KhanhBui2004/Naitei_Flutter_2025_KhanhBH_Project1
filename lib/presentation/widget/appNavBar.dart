@@ -21,7 +21,6 @@ class _AppNavbarState extends State<AppNavbar> {
     final token = prefs.getString('token');
 
     if (token == null || token.isEmpty) {
-      // Token hết hạn hoặc bị xoá → tự đăng xuất
       if (!mounted) return;
 
       Navigator.of(
@@ -117,7 +116,7 @@ class _AppNavbarState extends State<AppNavbar> {
                           label: 'Home',
                           onTap: () => Navigator.of(
                             context,
-                          ).pushReplacementNamed(AppRoutes.home),
+                          ).pushNamed(AppRoutes.home),
                           selected: widget.selectedIndex == 0,
                         ),
 
@@ -127,7 +126,7 @@ class _AppNavbarState extends State<AppNavbar> {
                           label: 'Favorite',
                           onTap: () => Navigator.of(
                             context,
-                          ).pushReplacementNamed(AppRoutes.fav),
+                          ).pushNamed(AppRoutes.fav),
                           selected: widget.selectedIndex == 1,
                         ),
                         const SizedBox(width: 40),
@@ -138,7 +137,7 @@ class _AppNavbarState extends State<AppNavbar> {
                           label: 'Profile',
                           onTap: () => Navigator.of(
                             context,
-                          ).pushReplacementNamed(AppRoutes.profile),
+                          ).pushNamed(AppRoutes.profile),
                           selected: widget.selectedIndex == 2,
                         ),
                         IconButton(

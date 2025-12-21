@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_state.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/business/my_food/myFood_bloc.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/business/my_food/myFood_event.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/business/my_food/myFood_state.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/tag/tag_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/tag/tag_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/tag/tag_state.dart';
@@ -40,16 +43,34 @@ class _HomeState extends State<HomePage> {
   }
 
   Future<void> _fetchMyFoods(BuildContext context) async {
-    context.read<FoodBloc>().add(ViewMyFood(page: 1, userId: userId, limit: 5));
+    context.read<MyfoodBloc>().add(
+      ViewMyFood(page: 1, userId: userId, limit: 5),
+    );
   }
 
   Future<void> _loadUser() async {
     final prefs = await SharedPreferences.getInstance();
+    final id = prefs.getInt('userId');
+    if (id == null) {
+      // nếu null → chuyển về login
+      if (!mounted) return;
+      Navigator.of(
+        context,
+      ).pushNamedAndRemoveUntil(AppRoutes.login, (route) => false);
+      return;
+    }
     setState(() {
       userName = prefs.getString('firstname') ?? '';
-      userId = prefs.getInt('userId')!;
+      userId = id;
     });
     _fetchMyFoods(context);
+  }
+
+  @override
+  void dispose() {
+    context.read<FoodBloc>().add(FoodReset());
+    context.read<MyfoodBloc>().add(MyFoodReset());
+    super.dispose();
   }
 
   @override
@@ -190,6 +211,12 @@ class _HomeState extends State<HomePage> {
                 SizedBox(height: 10),
                 BlocBuilder<FoodBloc, FoodState>(
                   builder: (context, state) {
+                    final counts = state is ViewAllFoodSuccess
+                        ? state.counts ?? {}
+                        : {};
+                    final ratings = state is ViewAllFoodSuccess
+                        ? state.ratings ?? {}
+                        : {};
                     return (switch (state) {
                       FoodInitial() => Container(),
                       FoodInProgress() => const Center(
@@ -203,8 +230,8 @@ class _HomeState extends State<HomePage> {
                       ),
                       ViewAllFoodSuccess() => Column(
                         children: state.foods.take(3).map((food) {
-                          final count = state.counts![food.id] ?? 0;
-                          final rating = state.ratings![food.id] ?? 0.0;
+                          final count = counts[food.id] ?? 0;
+                          final rating = ratings[food.id] ?? 0.0;
 
                           return Container(
                             width: double.infinity,
@@ -288,26 +315,31 @@ class _HomeState extends State<HomePage> {
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: BlocBuilder<FoodBloc, FoodState>(
+                  child: BlocBuilder<MyfoodBloc, MyfoodState>(
                     builder: (context, state) {
+                      final counts = state is ViewMyFoodSuccess
+                          ? state.counts ?? {}
+                          : {};
+                      final ratings = state is ViewMyFoodSuccess
+                          ? state.ratings ?? {}
+                          : {};
                       return (switch (state) {
                         FoodInitial() => Container(),
                         FoodInProgress() => const Center(
                           child: CircularProgressIndicator(),
                         ),
-                        ViewAllFoodEmpty() => const Center(
+                        ViewMyFoodEmpty() => const Center(
                           child: Text("Don't have any your foods"),
                         ),
-                        ViewAllFoodFailure() => Center(
+                        ViewMyFoodFailure() => Center(
                           child: Text(state.message),
                         ),
-                        ViewAllFoodSuccess() => SingleChildScrollView(
+                        ViewMyFoodSuccess() => SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: state.foods.take(5).map((myfood) {
-                              final double rating =
-                                  state.ratings![myfood.id] ?? 0.0;
-                              final int count = state.counts![myfood.id] ?? 0;
+                              final double rating = ratings[myfood.id] ?? 0.0;
+                              final int count = counts[myfood.id] ?? 0;
                               return Padding(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 10,

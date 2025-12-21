@@ -129,7 +129,8 @@ class _HomeState extends State<HomePage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      onTap: () => debugPrint('View all tags'),
+                      onTap: () =>
+                          Navigator.of(context).pushNamed(AppRoutes.allTag),
                     ),
                   ],
                 ),
@@ -204,7 +205,8 @@ class _HomeState extends State<HomePage> {
                           color: Color.fromARGB(255, 45, 113, 85),
                         ),
                       ),
-                      onTap: () => debugPrint('View all foods'),
+                      onTap: () =>
+                          Navigator.of(context).pushNamed(AppRoutes.allFood),
                     ),
                   ],
                 ),
@@ -307,7 +309,8 @@ class _HomeState extends State<HomePage> {
                           color: Color.fromARGB(255, 45, 113, 85),
                         ),
                       ),
-                      onTap: () => debugPrint('View all foods'),
+                      onTap: () =>
+                          Navigator.of(context).pushNamed(AppRoutes.allmyFood),
                     ),
                   ],
                 ),

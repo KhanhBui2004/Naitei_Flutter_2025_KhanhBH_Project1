@@ -27,7 +27,6 @@ class PaginationWidget extends StatelessWidget {
 
     List<Widget> buttons = [];
 
-    // First + Prev
     if (currentPage > 1) {
       buttons.add(
         IconButton(
@@ -43,7 +42,6 @@ class PaginationWidget extends StatelessWidget {
       );
     }
 
-    // Numbered pages
     for (int i = startPage; i <= endPage; i++) {
       buttons.add(
         Expanded(
@@ -66,7 +64,6 @@ class PaginationWidget extends StatelessWidget {
       );
     }
 
-    // Next + Last
     if (currentPage < totalPages) {
       buttons.add(
         IconButton(

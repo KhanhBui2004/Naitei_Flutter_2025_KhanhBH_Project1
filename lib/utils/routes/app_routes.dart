@@ -9,4 +9,7 @@ class AppRoutes {
   static const String detail = '/detail';
   static const String patchfood = '/Newfood';
   static const String foodsoftag = '/foodsot';
+  static const String allTag = '/alltag';
+  static const String allFood = '/allfood';
+  static const String allmyFood = '/allmyfood';
 }

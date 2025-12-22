@@ -9,6 +9,7 @@ import 'package:naitei_flutter_2025_khanhbh_project1/presentation/home/allMyFood
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/home/home_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/profile/profile_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/tag/allTag_page.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/presentation/tag/foodTag_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dart';
 
 class RouteGenerator {
@@ -32,6 +33,23 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const AllfoodPage());
       case AppRoutes.allmyFood:
         return MaterialPageRoute(builder: (_) => const AllmyfoodPage());
+      case AppRoutes.foodsoftag:
+        final args = settings.arguments;
+
+        if (args == null || args is! Map<String, dynamic>) {
+          return MaterialPageRoute(
+            builder: (_) => const Scaffold(
+              body: Center(child: Text('Missing tag arguments')),
+            ),
+          );
+        }
+
+        return MaterialPageRoute(
+          builder: (_) => FoodsTagPage(
+            tagId: args['id'] as int,
+            tagName: args['name'] as String,
+          ),
+        );
       case AppRoutes.detail:
         final id = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => FoodDetailScreen(foodId: id));

@@ -6,6 +6,7 @@ import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/login/login_s
 import 'package:naitei_flutter_2025_khanhbh_project1/business/auth/register/register_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/detail/detail_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_bloc.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/business/foodtag/foodTag_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/my_food/myFood_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/tag/tag_bloc.dart';
@@ -69,6 +70,12 @@ class MyApp extends StatelessWidget {
             create: (context) => TagBloc(context.read<TagService>()),
           ),
           BlocProvider(
+            create: (context) => FoodtagBloc(
+              context.read<TagService>(),
+              context.read<RatingService>(),
+            ),
+          ),
+          BlocProvider(
             create: (context) => FoodDetailBloc(
               foodService: context.read<FoodService>(),
               ratingService: context.read<RatingService>(),
@@ -80,7 +87,7 @@ class MyApp extends StatelessWidget {
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (BuildContext context, AuthState state) {
             return MaterialApp(
-              // initialRoute: AppRoutes.login,
+              debugShowCheckedModeBanner: false,
               onGenerateRoute: RouteGenerator.generateRoute,
               navigatorKey: navigatorKey,
               home: _buildHomeByState(state),

@@ -11,6 +11,8 @@ class TagBloc extends Bloc<TagEvent, TagState> {
   final TagService tagService;
 
   Future<void> _fetchAllTag(ViewListTag event, Emitter<TagState> emit) async {
+    emit(TagInProgress());
+
     try {
       final response = await tagService.getAllTags(
         page: event.page,
@@ -28,6 +30,7 @@ class TagBloc extends Bloc<TagEvent, TagState> {
           ListTagSuccess(
             tags: response['tags'],
             totalPages: response['totalPages'],
+            currentPage: event.page,
           ),
         );
       } else {

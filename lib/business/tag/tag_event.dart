@@ -7,3 +7,4 @@ class ViewListTag extends TagEvent {
 
   ViewListTag({required this.page, required this.limit, this.query});
 }
+

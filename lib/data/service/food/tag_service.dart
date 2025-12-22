@@ -100,7 +100,12 @@ class TagService {
 
       final int totalPages = data['pagination']?['totalPages'] ?? 1;
 
-      return {"foods": foods, "totalPages": totalPages};
+      return {
+        "foods": foods,
+        "totalPages": totalPages,
+        'code': data['code'],
+        'message': data['message'],
+      };
     } on DioException catch (e) {
       throw Exception("Error fetching foods: ${e.message}");
     }

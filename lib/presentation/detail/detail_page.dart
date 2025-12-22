@@ -9,7 +9,6 @@ import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/comment
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/constant.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/helper.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class FoodDetailScreen extends StatefulWidget {
   final String foodId;
@@ -22,23 +21,13 @@ class FoodDetailScreen extends StatefulWidget {
 
 class _FoodDetailScreenState extends State<FoodDetailScreen> {
   int? _userId;
-  double? _averRating;
-  int _currentPage = 1;
-  int _totalPages = 1;
 
   final TextEditingController _commentController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _loadUser();
     _loadFoodDetail(context);
-  }
-
-  Future<void> _loadUser() async {
-    final prefs = await SharedPreferences.getInstance();
-    final id = prefs.getInt('userId');
-    _userId = id;
   }
 
   Future<void> _loadFoodDetail(BuildContext context) async {
@@ -53,16 +42,12 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
     context.read<FoodDetailBloc>().add(PatchRating(rate.toInt()));
   }
 
-  Future<void> _loadTags(BuildContext context) async {
-    context.read<FoodDetailBloc>().add(LoadTags());
-  }
-
   Future<void> _addComment(BuildContext context, String content) async {
     context.read<FoodDetailBloc>().add(PostComment(content));
   }
 
   Future<void> _loadComments(BuildContext context, {int page = 1}) async {
-    context.read<FoodDetailBloc>().add(LoadComments());
+    context.read<FoodDetailBloc>().add(LoadComments(page: page));
   }
 
   Widget _buildSectionTitle(String title) {
@@ -181,9 +166,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                             MainAxisAlignment.end,
                                         children: [
                                           Text(
-                                            _averRating == null
-                                                ? "0"
-                                                : _averRating.toString(),
+                                            state.averRating.toString(),
                                             style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
@@ -191,32 +174,37 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                             ),
                                           ),
                                           const SizedBox(width: 6),
-                                          RatingBar.builder(
-                                            initialRating: state.averRating,
-                                            minRating: 1,
-                                            direction: Axis.horizontal,
-                                            allowHalfRating: false,
-                                            itemCount: 5,
-                                            itemSize: 22,
-                                            itemBuilder: (context, _) =>
-                                                const Icon(
-                                                  Icons.star,
-                                                  color: Colors.amber,
-                                                ),
-                                            onRatingUpdate: (rating) async {
-                                              if (state.userRating == null) {
-                                                _submitRating(context, rating);
-                                                // _getRating();
-                                                // context.read<FoodDetailBloc>().add();
-                                              } else {
-                                                _patchRating(context, rating);
-                                              }
-                                              // setState(() {
-                                              //   _userRating = rating
-                                              //       .toInt(); // cập nhật lại local
-                                              //   _getAverRating();
-                                              // });
-                                            },
+                                          KeyedSubtree(
+                                            key: ValueKey(
+                                              state.userRating ??
+                                                  state.averRating,
+                                            ),
+                                            child: RatingBar.builder(
+                                              initialRating:
+                                                  state.userRating
+                                                      ?.toDouble() ??
+                                                  state.averRating,
+                                              minRating: 1,
+                                              direction: Axis.horizontal,
+                                              allowHalfRating: false,
+                                              itemCount: 5,
+                                              itemSize: 22,
+                                              itemBuilder: (context, _) =>
+                                                  const Icon(
+                                                    Icons.star,
+                                                    color: Colors.amber,
+                                                  ),
+                                              onRatingUpdate: (rating) {
+                                                if (state.userRating == null) {
+                                                  _submitRating(
+                                                    context,
+                                                    rating,
+                                                  );
+                                                } else {
+                                                  _patchRating(context, rating);
+                                                }
+                                              },
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -445,10 +433,10 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                                     ),
                                               ),
                                             const SizedBox(height: 10),
-                                            if (_totalPages > 1)
+                                            if (state.totalPages > 1)
                                               PaginationWidget(
-                                                currentPage: _currentPage,
-                                                totalPages: _totalPages,
+                                                currentPage: state.currentPage,
+                                                totalPages: state.totalPages,
                                                 onPageChanged: (page) {
                                                   _loadComments(
                                                     context,
@@ -505,6 +493,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                                       context,
                                                       content,
                                                     );
+                                                    _commentController.clear();
                                                   },
                                                 ),
                                               ],

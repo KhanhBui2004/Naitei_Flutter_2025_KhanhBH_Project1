@@ -157,7 +157,14 @@ class _HomeState extends State<HomePage> {
                                 return Padding(
                                   padding: const EdgeInsets.only(right: 20),
                                   child: InkWell(
-                                    onTap: () => debugPrint('Foods of Tag'),
+                                    onTap: () => Navigator.pushNamed(
+                                      context,
+                                      AppRoutes.foodsoftag,
+                                      arguments: {
+                                        'id': tag.id,
+                                        'name': tag.name,
+                                      },
+                                    ),
                                     child: Tagcard(
                                       image: Image.network(
                                         tag.imageUrl,
@@ -180,6 +187,7 @@ class _HomeState extends State<HomePage> {
                             ],
                           ),
                         ),
+                        _ => Container(),
                       });
                     },
                   ),

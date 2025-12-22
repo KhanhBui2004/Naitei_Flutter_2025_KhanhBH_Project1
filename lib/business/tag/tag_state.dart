@@ -9,8 +9,13 @@ class TagInProgress extends TagState {}
 class ListTagSuccess extends TagState {
   final List<Tag> tags;
   final int totalPages;
+  final int currentPage;
 
-  ListTagSuccess({required this.tags, required this.totalPages});
+  ListTagSuccess({
+    required this.tags,
+    required this.totalPages,
+    required this.currentPage,
+  });
 }
 
 class ListTagEmpty extends TagState {}

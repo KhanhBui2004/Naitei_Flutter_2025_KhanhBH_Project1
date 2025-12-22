@@ -32,7 +32,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
 
       if (isloggedIn['code'] == 200) {
+        final prefs = await SharedPreferences.getInstance();
+        final token = prefs.getString('token');
+
         emit(AuthLoginSuccess(isloggedIn['message']));
+        if (token!.isNotEmpty) {
+          emit(AuthenticateSuccess(token));
+        }
       } else {
         emit(AuthLoginFailure(isloggedIn['message'] ?? 'Login Failed!'));
       }

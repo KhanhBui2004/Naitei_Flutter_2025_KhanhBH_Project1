@@ -20,6 +20,7 @@ import 'package:naitei_flutter_2025_khanhbh_project1/data/service/profile/profil
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/authentication/login_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/home/home_page.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/navigator_global.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/route_generator.dart';
 
 void main() {
@@ -91,6 +92,7 @@ class MyApp extends StatelessWidget {
               onGenerateRoute: RouteGenerator.generateRoute,
               navigatorKey: navigatorKey,
               home: _buildHomeByState(state),
+              // initialRoute: AppRoutes.login,
             );
           },
         ),

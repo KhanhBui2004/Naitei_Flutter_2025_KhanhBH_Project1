@@ -3,14 +3,9 @@ import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/food_serv
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/allFoodView.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dart';
 
-class AllfoodPage extends StatefulWidget {
+class AllfoodPage extends StatelessWidget {
   const AllfoodPage({super.key});
 
-  @override
-  State<StatefulWidget> createState() => _AllFoodPageState();
-}
-
-class _AllFoodPageState extends State<AllfoodPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

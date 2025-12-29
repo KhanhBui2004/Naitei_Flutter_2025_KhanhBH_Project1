@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite errors="0" failures="0" tests="5" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.login_bloc" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.login_bloc" name="AuthBloc - Login Event Nên emit [AuthLoginFailure] khi username trống" time="0.048"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.login_bloc" name="AuthBloc - Login Event Nên emit [AuthLoginSuccess, AuthenticateSuccess] khi đăng nhập thành công" time="0.028"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.login_bloc" name="AuthBloc - Login Event Nên emit [AuthLoginFailure] khi API trả về lỗi (code != 200)" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.login_bloc" name="AuthBloc - Check Login (AuthenticateStarted) Nên emit [AuthenticateSuccess] nếu tìm thấy token trong SharedPreferences" time="0.006"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.login_bloc" name="AuthBloc - Check Login (AuthenticateStarted) Nên emit [AuthenticateFailure] nếu không tìm thấy token" time="0.006"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="7" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.register_bloc" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.register_bloc" name="RegisterBloc - Validation Tests Nên emit [RegisterFailure] khi có bất kỳ thông tin nào bị bỏ trống" time="0.034"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.register_bloc" name="RegisterBloc - Validation Tests Nên emit [RegisterFailure] khi username không bắt đầu bằng chữ cái" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.register_bloc" name="RegisterBloc - Validation Tests Nên emit [RegisterFailure] khi mật khẩu xác nhận không khớp" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.register_bloc" name="RegisterBloc - Validation Tests Nên emit [RegisterFailure] khi định dạng email sai" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.register_bloc" name="RegisterBloc - API Interaction Nên emit [RegisterSuccess] khi dịch vụ trả về code 201" time="0.019"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.register_bloc" name="RegisterBloc - API Interaction Nên emit [RegisterFailure] khi dịch vụ trả về lỗi từ server" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.auth.register_bloc" name="RegisterBloc - API Interaction Nên emit [RegisterFailure] khi có Exception xảy ra" time="0.006"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="2" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.detail.detail_bloc" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.detail.detail_bloc" name="FoodDetailBloc - LoadFoodDetail Nên emit [FoodDetailInprogress, FoodDetailSuccess] khi tải dữ liệu thành công" time="0.086"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.detail.detail_bloc" name="FoodDetailBloc - Rating &amp; Comments Nên cập nhật state khi PostRating thành công" time="0.023">
+      <system-out>Success</system-out>
+    </testcase>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="5" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.food.food_bloc" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.food.food_bloc" name="FoodBloc - ViewAllFood Nên emit [FoodInProgress, ViewAllFoodSuccess] khi lấy danh sách món ăn thành công" time="0.062"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.food.food_bloc" name="FoodBloc - ViewAllFood Nên emit [FoodInProgress, ViewAllFoodEmpty] khi danh sách món ăn trống" time="0.008"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.food.food_bloc" name="FoodBloc - GetFoodDetail Nên emit [FoodInProgress, GetDetailSuccess] khi lấy chi tiết thành công" time="0.012"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.food.food_bloc" name="FoodBloc - GetFoodDetail Nên emit [FoodInProgress, FoodFailure] khi API getFoodDetail lỗi" time="0.008"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.food.food_bloc" name="FoodBloc - Reset Nên emit [FoodInitial] khi nhận event FoodReset" time="0.006"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="4" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.foodtag.foodTag_bloc" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.foodtag.foodTag_bloc" name="FoodtagBloc - ViewFoodTag Nên emit [FoodTagInProgress, ViewFoodTagSuccess] khi lấy danh sách theo tag thành công" time="0.07"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.foodtag.foodTag_bloc" name="FoodtagBloc - ViewFoodTag Nên emit [FoodTagInProgress, ViewFoodTagEmpty] khi tag không có món ăn nào" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.foodtag.foodTag_bloc" name="FoodtagBloc - ViewFoodTag Nên emit [FoodTagInProgress, ViewFoodTagFailure] khi server trả về code != 200" time="0.007"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.foodtag.foodTag_bloc" name="FoodtagBloc - ViewFoodTag Nên emit [FoodTagInProgress, ViewFoodTagFailure] khi có ngoại lệ xảy ra" time="0.007"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="5" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.myfood.myFood_bloc" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.myfood.myFood_bloc" name="MyfoodBloc - ViewMyFood Event Nên emit [MyFoodInProgress, ViewMyFoodSuccess] khi lấy dữ liệu thành công" time="0.071"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.myfood.myFood_bloc" name="MyfoodBloc - ViewMyFood Event Nên emit [MyFoodInProgress, ViewMyFoodEmpty] khi không có món ăn nào" time="0.007"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.myfood.myFood_bloc" name="MyfoodBloc - ViewMyFood Event Nên emit [MyFoodInProgress, ViewMyFoodFailure] khi API trả về lỗi" time="0.007"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.myfood.myFood_bloc" name="MyfoodBloc - ViewMyFood Event Nên emit [MyFoodInProgress, ViewMyFoodFailure] khi xảy ra ngoại lệ" time="0.007"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.myfood.myFood_bloc" name="MyfoodBloc - Reset Event Nên emit [MyFoodInitial] khi nhận sự kiện MyFoodReset" time="0.006"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="5" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.profile.profile_bloc" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.profile.profile_bloc" name="ProfileBloc - PatchProfile Logic Nên emit [ProfileInProgress, PatchProfileFailure] khi mật khẩu xác nhận không khớp" time="0.046"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.profile.profile_bloc" name="ProfileBloc - PatchProfile Logic Nên emit [ProfileInProgress, PatchProfileFailure] khi email sai định dạng" time="0.007"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.profile.profile_bloc" name="ProfileBloc - PatchProfile Logic Nên emit [ProfileInProgress, PatchProfileSuccess] khi API cập nhật thành công (code 200)" time="0.025"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.profile.profile_bloc" name="ProfileBloc - PatchProfile Logic Nên emit [ProfileInProgress, PatchProfileFailure] khi API trả về lỗi từ server" time="0.007"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.profile.profile_bloc" name="ProfileBloc - PatchProfile Logic Nên emit [ProfileInProgress, PatchProfileFailure] khi có ngoại lệ (Exception)" time="0.007"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="4" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.tag.tag_bloc" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.tag.tag_bloc" name="TagBloc - ViewListTag Event Nên emit [TagInProgress, ListTagSuccess] khi lấy danh sách tag thành công" time="0.067"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.tag.tag_bloc" name="TagBloc - ViewListTag Event Nên emit [TagInProgress, ListTagEmpty] khi danh sách tag trống" time="0.007"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.tag.tag_bloc" name="TagBloc - ViewListTag Event Nên emit [TagInProgress, ListTagFailure] khi server trả về lỗi (code != 200)" time="0.007"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.business.tag.tag_bloc" name="TagBloc - ViewListTag Event Nên emit [TagInProgress, ListTagFailure] khi xảy ra lỗi ngoại lệ" time="0.007"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="9" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.dish_model" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.dish_model" name="DishModel Unit Test fromJson Nên parse đúng từ JSON đầy đủ các trường hợp kiểu dữ liệu khó" time="0.03"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.dish_model" name="DishModel Unit Test fromJson Nên xử lý an toàn khi các trường optional bị null" time="0.004"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.dish_model" name="DishModel Unit Test ingredientsList Nên tách chuỗi string thành list và xóa khoảng trắng thừa" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.dish_model" name="DishModel Unit Test ingredientsList Nên trả về list trống nếu chuỗi ingredients trống" time="0.004"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.dish_model" name="DishModel Unit Test canBeMadeWith Nên trả về true nếu đầy đủ nguyên liệu (không phân biệt hoa thường)" time="0.006"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.dish_model" name="DishModel Unit Test canBeMadeWith Nên trả về false nếu thiếu một nguyên liệu bất kỳ" time="0.004"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.dish_model" name="DishModel Unit Test getMatchPercentage Nên tính đúng phần trăm nguyên liệu có sẵn" time="0.004"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.dish_model" name="DishModel Unit Test getMatchPercentage Nên trả về 0.0 nếu không có nguyên liệu nào khớp" time="0.004"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.dish_model" name="DishModel Unit Test Hai đối tượng DishModel cùng ID và Name nên được coi là bằng nhau" time="0.004"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="3" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.model_type" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.model_type" name="ModelType Enum Test ModelType.detect phải có giá trị modelName và task chính xác" time="0.028"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.model_type" name="ModelType Enum Test Enum ModelType phải có đầy đủ các giá trị dự kiến" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.model_type" name="ModelType Enum Test Kiểm tra tính bất biến của các thuộc tính" time="0.004"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="3" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.slider_type" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.slider_type" name="SliderType Enum Test SliderType phải có đúng 4 giá trị định nghĩa" time="0.023"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.slider_type" name="SliderType Enum Test Các giá trị enum phải được định nghĩa đúng tên" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.camera.slider_type" name="SliderType Enum Test Kiểm tra thứ tự index (nếu logic của bạn phụ thuộc vào index)" time="0.004"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="3" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.comment_model" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.comment_model" name="Comment Model Test Nên tạo đối tượng Comment đúng từ JSON đầy đủ" time="0.029"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.comment_model" name="Comment Model Test Nên sử dụng giá trị mặc định khi JSON bị thiếu trường (null)" time="0.003"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.comment_model" name="Comment Model Test Nên trả về Map JSON đúng khi gọi toJson" time="0.002"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="4" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.food_model" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.food_model" name="Food Model Unit Test Nên tạo đối tượng Food chính xác từ JSON" time="0.028"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.food_model" name="Food Model Unit Test Nên parse đúng trường deletedAt khi có giá trị" time="0.003"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.food_model" name="Food Model Unit Test Nên chuyển đổi đối tượng Food sang Map JSON chính xác" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.food_model" name="Food Model Unit Test Dữ liệu sau khi fromJson và toJson phải đồng nhất" time="0.003"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="2" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.tag_model" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.tag_model" name="Tag Model Test Nên tạo đối tượng Tag chính xác từ JSON" time="0.027"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.tag_model" name="Tag Model Test Nên sử dụng chuỗi trống nếu image_url bị null" time="0.004"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="4" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.user_model" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.user_model" name="User Model Unit Test Nên tạo đối tượng User chính xác từ JSON đầy đủ" time="0.034"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.user_model" name="User Model Unit Test Nên sử dụng chuỗi trống (default) khi các trường trong JSON bị null" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.user_model" name="User Model Unit Test Nên chuyển đổi đối tượng User sang Map JSON chính xác" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.model.user_model" name="User Model Unit Test Dữ liệu không thay đổi sau khi đi qua luồng fromJson -> toJson" time="0.004"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="2" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.auth.login_service" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.auth.login_service" name="LoginService Unit Test Nên trả về User model và lưu vào SharedPreferences khi đăng nhập thành công" time="0.054"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.auth.login_service" name="LoginService Unit Test Nên ném ra Exception khi Dio trả về lỗi (401, 500...)" time="0.01"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="3" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.auth.register_service" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.auth.register_service" name="RegisterService Unit Test Nên trả về code và message khi đăng ký thành công (201 Created)" time="0.057"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.auth.register_service" name="RegisterService Unit Test Nên trả về lỗi từ Server khi dữ liệu không hợp lệ (ví dụ trùng Username)" time="0.004"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.auth.register_service" name="RegisterService Unit Test Nên ném ra Exception khi gặp lỗi kết nối (DioException)" time="0.01"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="3" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.api_service" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.api_service" name="ApiService Unit Test getRecommendationsByIngredients trả về Map DishModel khi thành công (200)" time="0.021"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.api_service" name="ApiService Unit Test Helper Methods (Parsing logic) Logic parseToInt phải xử lý được cả String, Double và Null" time="0.011"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.api_service" name="ApiService Unit Test getRecommendationsByIngredients ném Exception khi gặp lỗi 404" time="0.004"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="10" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" name="DishService Unit Test convertIngredientToVietnamese Nên chuyển đổi đúng từ tiếng Anh sang tiếng Việt (viết thường)" time="0.022"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" name="DishService Unit Test convertIngredientToVietnamese Nên xử lý được chuỗi có khoảng trắng hoặc viết hoa" time="0.003"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" name="DishService Unit Test convertIngredientToVietnamese Nên trả về chính chuỗi đó nếu không tìm thấy trong map" time="0.004"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" name="DishService Unit Test convertIngredientsToVietnamese (List) Nên chuyển đổi danh sách nhiều nguyên liệu chính xác" time="0.004"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" name="DishService Unit Test convertIngredientsToVietnamese (List) Nên trả về list trống nếu đầu vào là list trống" time="0.003"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" name="DishService Unit Test normalizeIngredientName Nên ưu tiên map sang tiếng Việt nếu có trong _ingredientMap" time="0.003"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" name="DishService Unit Test normalizeIngredientName Nên map từ đối tượng YOLO sang tên nguyên liệu chuẩn (English mapping)" time="0.004"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" name="DishService Unit Test normalizeIngredientName Nên trả về chuỗi rỗng cho các đối tượng không phải thực phẩm" time="0.003"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" name="DishService Unit Test normalizeIngredientName Nên giữ nguyên giá trị nếu không khớp với bất kỳ map nào" time="0.003"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.camera.dish_service" name="DishService Unit Test normalizeIngredientName Nên xử lý chuẩn hóa viết hoa và khoảng trắng trước khi mapping" time="0.003"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="5" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.comment_service" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.comment_service" name="CommentService - postComment Nên trả về code 201 khi post comment thành công" time="0.061"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.comment_service" name="CommentService - postComment Nên ném Exception khi Dio bị lỗi" time="0.011"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.comment_service" name="CommentService - getFoodComment Nên trả về List&lt;Comment> và totalPages khi API trả về 200" time="0.007"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.comment_service" name="CommentService - getFoodComment Nên trả về list trống nếu code không phải 200 hoặc data null" time="0.004"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.comment_service" name="CommentService - getFoodComment Nên ném Exception khi gặp lỗi không xác định (crash logic)" time="0.007"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="5" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.food_service" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.food_service" name="FoodService - getFoods (Danh sách món ăn) Nên trả về List&lt;Food> khi API thành công (200)" time="0.067"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.food_service" name="FoodService - getFoodDetail (Chi tiết món ăn) Nên trả về đối tượng Food khi ID hợp lệ" time="0.006"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.food_service" name="FoodService - getFoodDetail (Chi tiết món ăn) Nên ném Exception khi ID không tồn tại (DioException)" time="0.012">
+      <system-out>API error: 404 - null</system-out>
+    </testcase>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.food_service" name="FoodService - postFood (Thêm món mới) Nên trả về code 200 khi thêm món ăn thành công" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.food_service" name="FoodService - getMyFood &amp; Favorite getMyFood nên map đúng dữ liệu của người dùng" time="0.005"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="6" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.rating_service" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.rating_service" name="RatingService - postRate &amp; patchRate postRate nên trả về code 200 khi thành công" time="0.056">
+      <system-out>Rating success</system-out>
+    </testcase>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.rating_service" name="RatingService - postRate &amp; patchRate patchRate nên gửi request đúng URL với rateId" time="0.008"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.rating_service" name="RatingService - Lấy thông tin Rating getAverRating nên parse đúng giá trị double từ server" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.rating_service" name="RatingService - Lấy thông tin Rating getRating nên trả về null nếu server trả về list rỗng" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.rating_service" name="RatingService - Lấy thông tin Rating getCountRating nên trả về giá trị int khi thành công" time="0.006"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.rating_service" name="RatingService - Exception handling Nên ném Exception khi DioException xảy ra" time="0.008"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="5" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.tag_service" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.tag_service" name="TagService - getAllTags Nên trả về Map chứa danh sách Tag khi API thành công" time="0.052"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.tag_service" name="TagService - getAllTags Nên ném Exception nếu parse dữ liệu thất bại (Dữ liệu không đúng định dạng)" time="0.01"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.tag_service" name="TagService - getTagsByFoodId Nên parse đúng cấu trúc tag lồng trong item[&quot;tag&quot;]" time="0.006"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.tag_service" name="TagService - getFoodsByTagId Nên trả về danh sách Food theo Tag ID" time="0.012"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.food.tag_service" name="TagService - getFoodsByTagId Nên ném DioException khi lỗi network" time="0.005"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="3" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.network.api_client" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.network.api_client" name="ApiClient Unit Test Nên cấu hình BaseOptions chính xác" time="0.037"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.network.api_client" name="ApiClient Unit Test Nên bao gồm AuthInterceptor trong danh sách interceptors" time="0.003"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.network.api_client" name="ApiClient Unit Test ApiClient.dio nên là một Singleton instance (nhất quán)" time="0.003"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="2" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.network.auth_interceptor" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.network.auth_interceptor" name="AuthInterceptor Unit Test Nếu lỗi không phải 401, nên gọi handler.next(err)" time="0.042"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.network.auth_interceptor" name="AuthInterceptor Unit Test Nếu lỗi 401 nhưng không có refreshToken, nên gọi handler.next(err)" time="0.006"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="3" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.profile.profile_service" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.profile.profile_service" name="ProfileService - patchProfile Unit Test Nên gửi request PATCH đúng URL và cập nhật SharedPreferences khi thành công (200)" time="0.068"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.profile.profile_service" name="ProfileService - patchProfile Unit Test Nên bao gồm password trong body nếu password không rỗng" time="0.005"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.data.services.profile.profile_service" name="ProfileService - patchProfile Unit Test Nên ném Exception khi Dio bị lỗi network" time="0.011"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="4" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.login_page" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.login_page" name="LoginPage Widget Test Hiển thị đầy đủ các thành phần UI cơ bản" time="0.94"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.login_page" name="LoginPage Widget Test Hiển thị Loading Indicator khi trạng thái là AuthLoginInProgress" time="0.09"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.login_page" name="LoginPage Widget Test Gọi sự kiện AuthLoginStarted khi nhấn nút Login" time="0.399"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.login_page" name="LoginPage Widget Test Hiển thị SnackBar màu đỏ khi Login thất bại" time="0.265"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="5" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.register_page" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.register_page" name="RegisterPage Widget Test Hiển thị tiêu đề và đầy đủ 6 trường nhập liệu" time="0.981"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.register_page" name="RegisterPage Widget Test Gọi RegisterStarted khi điền thông tin và nhấn nút Sign up" time="1.271"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.register_page" name="RegisterPage Widget Test Hiển thị Loading (CircularProgressIndicator) khi state là RegisterInProgress" time="1.251"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.register_page" name="RegisterPage Widget Test Hiển thị SnackBar lỗi khi state là RegisterFailure" time="1.307"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.authentication.register_page" name="RegisterPage Widget Test Chuyển hướng sang trang Login khi đăng ký thành công" time="0.896"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="6" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.detail.detail_page" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.detail.detail_page" name="FoodDetailScreen Widget Test Hiển thị Loading Indicator khi đang tải" time="0.674"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.detail.detail_page" name="FoodDetailScreen Widget Test Hiển thị đầy đủ thông tin món ăn khi tải thành công" time="0.74"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.detail.detail_page" name="FoodDetailScreen Widget Test Gửi comment thành công khi nhập text và nhấn nút Send" time="1.415"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.detail.detail_page" name="FoodDetailScreen Widget Test Gọi sự kiện PostRating khi tương tác với RatingBar" time="0.378"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.detail.detail_page" name="FoodDetailScreen Widget Test Hiển thị text thông báo khi không có comment" time="0.417"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.detail.detail_page" name="FoodDetailScreen Widget Test Hiển thị thông báo lỗi khi tải dữ liệu thất bại" time="0.986"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="4" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.favorite.favorite_page" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.favorite.favorite_page" name="Hiển thị Loading Indicator khi trạng thái là FoodInProgress" time="2.655"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.favorite.favorite_page" name="Hiển thị thông báo trống khi danh sách yêu thích rỗng" time="0.482"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.favorite.favorite_page" name="Hiển thị danh sách món ăn khi tải thành công" time="0.996"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.favorite.favorite_page" name="Hiển thị SnackBar lỗi khi ViewAllFoodFailure" time="0.786"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="4" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.allFoood_page" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.allFoood_page" name="AllfoodPage Widget Test Hiển thị AppBar với tiêu đề &quot;All Foods&quot;" time="2.816"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.allFoood_page" name="AllfoodPage Widget Test Kiểm tra AllFoodView được khởi tạo với showMyFood = false" time="0.431"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.allFoood_page" name="AllfoodPage Widget Test Điều hướng sang trang Detail khi nhấn vào món ăn" time="2.179"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.allFoood_page" name="AllfoodPage Widget Test Hiển thị thông báo khi không có món ăn nào" time="0.155"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="4" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.allMyFood_page" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.allMyFood_page" name="AllmyfoodPage Widget Test Hiển thị tiêu đề &quot;My Foods&quot; và AllFoodView" time="4.168"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.allMyFood_page" name="AllmyfoodPage Widget Test Kiểm tra các tham số truyền xuống AllFoodView" time="0.255"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.allMyFood_page" name="AllmyfoodPage Widget Test Điều hướng sang trang Detail khi nhấn vào món ăn" time="0.404"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.allMyFood_page" name="AllmyfoodPage Widget Test Hiển thị thông báo khi My Foods trống" time="0.135"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="2" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.home_page" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.home_page" name="HomePage Widget Test Điều hướng về Login khi không có userId" time="2.681"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.home.home_page" name="HomePage Widget Test Kiểm tra hiển thị khi danh sách Tags rỗng" time="0.448"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="5" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.profile.profile_page" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.profile.profile_page" name="ProfilePage Widget Test Hiển thị Loading khi đang load user từ SharedPreferences" time="2.19"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.profile.profile_page" name="ProfilePage Widget Test Hiển thị đúng thông tin user sau khi load xong" time="2.94"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.profile.profile_page" name="ProfilePage Widget Test Gọi PatchProfile event khi nhấn nút Save" time="1.90"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.profile.profile_page" name="ProfilePage Widget Test Hiển thị Dialog Loading khi ProfileInProgress" time="0.624"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.profile.profile_page" name="ProfilePage Widget Test Hiển thị SnackBar thành công và clear mật khẩu khi PatchProfileSuccess" time="0.697"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="7" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.allTag_page" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.allTag_page" name="AllTagsPage Widget Test Hiển thị Loading khi state là TagInProgress" time="3.761"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.allTag_page" name="AllTagsPage Widget Test Hiển thị danh sách Tag và Pagination khi tải thành công" time="1.685"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.allTag_page" name="AllTagsPage Widget Test Hiển thị thông báo khi danh sách rỗng" time="0.262"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.allTag_page" name="AllTagsPage Widget Test Gọi sự kiện tìm kiếm khi nhập vào SearchBar" time="0.724"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.allTag_page" name="AllTagsPage Widget Test Hiển thị thông báo lỗi khi tải thất bại" time="0.24"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.allTag_page" name="AllTagsPage Widget Test Quay lại trang Home khi nhấn nút Back" time="0.636"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.allTag_page" name="AllTagsPage Widget Test Navigation Case Chuyển sang trang FoodByTag khi nhấn vào một Tag" time="0.343"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="8" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.foodTag_page" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.foodTag_page" name="FoodsTagPage Widget Test Hiển thị Loading Indicator khi state là FoodTagInProgress" time="4.946"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.foodTag_page" name="FoodsTagPage Widget Test Hiển thị tiêu đề AppBar đúng với tagName" time="0.357"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.foodTag_page" name="FoodsTagPage Widget Test Hiển thị danh sách món ăn khi tải thành công" time="0.719"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.foodTag_page" name="FoodsTagPage Widget Test Hiển thị thông báo khi danh sách món ăn trống" time="0.212"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.foodTag_page" name="FoodsTagPage Widget Test Hiển thị thông báo lỗi khi tải thất bại" time="0.196"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.foodTag_page" name="FoodsTagPage Widget Test Gọi sự kiện tìm kiếm khi nhập vào SearchBar" time="0.47"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.foodTag_page" name="FoodsTagPage Widget Test Điều hướng sang trang chi tiết khi nhấn vào món ăn" time="0.462"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.presentation.tag.foodTag_page" name="FoodsTagPage Widget Test Nhấn nút Back gọi Navigator.pop" time="0.19"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="3" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.helper" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.helper" name="Helper Unit Test getAssetName trả về đúng định dạng đường dẫn" time="0.46"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.helper" name="Helper Unit Test getScreenWidth trả về chiều rộng màn hình chính xác" time="3.651"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.helper" name="Helper Unit Test getScreenHeight trả về chiều cao màn hình chính xác" time="0.11"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="6" skipped="0" name="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.route_generator" timestamp="2025-12-29T07:37:52">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.route_generator" name="RouteGenerator Unit Test Nên trả về LoginPage khi route name là login" time="0.214"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.route_generator" name="RouteGenerator Unit Test Nên trả về HomePage khi route name là home" time="0.192"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.route_generator" name="RouteGenerator Unit Test Nên trả về FoodDetailScreen với foodId đúng khi vào trang Detail" time="0.54"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.route_generator" name="RouteGenerator Unit Test Nên trả về FoodsTagPage khi truyền đúng Map arguments cho foodsoftag" time="0.043"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.route_generator" name="RouteGenerator Unit Test Nên trả về trang lỗi khi thiếu arguments cho foodsoftag" time="0.016"/>
+    <testcase classname="D:.Flutter.naitei_flutter_2025_khanhbh_project1.test.utils.route_generator" name="RouteGenerator Unit Test Nên trả về trang &quot;Page not found!&quot; khi route name lạ" time="0.012"/>
+  </testsuite>
+</testsuites>

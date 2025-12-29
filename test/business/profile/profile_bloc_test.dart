@@ -2,13 +2,11 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-// Import các file từ dự án của bạn
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_state.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/services/profile/profile_service.dart';
 
-// Tạo Mock cho ProfileService
 class MockProfileService extends Mock implements ProfileService {}
 
 void main() {
@@ -24,7 +22,6 @@ void main() {
     profileBloc.close();
   });
 
-  // Helper function để tạo event PatchProfile nhanh
   PatchProfile createEvent({
     String? password,
     String? cfpassword,

@@ -19,7 +19,6 @@ void main() {
   late MockFoodService mockFoodService;
   late MockRatingService mockRatingService;
 
-  // Dữ liệu giả lập (Mock Data)
   final mockFood = Food(
     id: 1,
     dishName: 'Phở',
@@ -44,7 +43,6 @@ void main() {
     mockRatingService = MockRatingService();
     foodBloc = FoodBloc(mockFoodService, mockRatingService);
 
-    // Mặc định cho SharedPreferences
     SharedPreferences.setMockInitialValues({'userId': 123});
   });
 
@@ -56,7 +54,6 @@ void main() {
     blocTest<FoodBloc, FoodState>(
       'Nên emit [FoodInProgress, ViewAllFoodSuccess] khi lấy danh sách món ăn thành công',
       setUp: () {
-        // Chú ý: Cần ép kiểu <Food>[...] để tránh lỗi subtype List<dynamic>
         when(
           () => mockFoodService.getFoods(
             page: any(named: 'page'),

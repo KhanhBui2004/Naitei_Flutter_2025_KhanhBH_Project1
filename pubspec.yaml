@@ -53,6 +53,8 @@ dev_dependencies:
   test: ^1.26.3
   mocktail_image_network: ^1.1.0
   network_image_mock: ^2.1.1
+  integration_test:
+    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

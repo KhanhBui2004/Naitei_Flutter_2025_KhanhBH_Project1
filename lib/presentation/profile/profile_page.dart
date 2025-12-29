@@ -7,7 +7,7 @@ import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/appNavB
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/constant.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/helper.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/profile/profile_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/profile/profile_service.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

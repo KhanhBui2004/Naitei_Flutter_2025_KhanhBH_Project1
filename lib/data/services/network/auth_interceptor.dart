@@ -5,6 +5,9 @@ import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dar
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthInterceptor extends Interceptor {
+  final Dio? _refreshDio;
+
+  AuthInterceptor({Dio? refreshDio}) : _refreshDio = refreshDio;
   @override
   Future<void> onError(
     DioException err,
@@ -19,10 +22,9 @@ class AuthInterceptor extends Interceptor {
         return handler.next(err);
       }
 
-      final dio = Dio();
+      final dio = _refreshDio ?? Dio();
 
       try {
-        // Gọi API refresh token
         final refreshResponse = await dio.post(
           ApiEndPoint.refresh,
           data: {"refreshToken": refreshToken},
@@ -30,10 +32,8 @@ class AuthInterceptor extends Interceptor {
 
         final newToken = refreshResponse.data["token"];
 
-        // Lưu lại token mới
         await prefs.setString("token", newToken);
 
-        // Gắn token mới vào request cũ và retry
         final RequestOptions req = err.requestOptions;
         req.headers["Authorization"] = "Bearer $newToken";
 

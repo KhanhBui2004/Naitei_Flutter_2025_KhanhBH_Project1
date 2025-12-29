@@ -2,12 +2,13 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/model/user_model.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/network/api_client.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/network/api_client.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginService {
-  final Dio _dio = ApiClient.dio;
+  final Dio _dio;
+  LoginService({Dio? dio}) : _dio = dio ?? ApiClient.dio;
   Future<Map<String, dynamic>> login(String username, String password) async {
     final prefs = await SharedPreferences.getInstance();
     try {

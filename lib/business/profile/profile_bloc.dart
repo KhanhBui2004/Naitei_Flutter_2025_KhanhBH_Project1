@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/profile/profile_state.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/profile/profile_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/profile/profile_service.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc(this.profileService) : super(ProfileInitial()) {

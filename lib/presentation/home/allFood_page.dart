@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/food_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/food_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/allFoodView.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dart';
 

@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/network/api_client.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/network/api_client.dart';
 
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RatingService {
-  final Dio _dio = ApiClient.dio;
+  final Dio _dio;
+  RatingService({Dio? dio}) : _dio = dio ?? ApiClient.dio;
 
   Future<Map<String, dynamic>> postRate(
     int userId,

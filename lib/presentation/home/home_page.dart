@@ -23,12 +23,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeState extends State<HomePage> {
-  late int userId;
+  int? userId;
   String userName = '';
+
+  late FoodBloc _foodBloc;
+  late MyfoodBloc _myfoodBloc;
 
   @override
   void initState() {
     super.initState();
+    _foodBloc = context.read<FoodBloc>();
+    _myfoodBloc = context.read<MyfoodBloc>();
+
     _loadUser();
     _fetchTags(context);
     _fetchFoods(context);
@@ -43,8 +49,9 @@ class _HomeState extends State<HomePage> {
   }
 
   Future<void> _fetchMyFoods(BuildContext context) async {
+    if (userId == null) return;
     context.read<MyfoodBloc>().add(
-      ViewMyFood(page: 1, userId: userId, limit: 5),
+      ViewMyFood(page: 1, userId: userId!, limit: 5),
     );
   }
 
@@ -68,8 +75,10 @@ class _HomeState extends State<HomePage> {
 
   @override
   void dispose() {
-    context.read<FoodBloc>().add(FoodReset());
-    context.read<MyfoodBloc>().add(MyFoodReset());
+    _foodBloc.add(FoodReset());
+    _myfoodBloc.add(MyFoodReset());
+    // context.read<FoodBloc>().add(FoodReset());
+    // context.read<MyfoodBloc>().add(MyFoodReset());
     super.dispose();
   }
 

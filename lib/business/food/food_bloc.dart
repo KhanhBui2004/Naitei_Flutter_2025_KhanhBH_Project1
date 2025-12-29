@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_state.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/food_service.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/rating_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/food_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/rating_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FoodBloc extends Bloc<FoodEvent, FoodState> {

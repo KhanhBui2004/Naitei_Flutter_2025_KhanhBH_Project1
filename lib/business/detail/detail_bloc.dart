@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/detail/detail_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/detail/detail_state.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/comment_service.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/food_service.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/rating_service.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/tag_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/comment_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/food_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/rating_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/tag_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FoodDetailBloc extends Bloc<FoodDetailEvent, FoodDetailState> {
@@ -80,7 +80,9 @@ class FoodDetailBloc extends Bloc<FoodDetailEvent, FoodDetailState> {
           tags: tags,
         ),
       );
-    } catch (e) {
+    } catch (e, stackTrace) {
+      print('TEST LOG ERROR: $e'); // In ra lỗi thực tế
+      print(stackTrace);
       emit(FoodDetailFailure(e.toString()));
     }
   }
@@ -98,11 +100,16 @@ class FoodDetailBloc extends Bloc<FoodDetailEvent, FoodDetailState> {
       current.food.id,
       event.rating,
     );
-    debugPrint(response['message']);
+    try {
+      debugPrint(response['message']);
 
-    final aver = await ratingService.getAverRating(current.food.id);
+      final aver = await ratingService.getAverRating(current.food.id);
 
-    emit(current.copyWith(userRating: event.rating, averRating: aver));
+      emit(current.copyWith(userRating: event.rating, averRating: aver));
+    } catch (e, stackTrace) {
+      print('TEST LOG ERROR: $e'); // In ra lỗi thực tế
+      print(stackTrace);
+    }
   }
 
   Future<void> _onPatchRating(

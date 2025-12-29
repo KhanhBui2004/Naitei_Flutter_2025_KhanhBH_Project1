@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/tag/tag_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/tag/tag_state.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/tag_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/tag_service.dart';
 
 class TagBloc extends Bloc<TagEvent, TagState> {
   TagBloc(this.tagService) : super(TagInitial()) {

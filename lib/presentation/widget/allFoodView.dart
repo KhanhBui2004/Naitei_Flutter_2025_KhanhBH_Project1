@@ -202,7 +202,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:naitei_flutter_2025_khanhbh_project1/data/model/food_model.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/food_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/food_service.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/food/food_state.dart';

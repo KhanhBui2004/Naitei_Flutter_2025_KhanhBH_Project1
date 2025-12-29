@@ -1,14 +1,15 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/network/api_client.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/network/api_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/model/food_model.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/constant.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/model/tag_model.dart';
 
 class TagService {
-  final Dio _dio = ApiClient.dio;
+  final Dio _dio;
+  TagService({Dio? dio}) : _dio = dio ?? ApiClient.dio;
 
   Future<Map<String, dynamic>> getAllTags({
     int page = 1,

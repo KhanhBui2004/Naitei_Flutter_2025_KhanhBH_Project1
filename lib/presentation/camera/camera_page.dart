@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/business/camera/api_service.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/business/camera/dish_service.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/business/camera/model_manager.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/camera/api_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/camera/dish_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/camera/model_manager.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/presentation/widget/dual_dish_list_widget.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/utils/routes/app_routes.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/data/model/camera/dish_model.dart';

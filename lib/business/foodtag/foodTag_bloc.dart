@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/foodtag/foodTag_event.dart';
 import 'package:naitei_flutter_2025_khanhbh_project1/business/foodtag/foodTag_state.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/rating_service.dart';
-import 'package:naitei_flutter_2025_khanhbh_project1/data/service/food/tag_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/rating_service.dart';
+import 'package:naitei_flutter_2025_khanhbh_project1/data/services/food/tag_service.dart';
 
 class FoodtagBloc extends Bloc<FoodtagEvent, FoodtagState> {
   final RatingService ratingService;

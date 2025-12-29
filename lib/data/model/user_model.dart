@@ -33,7 +33,6 @@ class User {
     image: json['image'] ?? '',
   );
 
-  /// 👉 thêm hàm này để tiện lưu/convert
   Map<String, dynamic> toJson() => {
     'accessToken': accessToken,
     'refreshToken': refreshToken,
